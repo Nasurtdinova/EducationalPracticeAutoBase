@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RegistrationPage">
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -20,16 +19,14 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Text="ФИО"></TextBlock>
         <TextBlock Text="Дата рождения" Grid.Row="1"></TextBlock>
         <TextBlock Text="Род" Grid.Row="2"></TextBlock>
         <TextBlock Text="Логин" Grid.Row="3"></TextBlock>
         <TextBlock Text="Пароль" Grid.Row="4"></TextBlock>
-
         <TextBox Grid.Column="1" Name="tbFullName"></TextBox>
-        <DatePicker Name="dpDate" Grid.Row="1" Grid.Column="1"></DatePicker>
+        <DatePicker Width="300" Height="40" FontSize="25" Name="dpDate" Grid.Row="1" Grid.Column="1"></DatePicker>
         <ComboBox Grid.Row="2" Grid.Column="1" DisplayMemberPath="Name" Name="comboGender"></ComboBox>
         <TextBox Grid.Column="1" Grid.Row="3" Name="tbLogin"></TextBox>
         <PasswordBox Grid.Column="1" Grid.Row="4" Name="tbPassword"></PasswordBox>
@@ -37,5 +34,5 @@
             <Button Content="Зарегистрироваться" Click="btnRegistr_Click" Name="btnRegistr" Margin="10" Width="250"></Button>
             <Button Content="Войти" Name="btnLogin" Click="btnLogin_Click"></Button>
         </StackPanel>
-        </Grid>
+    </Grid>
 </Page>

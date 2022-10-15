@@ -17,16 +17,15 @@ namespace MotorDepot
 {
     public partial class RegistrationPage : Page
     {
-        public int IdRole { get; set; }
         public RegistrationPage()
         {
             InitializeComponent();
+            comboGender.ItemsSource = DataAccess.GetGenders();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AuthorizationPage());
-            comboGender.ItemsSource = DataAccess.GetGenders();
+            NavigationService.Navigate(new AuthorizationPage());           
         }
 
         private void btnRegistr_Click(object sender, RoutedEventArgs e)
@@ -40,6 +39,7 @@ namespace MotorDepot
                 Gender = (comboGender.SelectedItem as Gender).Name,
             };
             DataAccess.SaveUser(user);
+            MessageBox.Show("Вы зарегистрированы!");
         }
     }
 }

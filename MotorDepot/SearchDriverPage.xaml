@@ -1,0 +1,28 @@
+﻿<Page x:Class="MotorDepot.SearchDriverPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MotorDepot"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SearchDriverPage">
+
+    <Grid>
+        <StackPanel>
+            <StackPanel>
+                <TextBlock Text="Откуда"></TextBlock>
+                <TextBox x:Name="tbDeparture"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Куда"></TextBlock>
+                <TextBox x:Name="tbArrival"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Куда"></TextBlock>
+                <TextBox x:Name="tbData"></TextBox>
+            </StackPanel>
+            <Button Content="Найти" x:Name="btnSearch" Click="btnSearch_Click" ></Button>
+        </StackPanel>
+    </Grid>
+</Page>
