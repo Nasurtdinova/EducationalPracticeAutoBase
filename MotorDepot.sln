@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorDepot", "MotorDepot\MotorDepot.csproj", "{38C1BA10-D969-49CF-991E-6223B4C7A0FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38C1BA10-D969-49CF-991E-6223B4C7A0FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38C1BA10-D969-49CF-991E-6223B4C7A0FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38C1BA10-D969-49CF-991E-6223B4C7A0FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38C1BA10-D969-49CF-991E-6223B4C7A0FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {24C8D1A9-6FF1-4F2D-A86F-B233D5CDFDD4}
+	EndGlobalSection
+EndGlobal

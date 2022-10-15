@@ -1,0 +1,34 @@
+﻿<Page x:Class="MotorDepot.AuthorizationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MotorDepot"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthorizationPage">
+    <Grid>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition >
+        </ColumnDefinition>
+        <ColumnDefinition>
+        </ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition></RowDefinition>
+    </Grid.RowDefinitions>
+        <Image Source="/MotorDepot;component/logoMotor.jpg" Width="1900"></Image>
+        <TextBlock Text="Авторизация" Grid.ColumnSpan="2" FontSize="25" ></TextBlock>
+    <TextBlock Text="Логин" Grid.Row="1" FontSize="25"></TextBlock>
+    <TextBlock Text="Пароль" Grid.Row="2" FontSize="25"></TextBlock>
+    <TextBox x:Name="tbLogin" MaxLength="20" Height="80" FontSize="25" Width="400" Grid.Row="1" Grid.Column="1"></TextBox>
+    <PasswordBox x:Name="tbPassword" MaxLength="20" Height="80" Width="400" FontSize="25" Grid.Row="2" Grid.Column="1"></PasswordBox>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2">
+            <Button x:Name="btnLogin" Content="Войти" Click="btnLogin_Click" Margin="10"></Button>
+            <Button x:Name="btnRegistr" Content="Зарегистрироваться" Width="250" Click="btnRegistr_Click" Margin="10"></Button>
+        </StackPanel>
+    </Grid>
+</Page>

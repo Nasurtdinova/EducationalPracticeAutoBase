@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7d844f8cc4b046cea36a4e8b948bdbca" Name="Diagram1">
+        <EntityTypeShape EntityType="MotorDepotModel.Car" Width="1.5" PointX="3" PointY="5.25" />
+        <EntityTypeShape EntityType="MotorDepotModel.City" Width="1.5" PointX="5.25" PointY="13.5" />
+        <EntityTypeShape EntityType="MotorDepotModel.Client" Width="1.5" PointX="7.5" PointY="8.75" />
+        <EntityTypeShape EntityType="MotorDepotModel.Driver" Width="1.5" PointX="7.5" PointY="5.25" />
+        <EntityTypeShape EntityType="MotorDepotModel.Gender" Width="1.5" PointX="3" PointY="8.625" />
+        <EntityTypeShape EntityType="MotorDepotModel.HistoryClientDriver" Width="1.5" PointX="7.5" PointY="1" />
+        <EntityTypeShape EntityType="MotorDepotModel.Place" Width="1.5" PointX="7.5" PointY="13" />
+        <EntityTypeShape EntityType="MotorDepotModel.RequestClient" Width="1.5" PointX="9.75" PointY="8.875" />
+        <EntityTypeShape EntityType="MotorDepotModel.RequestDriver" Width="1.5" PointX="9.75" PointY="4.875" />
+        <EntityTypeShape EntityType="MotorDepotModel.Role" Width="1.5" PointX="3" PointY="2.375" />
+        <EntityTypeShape EntityType="MotorDepotModel.Stamp" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="MotorDepotModel.Status" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="MotorDepotModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MotorDepotModel.User" Width="1.5" PointX="5.25" PointY="4.125" />
+        <AssociationConnector Association="MotorDepotModel.FK_Car_Stamp" />
+        <AssociationConnector Association="MotorDepotModel.FK_Driver_Car" />
+        <AssociationConnector Association="MotorDepotModel.FK_User_Car" />
+        <AssociationConnector Association="MotorDepotModel.FK_Place_City" />
+        <AssociationConnector Association="MotorDepotModel.FK_Client_User" />
+        <AssociationConnector Association="MotorDepotModel.FK_RequestClient_Client" />
+        <AssociationConnector Association="MotorDepotModel.FK_Driver_User" />
+        <AssociationConnector Association="MotorDepotModel.FK_RequestDriver_Driver" />
+        <AssociationConnector Association="MotorDepotModel.FK_User_Gender" />
+        <AssociationConnector Association="MotorDepotModel.FK_HistoryClientDriver_Status" />
+        <AssociationConnector Association="MotorDepotModel.FK_HistoryClientDriver_User" />
+        <AssociationConnector Association="MotorDepotModel.FK_HistoryClientDriver_User1" />
+        <AssociationConnector Association="MotorDepotModel.FK_RequestClient_Place" />
+        <AssociationConnector Association="MotorDepotModel.FK_RequestClient_Place1" />
+        <AssociationConnector Association="MotorDepotModel.FK_RequestDriver_Place" />
+        <AssociationConnector Association="MotorDepotModel.FK_RequestDriver_Place1" />
+        <AssociationConnector Association="MotorDepotModel.FK_RequestClient_User" />
+        <AssociationConnector Association="MotorDepotModel.FK_RequestDriver_User" />
+        <AssociationConnector Association="MotorDepotModel.FK_User_Role" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
