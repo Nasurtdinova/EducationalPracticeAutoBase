@@ -40,6 +40,7 @@ namespace MotorDepot
             };
             DataAccess.SaveUser(user);
             MessageBox.Show("Вы зарегистрированы!");
+            NavigationService.Navigate(new AuthorizationPage());
         }
     }
 }

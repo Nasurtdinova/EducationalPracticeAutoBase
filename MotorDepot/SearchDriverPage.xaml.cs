@@ -15,19 +15,34 @@ using System.Windows.Shapes;
 
 namespace MotorDepot
 {
-    /// <summary>
-    /// Логика взаимодействия для SearchDriverPage.xaml
-    /// </summary>
     public partial class SearchDriverPage : Page
     {
         public SearchDriverPage()
         {
             InitializeComponent();
+            cbArrival.ItemsSource = DataAccess.GetCities();
+            cbDeparture.ItemsSource = DataAccess.GetCities();
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
+            var list = DataAccess.GetRequestDrivers().Where(a=>a.Place.City.Name == (cbArrival.SelectedItem as City).Name && a.Place1.City.Name == (cbArrival.SelectedItem as City).Name && a.Data == tbData.SelectedDate);
+            if (list != null)
+                NavigationService.Navigate(new DriversPage());
+            else
+                MessageBox.Show("Запросов нет!");
+        }
 
+        public void OnComboDepartureTextChanged(object sender, RoutedEventArgs e)
+        {
+            var city = DataAccess.GetCities();
+            cbDeparture.ItemsSource = city.Where(a => a.Name.ToLower().Contains(cbDeparture.Text.ToLower()));
+        }
+
+        public void OnComboArrivalTextChanged(object sender, RoutedEventArgs e)
+        {
+            var city = DataAccess.GetCities();
+            cbArrival.ItemsSource = city.Where(a => a.Name.ToLower().Contains(cbArrival.Text.ToLower()));
         }
     }
 }

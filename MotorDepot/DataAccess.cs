@@ -13,6 +13,21 @@ namespace MotorDepot
             return new List<User>(BdConnection.Connection.User);
         }
 
+        public static List<RequestDriver> GetRequestDrivers()
+        {
+            return new List<RequestDriver>(BdConnection.Connection.RequestDriver);
+        }
+
+        public static List<HistoryClientDriver> GetHistoriesClientDriver()
+        {
+            return new List<HistoryClientDriver>(BdConnection.Connection.HistoryClientDriver);
+        }
+
+        public static List<City> GetCities()
+        {
+            return new List<City>(BdConnection.Connection.City);
+        }
+
         public static List<Gender> GetGenders()
         {
             return new List<Gender>(BdConnection.Connection.Gender);
@@ -31,9 +46,24 @@ namespace MotorDepot
             }
             else
             {
-                BdConnection.Connection.User.Add(user);
-                BdConnection.Connection.SaveChanges();
+                BdConnection.Connection.User.Add(user);                
             }
+            BdConnection.Connection.SaveChanges();
+        }
+
+        public static void SaveHistoryClientDriver(HistoryClientDriver historyClientDriver)
+        {
+            if (historyClientDriver.Id != 0)
+            {
+                var us = GetHistoriesClientDriver().Where(a => a.Id == historyClientDriver.Id).FirstOrDefault();
+                us.IdStatus = historyClientDriver.IdStatus;
+               
+            }
+            else
+            {
+                BdConnection.Connection.HistoryClientDriver.Add(historyClientDriver);               
+            }
+            BdConnection.Connection.SaveChanges();
         }
     }
 }

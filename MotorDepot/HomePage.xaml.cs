@@ -20,6 +20,12 @@ namespace MotorDepot
         public HomePage()
         {
             InitializeComponent();
+            frame.Navigate(new SearchDriverPage());
+        }
+
+        private void btnPublish_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

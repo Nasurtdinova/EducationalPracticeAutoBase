@@ -17,13 +17,16 @@ namespace MotorDepot
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public City()
         {
-            this.Place = new HashSet<Place>();
+            this.PlaceArrival = new HashSet<PlaceArrival>();
+            this.PlaceDeparture = new HashSet<PlaceDeparture>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Place> Place { get; set; }
+        public virtual ICollection<PlaceArrival> PlaceArrival { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlaceDeparture> PlaceDeparture { get; set; }
     }
 }

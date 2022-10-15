@@ -22,8 +22,8 @@ namespace MotorDepot
         public Nullable<int> IdPlaceOfArrival { get; set; }
     
         public virtual Client Client { get; set; }
-        public virtual Place Place { get; set; }
-        public virtual Place Place1 { get; set; }
+        public virtual PlaceArrival PlaceArrival { get; set; }
+        public virtual PlaceArrival PlaceArrival1 { get; set; }
         public virtual User User { get; set; }
     }
 }

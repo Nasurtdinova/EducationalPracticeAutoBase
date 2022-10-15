@@ -17,7 +17,6 @@ namespace MotorDepot
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Car()
         {
-            this.Driver = new HashSet<Driver>();
             this.User = new HashSet<User>();
         }
     
@@ -26,8 +25,6 @@ namespace MotorDepot
         public Nullable<int> IdStamp { get; set; }
     
         public virtual Stamp Stamp { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Driver> Driver { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> User { get; set; }
     }

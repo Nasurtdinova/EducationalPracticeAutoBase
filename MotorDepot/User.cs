@@ -18,9 +18,7 @@ namespace MotorDepot
         public User()
         {
             this.Client = new HashSet<Client>();
-            this.Driver = new HashSet<Driver>();
             this.HistoryClientDriver = new HashSet<HistoryClientDriver>();
-            this.HistoryClientDriver1 = new HashSet<HistoryClientDriver>();
             this.RequestClient = new HashSet<RequestClient>();
             this.RequestDriver = new HashSet<RequestDriver>();
         }
@@ -37,13 +35,9 @@ namespace MotorDepot
         public virtual Car Car { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Client> Client { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Driver> Driver { get; set; }
         public virtual Gender Gender1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryClientDriver> HistoryClientDriver { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistoryClientDriver> HistoryClientDriver1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RequestClient> RequestClient { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

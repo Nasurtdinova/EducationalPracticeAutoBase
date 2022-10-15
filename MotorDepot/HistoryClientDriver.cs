@@ -16,12 +16,12 @@ namespace MotorDepot
     {
         public int Id { get; set; }
         public Nullable<int> IdClient { get; set; }
-        public Nullable<int> IdDriver { get; set; }
+        public Nullable<int> IdRequestDriver { get; set; }
         public Nullable<System.DateTime> Data { get; set; }
         public Nullable<int> IdStatus { get; set; }
     
+        public virtual RequestDriver RequestDriver { get; set; }
         public virtual Status Status { get; set; }
         public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
     }
 }

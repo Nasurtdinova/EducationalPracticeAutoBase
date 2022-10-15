@@ -16,9 +16,9 @@
         <Image Source="/MotorDepot;component/фонДорога.jpg" Grid.ColumnSpan="2" Width="1900"></Image>
         <Frame Name="frame"></Frame>
         <StackPanel Grid.Column="1" >
-            <Button x:Name="btnClients" Content="Клиенты" Margin="10"></Button>
-            <Button x:Name="btnDrivers" Content="Водители" Margin="10"></Button>
-            <Button x:Name="btnRequests" Content="Запросы" Margin="10"></Button>
+            <Button x:Name="btnPublish" Content="Опубликовать" Margin="10" Click="btnPublish_Click"></Button>
+            <Button x:Name="btnMyTrips" Content="Мои поездки" Margin="10"></Button>
+            <Button x:Name="btnIncoming" Content="Входящие" Margin="10"></Button>
         </StackPanel>
     </Grid>
 </Page>

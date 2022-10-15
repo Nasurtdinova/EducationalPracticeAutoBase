@@ -9,18 +9,26 @@
       Title="SearchDriverPage">
 
     <Grid>
+        <Frame Width="470" Height="400" Background="White">
+        </Frame>
         <StackPanel>
             <StackPanel>
                 <TextBlock Text="Откуда"></TextBlock>
-                <TextBox x:Name="tbDeparture"></TextBox>
+                <ComboBox TextBoxBase.TextChanged="OnComboDepartureTextChanged" DisplayMemberPath="Name" IsTextSearchEnabled="False" IsEditable="True" x:Name="cbDeparture"></ComboBox>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Куда"></TextBlock>
-                <TextBox x:Name="tbArrival"></TextBox>
+                <ComboBox TextBoxBase.TextChanged="OnComboArrivalTextChanged" DisplayMemberPath="Name" IsTextSearchEnabled="False" IsEditable="True" x:Name="cbArrival"></ComboBox>
             </StackPanel>
-            <StackPanel>
-                <TextBlock Text="Куда"></TextBlock>
-                <TextBox x:Name="tbData"></TextBox>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel >
+                    <TextBlock Text="Когда"></TextBlock>
+                    <DatePicker x:Name="tbData"></DatePicker>
+                </StackPanel>
+                <StackPanel >
+                    <TextBlock Text="Количество бронируемых мест"></TextBlock>
+                    <TextBox Name="tbCount" Width="50" Height="30"></TextBox>
+                </StackPanel>
             </StackPanel>
             <Button Content="Найти" x:Name="btnSearch" Click="btnSearch_Click" ></Button>
         </StackPanel>

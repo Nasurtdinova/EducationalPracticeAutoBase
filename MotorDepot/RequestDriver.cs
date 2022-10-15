@@ -14,16 +14,24 @@ namespace MotorDepot
     
     public partial class RequestDriver
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RequestDriver()
+        {
+            this.HistoryClientDriver = new HashSet<HistoryClientDriver>();
+        }
+    
         public int Id { get; set; }
         public Nullable<int> IdUser { get; set; }
         public Nullable<System.DateTime> Data { get; set; }
+        public string CountPeople { get; set; }
         public Nullable<double> Price { get; set; }
         public Nullable<int> IdPlaceOfDeparture { get; set; }
         public Nullable<int> IdPlaceOfArrival { get; set; }
     
-        public virtual Driver Driver { get; set; }
-        public virtual Place Place { get; set; }
-        public virtual Place Place1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HistoryClientDriver> HistoryClientDriver { get; set; }
+        public virtual PlaceArrival PlaceArrival { get; set; }
+        public virtual PlaceDeparture PlaceDeparture { get; set; }
         public virtual User User { get; set; }
     }
 }
