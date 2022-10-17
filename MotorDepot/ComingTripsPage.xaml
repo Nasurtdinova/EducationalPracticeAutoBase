@@ -1,0 +1,51 @@
+﻿<Page x:Class="MotorDepot.ComingTripsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MotorDepot"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ComingTripsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Поездки"></TextBlock>
+        <DataGrid x:Name="dgTrips" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False"> 
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата поездки" Binding="{Binding Data, StringFormat='dd.MM.yyyy hh:mm'}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Место отбытия" Binding="{Binding PlaceDeparture.City.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Место назначения" Binding="{Binding PlaceArrival.City.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Клиенты">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ListView ItemsSource="{Binding HistoryClientDriver}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding User.FullName}"></TextBlock>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnEdit" Content="Редактировать" Visibility="{Binding VisibilityEdit}" Click="btnEdit_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <Button x:Name="btnBack" Content="Назад" Click="btnBack_Click"></Button>
+            <Button x:Name="btnPublish" Content="Опубликовать" Click="btnPublish_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Page>

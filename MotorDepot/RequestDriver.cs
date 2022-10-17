@@ -40,6 +40,17 @@ namespace MotorDepot
             }
         }
 
+        public string VisibilityEdit
+        {
+            get
+            {
+                if (Data.Value <= DateTime.Now)
+                    return "Collapsed";
+                else
+                    return "Visibility";
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryClientDriver> HistoryClientDriver { get; set; }
         public virtual PlaceArrival PlaceArrival { get; set; }

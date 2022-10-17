@@ -92,7 +92,14 @@ namespace MotorDepot
         {
             if (requestDriver.Id != 0)
             {
-                var us = GetHistoriesClientDriver().Where(a => a.Id == requestDriver.Id).FirstOrDefault();                
+                var us = GetRequestDrivers().Where(a => a.Id == requestDriver.Id).FirstOrDefault();
+                us.Price = requestDriver.Price;
+                us.CountPeople = requestDriver.CountPeople;
+                us.Data = requestDriver.Data;
+                us.Description = requestDriver.Description;
+                us.PlaceDeparture = requestDriver.PlaceDeparture;
+                us.PlaceArrival = requestDriver.PlaceArrival;
+               
             }
             else
             {

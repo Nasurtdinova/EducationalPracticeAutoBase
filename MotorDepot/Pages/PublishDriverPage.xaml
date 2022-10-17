@@ -14,44 +14,46 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel>
+        <TextBlock Text="" Grid.ColumnSpan="2"></TextBlock>
+        <StackPanel Grid.Row="1">
             <TextBlock Text="Откуда выезжаете?"></TextBlock>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <ComboBox SelectedItem="{Binding PlaceDeparture.City}" SelectionChanged="comboCityDeparture_SelectionChanged" Margin="10" DisplayMemberPath="Name" Name="comboCityDeparture"></ComboBox>
                 <ComboBox SelectedItem="{Binding PlaceDeparture}" DisplayMemberPath="Name" Name="comboStreetDeparture"></ComboBox>
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="2">
             <TextBlock Text="Куда едете?"></TextBlock>
             <StackPanel Orientation="Horizontal">
                 <ComboBox SelectedItem="{Binding PlaceArrival.City}" SelectionChanged="comboCityArrival_SelectionChanged" Margin="10" DisplayMemberPath="Name" Name="comboCityArrival"></ComboBox>
                 <ComboBox SelectedItem="{Binding PlaceArrival}" DisplayMemberPath="Name" Name="comboStreetArrival"></ComboBox>
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="3">
             <TextBlock Text="Когда и во сколько?"></TextBlock>
-            <DatePicker SelectedDate="{Binding Data}"></DatePicker>
+            <DatePicker SelectedDate="{Binding Data}" FontSize="20"></DatePicker>
         </StackPanel>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="2" Grid.Row="1">
             <TextBlock Text="Сколько попутчиков возьмете?"></TextBlock>
             <TextBox Name="tbCountPeople" Text="{Binding CountPeople}"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="2" Grid.Column="1">
             <TextBlock Text="Какая цена?"></TextBlock>
             <TextBox Name="tbPrice" Text="{Binding Price}"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1">
+        <StackPanel Grid.Row="3" Grid.Column="1">
             <TextBlock Text="Хотите сказать о поездке что-то еще?"></TextBlock>
             <TextBox Name="tbDescription" Text="{Binding Description}"></TextBox>
         </StackPanel>
-        <StackPanel Grid.ColumnSpan="2" Grid.Row="3" Orientation="Horizontal">
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="4" Orientation="Horizontal">
             <Button Name="btnBack" Content="Назад" Click="btnBack_Click" Margin="10"></Button>
-            <Button Name="btnSend" Content="Опубликовать" Click="btnSend_Click"></Button>
+            <Button Name="btnSend" Content="Сохранить" Click="btnSend_Click"></Button>
         </StackPanel>
     </Grid>
 </Page>

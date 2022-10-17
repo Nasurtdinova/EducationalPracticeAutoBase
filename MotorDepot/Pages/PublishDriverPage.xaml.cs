@@ -21,21 +21,23 @@ namespace MotorDepot
     public partial class PublishDriverPage : Page
     {
         public RequestDriver CurrentRequest = new RequestDriver();
-        public PublishDriverPage()
+        public PublishDriverPage(RequestDriver req)
         {
             InitializeComponent();
 
             comboCityArrival.ItemsSource = DataAccess.GetCities();
             comboCityDeparture.ItemsSource = DataAccess.GetCities();
             CurrentRequest.IdUser = MainWindow.CurrentUser.Id;
+            if (req != null)
+                CurrentRequest = req;
             this.DataContext = CurrentRequest;
         }
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
             DataAccess.SaveRequestDriver(CurrentRequest);
-            MessageBox.Show("Ваша поездка опубликована!", "Уведомление");
-            NavigationService.Navigate(new HomePage());
+            MessageBox.Show("Ваша поездка сохранена!", "Уведомление");
+            NavigationService.Navigate(new ComingTripsPage());
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
