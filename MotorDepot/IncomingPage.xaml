@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel VerticalAlignment="Top">
             <TextBlock Text="Заявки от клиентов" FontSize="25"></TextBlock>
@@ -72,7 +73,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnBack" Click="btnBack_Click" Content="Назад"></Button>
         </StackPanel>
+        <Button x:Name="btnBack" Grid.Row="2" Click="btnBack_Click" Content="Назад"></Button>
     </Grid>
 </Page>
