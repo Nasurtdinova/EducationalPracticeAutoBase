@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Хранилище UchebnayaPraktikaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Хранилище MotorDepotModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Car">
     <Key>
       <PropertyRef Name="Id" />
@@ -15,12 +15,14 @@
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="Client">
+  <EntityType Name="FeedbackDriver">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdUser" Type="int" />
+    <Property Name="IdDriver" Type="int" />
+    <Property Name="Feedback" Type="nvarchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Gender">
     <Key>
@@ -39,7 +41,7 @@
     <Property Name="Data" Type="date" />
     <Property Name="IdStatus" Type="int" />
   </EntityType>
-  <EntityType Name="Place">
+  <EntityType Name="PlaceArrival">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -47,35 +49,26 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="IdCity" Type="int" />
   </EntityType>
-  <EntityType Name="RequestClient">
+  <EntityType Name="PlaceDeparture">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="IdUser" Type="int" />
-    <Property Name="Data" Type="datetime" />
-    <Property Name="CountPeople" Type="int" />
-    <Property Name="IdPlaceOfDeparture" Type="int" />
-    <Property Name="IdPlaceOfArrival" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdCity" Type="int" />
   </EntityType>
   <EntityType Name="RequestDriver">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdUser" Type="int" />
     <Property Name="Data" Type="datetime" />
     <Property Name="CountPeople" Type="nchar" MaxLength="10" />
     <Property Name="Price" Type="float" />
     <Property Name="IdPlaceOfDeparture" Type="int" />
     <Property Name="IdPlaceOfArrival" Type="int" />
-  </EntityType>
-  <EntityType Name="Role">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="20" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Stamp">
     <Key>
@@ -110,9 +103,9 @@
     <Property Name="Login" Type="nvarchar" MaxLength="30" />
     <Property Name="Password" Type="nvarchar" MaxLength="30" />
     <Property Name="DayOfBirth" Type="date" />
-    <Property Name="IdRole" Type="int" />
     <Property Name="Gender" Type="nvarchar" MaxLength="1" />
     <Property Name="IdCar" Type="int" />
+    <Property Name="Image" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_Car_Stamp">
     <End Role="Stamp" Type="Self.Stamp" Multiplicity="0..1" />
@@ -126,15 +119,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Client_User">
+  <Association Name="FK_FeedbackDriver_User">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <End Role="FeedbackDriver" Type="Self.FeedbackDriver" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Client">
+      <Dependent Role="FeedbackDriver">
         <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FeedbackDriver_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="FeedbackDriver" Type="Self.FeedbackDriver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeedbackDriver">
+        <PropertyRef Name="IdDriver" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -176,85 +181,49 @@
   </Association>
   <Association Name="FK_Place_City">
     <End Role="City" Type="Self.City" Multiplicity="0..1" />
-    <End Role="Place" Type="Self.Place" Multiplicity="*" />
+    <End Role="PlaceArrival" Type="Self.PlaceArrival" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="City">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Place">
+      <Dependent Role="PlaceArrival">
         <PropertyRef Name="IdCity" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_RequestClient_Client">
-    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
-    <End Role="RequestClient" Type="Self.RequestClient" Multiplicity="*" />
+  <Association Name="FK_PlaceDeparture_City">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="PlaceDeparture" Type="Self.PlaceDeparture" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Client">
+      <Principal Role="City">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="RequestClient">
-        <PropertyRef Name="IdUser" />
+      <Dependent Role="PlaceDeparture">
+        <PropertyRef Name="IdCity" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_RequestClient_Place">
-    <End Role="Place" Type="Self.Place" Multiplicity="0..1" />
-    <End Role="RequestClient" Type="Self.RequestClient" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Place">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RequestClient">
-        <PropertyRef Name="IdPlaceOfDeparture" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RequestClient_Place1">
-    <End Role="Place" Type="Self.Place" Multiplicity="0..1" />
-    <End Role="RequestClient" Type="Self.RequestClient" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Place">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RequestClient">
-        <PropertyRef Name="IdPlaceOfArrival" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RequestClient_User">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="RequestClient" Type="Self.RequestClient" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RequestClient">
-        <PropertyRef Name="IdUser" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RequestDriver_Place">
-    <End Role="Place" Type="Self.Place" Multiplicity="0..1" />
+  <Association Name="FK_RequestDriver_PlaceArrival1">
+    <End Role="PlaceArrival" Type="Self.PlaceArrival" Multiplicity="0..1" />
     <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Place">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RequestDriver">
-        <PropertyRef Name="IdPlaceOfDeparture" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RequestDriver_Place1">
-    <End Role="Place" Type="Self.Place" Multiplicity="0..1" />
-    <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Place">
+      <Principal Role="PlaceArrival">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="RequestDriver">
         <PropertyRef Name="IdPlaceOfArrival" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestDriver_PlaceDeparture">
+    <End Role="PlaceDeparture" Type="Self.PlaceDeparture" Multiplicity="0..1" />
+    <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlaceDeparture">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RequestDriver">
+        <PropertyRef Name="IdPlaceOfDeparture" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -294,28 +263,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_User_Role">
-    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-    <End Role="User" Type="Self.User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="IdRole" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityContainer Name="Хранилище UchebnayaPraktikaModelContainer">
+  <EntityContainer Name="Хранилище MotorDepotModelContainer">
     <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeedbackDriver" EntityType="Self.FeedbackDriver" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HistoryClientDriver" EntityType="Self.HistoryClientDriver" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Place" EntityType="Self.Place" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="RequestClient" EntityType="Self.RequestClient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlaceArrival" EntityType="Self.PlaceArrival" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlaceDeparture" EntityType="Self.PlaceDeparture" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RequestDriver" EntityType="Self.RequestDriver" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Stamp" EntityType="Self.Stamp" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -324,9 +280,13 @@
       <End Role="Stamp" EntitySet="Stamp" />
       <End Role="Car" EntitySet="Car" />
     </AssociationSet>
-    <AssociationSet Name="FK_Client_User" Association="Self.FK_Client_User">
+    <AssociationSet Name="FK_FeedbackDriver_User" Association="Self.FK_FeedbackDriver_User">
       <End Role="User" EntitySet="User" />
-      <End Role="Client" EntitySet="Client" />
+      <End Role="FeedbackDriver" EntitySet="FeedbackDriver" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FeedbackDriver_User1" Association="Self.FK_FeedbackDriver_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="FeedbackDriver" EntitySet="FeedbackDriver" />
     </AssociationSet>
     <AssociationSet Name="FK_HistoryClientDriver_RequestDriver" Association="Self.FK_HistoryClientDriver_RequestDriver">
       <End Role="RequestDriver" EntitySet="RequestDriver" />
@@ -342,30 +302,18 @@
     </AssociationSet>
     <AssociationSet Name="FK_Place_City" Association="Self.FK_Place_City">
       <End Role="City" EntitySet="City" />
-      <End Role="Place" EntitySet="Place" />
+      <End Role="PlaceArrival" EntitySet="PlaceArrival" />
     </AssociationSet>
-    <AssociationSet Name="FK_RequestClient_Client" Association="Self.FK_RequestClient_Client">
-      <End Role="Client" EntitySet="Client" />
-      <End Role="RequestClient" EntitySet="RequestClient" />
+    <AssociationSet Name="FK_PlaceDeparture_City" Association="Self.FK_PlaceDeparture_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="PlaceDeparture" EntitySet="PlaceDeparture" />
     </AssociationSet>
-    <AssociationSet Name="FK_RequestClient_Place" Association="Self.FK_RequestClient_Place">
-      <End Role="Place" EntitySet="Place" />
-      <End Role="RequestClient" EntitySet="RequestClient" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RequestClient_Place1" Association="Self.FK_RequestClient_Place1">
-      <End Role="Place" EntitySet="Place" />
-      <End Role="RequestClient" EntitySet="RequestClient" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RequestClient_User" Association="Self.FK_RequestClient_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="RequestClient" EntitySet="RequestClient" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RequestDriver_Place" Association="Self.FK_RequestDriver_Place">
-      <End Role="Place" EntitySet="Place" />
+    <AssociationSet Name="FK_RequestDriver_PlaceArrival1" Association="Self.FK_RequestDriver_PlaceArrival1">
+      <End Role="PlaceArrival" EntitySet="PlaceArrival" />
       <End Role="RequestDriver" EntitySet="RequestDriver" />
     </AssociationSet>
-    <AssociationSet Name="FK_RequestDriver_Place1" Association="Self.FK_RequestDriver_Place1">
-      <End Role="Place" EntitySet="Place" />
+    <AssociationSet Name="FK_RequestDriver_PlaceDeparture" Association="Self.FK_RequestDriver_PlaceDeparture">
+      <End Role="PlaceDeparture" EntitySet="PlaceDeparture" />
       <End Role="RequestDriver" EntitySet="RequestDriver" />
     </AssociationSet>
     <AssociationSet Name="FK_RequestDriver_User" Association="Self.FK_RequestDriver_User">
@@ -378,10 +326,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
       <End Role="Gender" EntitySet="Gender" />
-      <End Role="User" EntitySet="User" />
-    </AssociationSet>
-    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-      <End Role="Role" EntitySet="Role" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
   </EntityContainer>

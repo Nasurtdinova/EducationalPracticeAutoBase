@@ -20,7 +20,7 @@
             <RowDefinition Height="120"></RowDefinition>
             <RowDefinition></RowDefinition>
     </Grid.RowDefinitions>
-        <Image Source="/MotorDepot;component/logoMotor.jpg" Width="1900"></Image>
+        <Image Source="/MotorDepot;component/Images/logoMotor.jpg" Width="1900"></Image>
         <TextBlock Text="Авторизация" Grid.ColumnSpan="2" FontSize="25" ></TextBlock>
     <TextBlock Text="Логин" Grid.Row="1" FontSize="25"></TextBlock>
     <TextBlock Text="Пароль" Grid.Row="2" FontSize="25"></TextBlock>

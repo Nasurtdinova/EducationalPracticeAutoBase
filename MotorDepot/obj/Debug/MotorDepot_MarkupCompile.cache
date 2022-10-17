@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\user3d-5\Source\Repos\EducationalPracticeAutoBase1\MotorDepot\obj\Debug\
+C:\Users\nasur\source\repos\MotorDepot\MotorDepot\obj\Debug\
 MotorDepot
 none
 false
 DEBUG;TRACE
-C:\Users\user3d-5\Source\Repos\EducationalPracticeAutoBase1\MotorDepot\App.xaml
-6-143038994
-22035508349
-28-1882793982
-181875591817
-AuthorizationPage.xaml;DriversPage.xaml;HomePage.xaml;MainWindow.xaml;RegistrationPage.xaml;SearchDriverPage.xaml;
+C:\Users\nasur\source\repos\MotorDepot\MotorDepot\App.xaml
+8469956879
+2-1881755278
+29-529601765
+18788478464
+Pages\AuthorizationPage.xaml;Pages\DriversPage.xaml;Pages\HomePage.xaml;MainWindow.xaml;Pages\MyProfilePage.xaml;Pages\PublishDriverPage.xaml;Windows\RegistrationPage.xaml;Pages\SearchDriverPage.xaml;
 
 False
 

@@ -27,7 +27,19 @@ namespace MotorDepot
         public Nullable<double> Price { get; set; }
         public Nullable<int> IdPlaceOfDeparture { get; set; }
         public Nullable<int> IdPlaceOfArrival { get; set; }
-    
+        public string Description { get; set; }
+
+        public string VisibilityReverse
+        {
+            get
+            {
+                if (MainWindow.CurrentUser.Id == IdUser)
+                    return "Collapsed";
+                else
+                    return "Visibility";
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryClientDriver> HistoryClientDriver { get; set; }
         public virtual PlaceArrival PlaceArrival { get; set; }

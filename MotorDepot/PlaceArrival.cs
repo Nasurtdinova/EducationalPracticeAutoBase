@@ -17,8 +17,6 @@ namespace MotorDepot
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PlaceArrival()
         {
-            this.RequestClient = new HashSet<RequestClient>();
-            this.RequestClient1 = new HashSet<RequestClient>();
             this.RequestDriver = new HashSet<RequestDriver>();
         }
     
@@ -27,10 +25,6 @@ namespace MotorDepot
         public Nullable<int> IdCity { get; set; }
     
         public virtual City City { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RequestClient> RequestClient { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RequestClient> RequestClient1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RequestDriver> RequestDriver { get; set; }
     }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище UchebnayaPraktikaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище MotorDepotModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Car">
           <Key>
             <PropertyRef Name="Id" />
@@ -20,12 +20,14 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Client">
+        <EntityType Name="FeedbackDriver">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdUser" Type="int" />
+          <Property Name="IdDriver" Type="int" />
+          <Property Name="Feedback" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -60,35 +62,18 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="IdCity" Type="int" />
         </EntityType>
-        <EntityType Name="RequestClient">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="IdUser" Type="int" />
-          <Property Name="Data" Type="datetime" />
-          <Property Name="CountPeople" Type="int" />
-          <Property Name="IdPlaceOfDeparture" Type="int" />
-          <Property Name="IdPlaceOfArrival" Type="int" />
-        </EntityType>
         <EntityType Name="RequestDriver">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdUser" Type="int" />
           <Property Name="Data" Type="datetime" />
           <Property Name="CountPeople" Type="nchar" MaxLength="10" />
           <Property Name="Price" Type="float" />
           <Property Name="IdPlaceOfDeparture" Type="int" />
           <Property Name="IdPlaceOfArrival" Type="int" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Stamp">
           <Key>
@@ -123,9 +108,9 @@
           <Property Name="Login" Type="nvarchar" MaxLength="30" />
           <Property Name="Password" Type="nvarchar" MaxLength="30" />
           <Property Name="DayOfBirth" Type="date" />
-          <Property Name="IdRole" Type="int" />
           <Property Name="Gender" Type="nvarchar" MaxLength="1" />
           <Property Name="IdCar" Type="int" />
+          <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Car_Stamp">
           <End Role="Stamp" Type="Self.Stamp" Multiplicity="0..1" />
@@ -139,15 +124,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Client_User">
+        <Association Name="FK_FeedbackDriver_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <End Role="FeedbackDriver" Type="Self.FeedbackDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Client">
+            <Dependent Role="FeedbackDriver">
               <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeedbackDriver_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="FeedbackDriver" Type="Self.FeedbackDriver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FeedbackDriver">
+              <PropertyRef Name="IdDriver" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -211,54 +208,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RequestClient_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
-          <End Role="RequestClient" Type="Self.RequestClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RequestClient">
-              <PropertyRef Name="IdUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RequestClient_Place">
-          <End Role="PlaceArrival" Type="Self.PlaceArrival" Multiplicity="0..1" />
-          <End Role="RequestClient" Type="Self.RequestClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlaceArrival">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RequestClient">
-              <PropertyRef Name="IdPlaceOfDeparture" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RequestClient_Place1">
-          <End Role="PlaceArrival" Type="Self.PlaceArrival" Multiplicity="0..1" />
-          <End Role="RequestClient" Type="Self.RequestClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlaceArrival">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RequestClient">
-              <PropertyRef Name="IdPlaceOfArrival" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RequestClient_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="RequestClient" Type="Self.RequestClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RequestClient">
-              <PropertyRef Name="IdUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RequestDriver_PlaceArrival1">
           <End Role="PlaceArrival" Type="Self.PlaceArrival" Multiplicity="0..1" />
           <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="*" />
@@ -319,29 +268,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="IdRole" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Хранилище UchebnayaPraktikaModelContainer">
+        <EntityContainer Name="Хранилище MotorDepotModelContainer">
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeedbackDriver" EntityType="Self.FeedbackDriver" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoryClientDriver" EntityType="Self.HistoryClientDriver" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlaceArrival" EntityType="Self.PlaceArrival" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlaceDeparture" EntityType="Self.PlaceDeparture" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RequestClient" EntityType="Self.RequestClient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RequestDriver" EntityType="Self.RequestDriver" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stamp" EntityType="Self.Stamp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -350,9 +285,13 @@
             <End Role="Stamp" EntitySet="Stamp" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
-          <AssociationSet Name="FK_Client_User" Association="Self.FK_Client_User">
+          <AssociationSet Name="FK_FeedbackDriver_User" Association="Self.FK_FeedbackDriver_User">
             <End Role="User" EntitySet="User" />
-            <End Role="Client" EntitySet="Client" />
+            <End Role="FeedbackDriver" EntitySet="FeedbackDriver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeedbackDriver_User1" Association="Self.FK_FeedbackDriver_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="FeedbackDriver" EntitySet="FeedbackDriver" />
           </AssociationSet>
           <AssociationSet Name="FK_HistoryClientDriver_RequestDriver" Association="Self.FK_HistoryClientDriver_RequestDriver">
             <End Role="RequestDriver" EntitySet="RequestDriver" />
@@ -374,22 +313,6 @@
             <End Role="City" EntitySet="City" />
             <End Role="PlaceDeparture" EntitySet="PlaceDeparture" />
           </AssociationSet>
-          <AssociationSet Name="FK_RequestClient_Client" Association="Self.FK_RequestClient_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="RequestClient" EntitySet="RequestClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RequestClient_Place" Association="Self.FK_RequestClient_Place">
-            <End Role="PlaceArrival" EntitySet="PlaceArrival" />
-            <End Role="RequestClient" EntitySet="RequestClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RequestClient_Place1" Association="Self.FK_RequestClient_Place1">
-            <End Role="PlaceArrival" EntitySet="PlaceArrival" />
-            <End Role="RequestClient" EntitySet="RequestClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RequestClient_User" Association="Self.FK_RequestClient_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="RequestClient" EntitySet="RequestClient" />
-          </AssociationSet>
           <AssociationSet Name="FK_RequestDriver_PlaceArrival1" Association="Self.FK_RequestDriver_PlaceArrival1">
             <End Role="PlaceArrival" EntitySet="PlaceArrival" />
             <End Role="RequestDriver" EntitySet="RequestDriver" />
@@ -410,97 +333,75 @@
             <End Role="Gender" EntitySet="Gender" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="UchebnayaPraktikaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="UchebnayaPraktikaEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Car" EntityType="UchebnayaPraktikaModel.Car" />
-          <EntitySet Name="City" EntityType="UchebnayaPraktikaModel.City" />
-          <EntitySet Name="Client" EntityType="UchebnayaPraktikaModel.Client" />
-          <EntitySet Name="Gender" EntityType="UchebnayaPraktikaModel.Gender" />
-          <EntitySet Name="HistoryClientDriver" EntityType="UchebnayaPraktikaModel.HistoryClientDriver" />
-          <EntitySet Name="PlaceArrival" EntityType="UchebnayaPraktikaModel.PlaceArrival" />
-          <EntitySet Name="PlaceDeparture" EntityType="UchebnayaPraktikaModel.PlaceDeparture" />
-          <EntitySet Name="RequestClient" EntityType="UchebnayaPraktikaModel.RequestClient" />
-          <EntitySet Name="RequestDriver" EntityType="UchebnayaPraktikaModel.RequestDriver" />
-          <EntitySet Name="Role" EntityType="UchebnayaPraktikaModel.Role" />
-          <EntitySet Name="Stamp" EntityType="UchebnayaPraktikaModel.Stamp" />
-          <EntitySet Name="Status" EntityType="UchebnayaPraktikaModel.Status" />
-          <EntitySet Name="sysdiagrams" EntityType="UchebnayaPraktikaModel.sysdiagrams" />
-          <EntitySet Name="User" EntityType="UchebnayaPraktikaModel.User" />
-          <AssociationSet Name="FK_Car_Stamp" Association="UchebnayaPraktikaModel.FK_Car_Stamp">
+      <Schema Namespace="MotorDepotModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MotorDepotEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Car" EntityType="MotorDepotModel.Car" />
+          <EntitySet Name="City" EntityType="MotorDepotModel.City" />
+          <EntitySet Name="FeedbackDriver" EntityType="MotorDepotModel.FeedbackDriver" />
+          <EntitySet Name="Gender" EntityType="MotorDepotModel.Gender" />
+          <EntitySet Name="HistoryClientDriver" EntityType="MotorDepotModel.HistoryClientDriver" />
+          <EntitySet Name="PlaceArrival" EntityType="MotorDepotModel.PlaceArrival" />
+          <EntitySet Name="PlaceDeparture" EntityType="MotorDepotModel.PlaceDeparture" />
+          <EntitySet Name="RequestDriver" EntityType="MotorDepotModel.RequestDriver" />
+          <EntitySet Name="Stamp" EntityType="MotorDepotModel.Stamp" />
+          <EntitySet Name="Status" EntityType="MotorDepotModel.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="MotorDepotModel.sysdiagrams" />
+          <AssociationSet Name="FK_Car_Stamp" Association="MotorDepotModel.FK_Car_Stamp">
             <End Role="Stamp" EntitySet="Stamp" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Car" Association="UchebnayaPraktikaModel.FK_User_Car">
-            <End Role="Car" EntitySet="Car" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Place_City" Association="UchebnayaPraktikaModel.FK_Place_City">
+          <AssociationSet Name="FK_Place_City" Association="MotorDepotModel.FK_Place_City">
             <End Role="City" EntitySet="City" />
             <End Role="PlaceArrival" EntitySet="PlaceArrival" />
           </AssociationSet>
-          <AssociationSet Name="FK_PlaceDeparture_City" Association="UchebnayaPraktikaModel.FK_PlaceDeparture_City">
+          <AssociationSet Name="FK_PlaceDeparture_City" Association="MotorDepotModel.FK_PlaceDeparture_City">
             <End Role="City" EntitySet="City" />
             <End Role="PlaceDeparture" EntitySet="PlaceDeparture" />
           </AssociationSet>
-          <AssociationSet Name="FK_Client_User" Association="UchebnayaPraktikaModel.FK_Client_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Client" EntitySet="Client" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RequestClient_Client" Association="UchebnayaPraktikaModel.FK_RequestClient_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="RequestClient" EntitySet="RequestClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Gender" Association="UchebnayaPraktikaModel.FK_User_Gender">
-            <End Role="Gender" EntitySet="Gender" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HistoryClientDriver_RequestDriver" Association="UchebnayaPraktikaModel.FK_HistoryClientDriver_RequestDriver">
+          <AssociationSet Name="FK_HistoryClientDriver_RequestDriver" Association="MotorDepotModel.FK_HistoryClientDriver_RequestDriver">
             <End Role="RequestDriver" EntitySet="RequestDriver" />
             <End Role="HistoryClientDriver" EntitySet="HistoryClientDriver" />
           </AssociationSet>
-          <AssociationSet Name="FK_HistoryClientDriver_Status" Association="UchebnayaPraktikaModel.FK_HistoryClientDriver_Status">
+          <AssociationSet Name="FK_HistoryClientDriver_Status" Association="MotorDepotModel.FK_HistoryClientDriver_Status">
             <End Role="Status" EntitySet="Status" />
             <End Role="HistoryClientDriver" EntitySet="HistoryClientDriver" />
           </AssociationSet>
-          <AssociationSet Name="FK_HistoryClientDriver_User2" Association="UchebnayaPraktikaModel.FK_HistoryClientDriver_User2">
-            <End Role="User" EntitySet="User" />
-            <End Role="HistoryClientDriver" EntitySet="HistoryClientDriver" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RequestClient_Place" Association="UchebnayaPraktikaModel.FK_RequestClient_Place">
-            <End Role="PlaceArrival" EntitySet="PlaceArrival" />
-            <End Role="RequestClient" EntitySet="RequestClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RequestClient_Place1" Association="UchebnayaPraktikaModel.FK_RequestClient_Place1">
-            <End Role="PlaceArrival" EntitySet="PlaceArrival" />
-            <End Role="RequestClient" EntitySet="RequestClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RequestDriver_PlaceArrival1" Association="UchebnayaPraktikaModel.FK_RequestDriver_PlaceArrival1">
+          <AssociationSet Name="FK_RequestDriver_PlaceArrival1" Association="MotorDepotModel.FK_RequestDriver_PlaceArrival1">
             <End Role="PlaceArrival" EntitySet="PlaceArrival" />
             <End Role="RequestDriver" EntitySet="RequestDriver" />
           </AssociationSet>
-          <AssociationSet Name="FK_RequestDriver_PlaceDeparture" Association="UchebnayaPraktikaModel.FK_RequestDriver_PlaceDeparture">
+          <AssociationSet Name="FK_RequestDriver_PlaceDeparture" Association="MotorDepotModel.FK_RequestDriver_PlaceDeparture">
             <End Role="PlaceDeparture" EntitySet="PlaceDeparture" />
             <End Role="RequestDriver" EntitySet="RequestDriver" />
           </AssociationSet>
-          <AssociationSet Name="FK_RequestClient_User" Association="UchebnayaPraktikaModel.FK_RequestClient_User">
+          <EntitySet Name="User" EntityType="MotorDepotModel.User" />
+          <AssociationSet Name="FK_User_Car" Association="MotorDepotModel.FK_User_Car">
+            <End Role="Car" EntitySet="Car" />
             <End Role="User" EntitySet="User" />
-            <End Role="RequestClient" EntitySet="RequestClient" />
           </AssociationSet>
-          <AssociationSet Name="FK_RequestDriver_User" Association="UchebnayaPraktikaModel.FK_RequestDriver_User">
+          <AssociationSet Name="FK_FeedbackDriver_User" Association="MotorDepotModel.FK_FeedbackDriver_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="FeedbackDriver" EntitySet="FeedbackDriver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeedbackDriver_User1" Association="MotorDepotModel.FK_FeedbackDriver_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="FeedbackDriver" EntitySet="FeedbackDriver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Gender" Association="MotorDepotModel.FK_User_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryClientDriver_User2" Association="MotorDepotModel.FK_HistoryClientDriver_User2">
+            <End Role="User" EntitySet="User" />
+            <End Role="HistoryClientDriver" EntitySet="HistoryClientDriver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestDriver_User" Association="MotorDepotModel.FK_RequestDriver_User">
             <End Role="User" EntitySet="User" />
             <End Role="RequestDriver" EntitySet="RequestDriver" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Role" Association="UchebnayaPraktikaModel.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Car">
@@ -510,8 +411,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdStamp" Type="Int32" />
-          <NavigationProperty Name="Stamp" Relationship="UchebnayaPraktikaModel.FK_Car_Stamp" FromRole="Car" ToRole="Stamp" />
-          <NavigationProperty Name="User" Relationship="UchebnayaPraktikaModel.FK_User_Car" FromRole="Car" ToRole="User" />
+          <NavigationProperty Name="Stamp" Relationship="MotorDepotModel.FK_Car_Stamp" FromRole="Car" ToRole="Stamp" />
+          <NavigationProperty Name="User" Relationship="MotorDepotModel.FK_User_Car" FromRole="Car" ToRole="User" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -519,25 +420,27 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PlaceArrival" Relationship="UchebnayaPraktikaModel.FK_Place_City" FromRole="City" ToRole="PlaceArrival" />
-          <NavigationProperty Name="PlaceDeparture" Relationship="UchebnayaPraktikaModel.FK_PlaceDeparture_City" FromRole="City" ToRole="PlaceDeparture" />
+          <NavigationProperty Name="PlaceArrival" Relationship="MotorDepotModel.FK_Place_City" FromRole="City" ToRole="PlaceArrival" />
+          <NavigationProperty Name="PlaceDeparture" Relationship="MotorDepotModel.FK_PlaceDeparture_City" FromRole="City" ToRole="PlaceDeparture" />
         </EntityType>
-        <EntityType Name="Client">
+        <EntityType Name="FeedbackDriver">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdUser" Type="Int32" />
-          <NavigationProperty Name="User" Relationship="UchebnayaPraktikaModel.FK_Client_User" FromRole="Client" ToRole="User" />
-          <NavigationProperty Name="RequestClient" Relationship="UchebnayaPraktikaModel.FK_RequestClient_Client" FromRole="Client" ToRole="RequestClient" />
-        </EntityType>
+          <Property Name="IdDriver" Type="Int32" />
+          <Property Name="Feedback" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="MotorDepotModel.FK_FeedbackDriver_User" FromRole="FeedbackDriver" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="MotorDepotModel.FK_FeedbackDriver_User1" FromRole="FeedbackDriver" ToRole="User" />
+          </EntityType>
         <EntityType Name="Gender">
           <Key>
             <PropertyRef Name="Name" />
           </Key>
           <Property Name="Name" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="UchebnayaPraktikaModel.FK_User_Gender" FromRole="Gender" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="MotorDepotModel.FK_User_Gender" FromRole="Gender" ToRole="User" />
         </EntityType>
         <EntityType Name="HistoryClientDriver">
           <Key>
@@ -548,9 +451,9 @@
           <Property Name="IdRequestDriver" Type="Int32" />
           <Property Name="Data" Type="DateTime" Precision="0" />
           <Property Name="IdStatus" Type="Int32" />
-          <NavigationProperty Name="RequestDriver" Relationship="UchebnayaPraktikaModel.FK_HistoryClientDriver_RequestDriver" FromRole="HistoryClientDriver" ToRole="RequestDriver" />
-          <NavigationProperty Name="Status" Relationship="UchebnayaPraktikaModel.FK_HistoryClientDriver_Status" FromRole="HistoryClientDriver" ToRole="Status" />
-          <NavigationProperty Name="User" Relationship="UchebnayaPraktikaModel.FK_HistoryClientDriver_User2" FromRole="HistoryClientDriver" ToRole="User" />
+          <NavigationProperty Name="RequestDriver" Relationship="MotorDepotModel.FK_HistoryClientDriver_RequestDriver" FromRole="HistoryClientDriver" ToRole="RequestDriver" />
+          <NavigationProperty Name="Status" Relationship="MotorDepotModel.FK_HistoryClientDriver_Status" FromRole="HistoryClientDriver" ToRole="Status" />
+          <NavigationProperty Name="User" Relationship="MotorDepotModel.FK_HistoryClientDriver_User2" FromRole="HistoryClientDriver" ToRole="User" />
         </EntityType>
         <EntityType Name="PlaceArrival">
           <Key>
@@ -559,10 +462,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdCity" Type="Int32" />
-          <NavigationProperty Name="City" Relationship="UchebnayaPraktikaModel.FK_Place_City" FromRole="PlaceArrival" ToRole="City" />
-          <NavigationProperty Name="RequestClient" Relationship="UchebnayaPraktikaModel.FK_RequestClient_Place" FromRole="PlaceArrival" ToRole="RequestClient" />
-          <NavigationProperty Name="RequestClient1" Relationship="UchebnayaPraktikaModel.FK_RequestClient_Place1" FromRole="PlaceArrival" ToRole="RequestClient" />
-          <NavigationProperty Name="RequestDriver" Relationship="UchebnayaPraktikaModel.FK_RequestDriver_PlaceArrival1" FromRole="PlaceArrival" ToRole="RequestDriver" />
+          <NavigationProperty Name="City" Relationship="MotorDepotModel.FK_Place_City" FromRole="PlaceArrival" ToRole="City" />
+          <NavigationProperty Name="RequestDriver" Relationship="MotorDepotModel.FK_RequestDriver_PlaceArrival1" FromRole="PlaceArrival" ToRole="RequestDriver" />
         </EntityType>
         <EntityType Name="PlaceDeparture">
           <Key>
@@ -571,47 +472,25 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdCity" Type="Int32" />
-          <NavigationProperty Name="City" Relationship="UchebnayaPraktikaModel.FK_PlaceDeparture_City" FromRole="PlaceDeparture" ToRole="City" />
-          <NavigationProperty Name="RequestDriver" Relationship="UchebnayaPraktikaModel.FK_RequestDriver_PlaceDeparture" FromRole="PlaceDeparture" ToRole="RequestDriver" />
-        </EntityType>
-        <EntityType Name="RequestClient">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="IdUser" Type="Int32" />
-          <Property Name="Data" Type="DateTime" Precision="3" />
-          <Property Name="CountPeople" Type="Int32" />
-          <Property Name="IdPlaceOfDeparture" Type="Int32" />
-          <Property Name="IdPlaceOfArrival" Type="Int32" />
-          <NavigationProperty Name="Client" Relationship="UchebnayaPraktikaModel.FK_RequestClient_Client" FromRole="RequestClient" ToRole="Client" />
-          <NavigationProperty Name="PlaceArrival" Relationship="UchebnayaPraktikaModel.FK_RequestClient_Place" FromRole="RequestClient" ToRole="PlaceArrival" />
-          <NavigationProperty Name="PlaceArrival1" Relationship="UchebnayaPraktikaModel.FK_RequestClient_Place1" FromRole="RequestClient" ToRole="PlaceArrival" />
-          <NavigationProperty Name="User" Relationship="UchebnayaPraktikaModel.FK_RequestClient_User" FromRole="RequestClient" ToRole="User" />
+          <NavigationProperty Name="City" Relationship="MotorDepotModel.FK_PlaceDeparture_City" FromRole="PlaceDeparture" ToRole="City" />
+          <NavigationProperty Name="RequestDriver" Relationship="MotorDepotModel.FK_RequestDriver_PlaceDeparture" FromRole="PlaceDeparture" ToRole="RequestDriver" />
         </EntityType>
         <EntityType Name="RequestDriver">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdUser" Type="Int32" />
           <Property Name="Data" Type="DateTime" Precision="3" />
           <Property Name="CountPeople" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Price" Type="Double" />
           <Property Name="IdPlaceOfDeparture" Type="Int32" />
           <Property Name="IdPlaceOfArrival" Type="Int32" />
-          <NavigationProperty Name="HistoryClientDriver" Relationship="UchebnayaPraktikaModel.FK_HistoryClientDriver_RequestDriver" FromRole="RequestDriver" ToRole="HistoryClientDriver" />
-          <NavigationProperty Name="PlaceArrival" Relationship="UchebnayaPraktikaModel.FK_RequestDriver_PlaceArrival1" FromRole="RequestDriver" ToRole="PlaceArrival" />
-          <NavigationProperty Name="PlaceDeparture" Relationship="UchebnayaPraktikaModel.FK_RequestDriver_PlaceDeparture" FromRole="RequestDriver" ToRole="PlaceDeparture" />
-          <NavigationProperty Name="User" Relationship="UchebnayaPraktikaModel.FK_RequestDriver_User" FromRole="RequestDriver" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="UchebnayaPraktikaModel.FK_User_Role" FromRole="Role" ToRole="User" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HistoryClientDriver" Relationship="MotorDepotModel.FK_HistoryClientDriver_RequestDriver" FromRole="RequestDriver" ToRole="HistoryClientDriver" />
+          <NavigationProperty Name="PlaceArrival" Relationship="MotorDepotModel.FK_RequestDriver_PlaceArrival1" FromRole="RequestDriver" ToRole="PlaceArrival" />
+          <NavigationProperty Name="PlaceDeparture" Relationship="MotorDepotModel.FK_RequestDriver_PlaceDeparture" FromRole="RequestDriver" ToRole="PlaceDeparture" />
+          <NavigationProperty Name="User" Relationship="MotorDepotModel.FK_RequestDriver_User" FromRole="RequestDriver" ToRole="User" />
         </EntityType>
         <EntityType Name="Stamp">
           <Key>
@@ -619,7 +498,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Car" Relationship="UchebnayaPraktikaModel.FK_Car_Stamp" FromRole="Stamp" ToRole="Car" />
+          <NavigationProperty Name="Car" Relationship="MotorDepotModel.FK_Car_Stamp" FromRole="Stamp" ToRole="Car" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -627,7 +506,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="HistoryClientDriver" Relationship="UchebnayaPraktikaModel.FK_HistoryClientDriver_Status" FromRole="Status" ToRole="HistoryClientDriver" />
+          <NavigationProperty Name="HistoryClientDriver" Relationship="MotorDepotModel.FK_HistoryClientDriver_Status" FromRole="Status" ToRole="HistoryClientDriver" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -639,29 +518,9 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
-          <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="DayOfBirth" Type="DateTime" Precision="0" />
-          <Property Name="IdRole" Type="Int32" />
-          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="IdCar" Type="Int32" />
-          <NavigationProperty Name="Car" Relationship="UchebnayaPraktikaModel.FK_User_Car" FromRole="User" ToRole="Car" />
-          <NavigationProperty Name="Client" Relationship="UchebnayaPraktikaModel.FK_Client_User" FromRole="User" ToRole="Client" />
-          <NavigationProperty Name="Gender1" Relationship="UchebnayaPraktikaModel.FK_User_Gender" FromRole="User" ToRole="Gender" />
-          <NavigationProperty Name="HistoryClientDriver" Relationship="UchebnayaPraktikaModel.FK_HistoryClientDriver_User2" FromRole="User" ToRole="HistoryClientDriver" />
-          <NavigationProperty Name="RequestClient" Relationship="UchebnayaPraktikaModel.FK_RequestClient_User" FromRole="User" ToRole="RequestClient" />
-          <NavigationProperty Name="RequestDriver" Relationship="UchebnayaPraktikaModel.FK_RequestDriver_User" FromRole="User" ToRole="RequestDriver" />
-          <NavigationProperty Name="Role" Relationship="UchebnayaPraktikaModel.FK_User_Role" FromRole="User" ToRole="Role" />
-        </EntityType>
         <Association Name="FK_Car_Stamp">
-          <End Type="UchebnayaPraktikaModel.Stamp" Role="Stamp" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.Car" Role="Car" Multiplicity="*" />
+          <End Type="MotorDepotModel.Stamp" Role="Stamp" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.Car" Role="Car" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Stamp">
               <PropertyRef Name="Id" />
@@ -671,21 +530,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Car">
-          <End Type="UchebnayaPraktikaModel.Car" Role="Car" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Car">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="IdCar" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Place_City">
-          <End Type="UchebnayaPraktikaModel.City" Role="City" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.PlaceArrival" Role="PlaceArrival" Multiplicity="*" />
+          <End Type="MotorDepotModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.PlaceArrival" Role="PlaceArrival" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="City">
               <PropertyRef Name="Id" />
@@ -696,8 +543,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PlaceDeparture_City">
-          <End Type="UchebnayaPraktikaModel.City" Role="City" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.PlaceDeparture" Role="PlaceDeparture" Multiplicity="*" />
+          <End Type="MotorDepotModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.PlaceDeparture" Role="PlaceDeparture" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="City">
               <PropertyRef Name="Id" />
@@ -707,45 +554,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Client_User">
-          <End Type="UchebnayaPraktikaModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.Client" Role="Client" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Client">
-              <PropertyRef Name="IdUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RequestClient_Client">
-          <End Type="UchebnayaPraktikaModel.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.RequestClient" Role="RequestClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RequestClient">
-              <PropertyRef Name="IdUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Gender">
-          <End Type="UchebnayaPraktikaModel.Gender" Role="Gender" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gender">
-              <PropertyRef Name="Name" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="Gender" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_HistoryClientDriver_RequestDriver">
-          <End Type="UchebnayaPraktikaModel.RequestDriver" Role="RequestDriver" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.HistoryClientDriver" Role="HistoryClientDriver" Multiplicity="*" />
+          <End Type="MotorDepotModel.RequestDriver" Role="RequestDriver" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.HistoryClientDriver" Role="HistoryClientDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RequestDriver">
               <PropertyRef Name="Id" />
@@ -756,8 +567,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HistoryClientDriver_Status">
-          <End Type="UchebnayaPraktikaModel.Status" Role="Status" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.HistoryClientDriver" Role="HistoryClientDriver" Multiplicity="*" />
+          <End Type="MotorDepotModel.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.HistoryClientDriver" Role="HistoryClientDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="Id" />
@@ -767,45 +578,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HistoryClientDriver_User2">
-          <End Type="UchebnayaPraktikaModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.HistoryClientDriver" Role="HistoryClientDriver" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HistoryClientDriver">
-              <PropertyRef Name="IdClient" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RequestClient_Place">
-          <End Type="UchebnayaPraktikaModel.PlaceArrival" Role="PlaceArrival" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.RequestClient" Role="RequestClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlaceArrival">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RequestClient">
-              <PropertyRef Name="IdPlaceOfDeparture" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RequestClient_Place1">
-          <End Type="UchebnayaPraktikaModel.PlaceArrival" Role="PlaceArrival" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.RequestClient" Role="RequestClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlaceArrival">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RequestClient">
-              <PropertyRef Name="IdPlaceOfArrival" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RequestDriver_PlaceArrival1">
-          <End Type="UchebnayaPraktikaModel.PlaceArrival" Role="PlaceArrival" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.RequestDriver" Role="RequestDriver" Multiplicity="*" />
+          <End Type="MotorDepotModel.PlaceArrival" Role="PlaceArrival" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.RequestDriver" Role="RequestDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlaceArrival">
               <PropertyRef Name="Id" />
@@ -816,8 +591,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RequestDriver_PlaceDeparture">
-          <End Type="UchebnayaPraktikaModel.PlaceDeparture" Role="PlaceDeparture" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.RequestDriver" Role="RequestDriver" Multiplicity="*" />
+          <End Type="MotorDepotModel.PlaceDeparture" Role="PlaceDeparture" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.RequestDriver" Role="RequestDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlaceDeparture">
               <PropertyRef Name="Id" />
@@ -827,21 +602,88 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RequestClient_User">
-          <End Type="UchebnayaPraktikaModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.RequestClient" Role="RequestClient" Multiplicity="*" />
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DayOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IdCar" Type="Int32" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Car" Relationship="MotorDepotModel.FK_User_Car" FromRole="User" ToRole="Car" />
+          <NavigationProperty Name="FeedbackDriver" Relationship="MotorDepotModel.FK_FeedbackDriver_User" FromRole="User" ToRole="FeedbackDriver" />
+          <NavigationProperty Name="FeedbackDriver1" Relationship="MotorDepotModel.FK_FeedbackDriver_User1" FromRole="User" ToRole="FeedbackDriver" />
+          <NavigationProperty Name="Gender1" Relationship="MotorDepotModel.FK_User_Gender" FromRole="User" ToRole="Gender" />
+          <NavigationProperty Name="HistoryClientDriver" Relationship="MotorDepotModel.FK_HistoryClientDriver_User2" FromRole="User" ToRole="HistoryClientDriver" />
+          <NavigationProperty Name="RequestDriver" Relationship="MotorDepotModel.FK_RequestDriver_User" FromRole="User" ToRole="RequestDriver" />
+        </EntityType>
+        <Association Name="FK_User_Car">
+          <End Type="MotorDepotModel.Car" Role="Car" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeedbackDriver_User">
+          <End Type="MotorDepotModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.FeedbackDriver" Role="FeedbackDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="RequestClient">
+            <Dependent Role="FeedbackDriver">
               <PropertyRef Name="IdUser" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FeedbackDriver_User1">
+          <End Type="MotorDepotModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.FeedbackDriver" Role="FeedbackDriver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FeedbackDriver">
+              <PropertyRef Name="IdDriver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Gender">
+          <End Type="MotorDepotModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryClientDriver_User2">
+          <End Type="MotorDepotModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.HistoryClientDriver" Role="HistoryClientDriver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryClientDriver">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RequestDriver_User">
-          <End Type="UchebnayaPraktikaModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.RequestDriver" Role="RequestDriver" Multiplicity="*" />
+          <End Type="MotorDepotModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MotorDepotModel.RequestDriver" Role="RequestDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -851,26 +693,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Role">
-          <End Type="UchebnayaPraktikaModel.Role" Role="Role" Multiplicity="0..1" />
-          <End Type="UchebnayaPraktikaModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="IdRole" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище UchebnayaPraktikaModelContainer" CdmEntityContainer="UchebnayaPraktikaEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MotorDepotModelContainer" CdmEntityContainer="MotorDepotEntities">
           <EntitySetMapping Name="Car">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.Car">
+            <EntityTypeMapping TypeName="MotorDepotModel.Car">
               <MappingFragment StoreEntitySet="Car">
                 <ScalarProperty Name="IdStamp" ColumnName="IdStamp" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
@@ -879,23 +709,25 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="City">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.City">
+            <EntityTypeMapping TypeName="MotorDepotModel.City">
               <MappingFragment StoreEntitySet="City">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.Client">
-              <MappingFragment StoreEntitySet="Client">
+          <EntitySetMapping Name="FeedbackDriver">
+            <EntityTypeMapping TypeName="MotorDepotModel.FeedbackDriver">
+              <MappingFragment StoreEntitySet="FeedbackDriver">
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="IdDriver" ColumnName="IdDriver" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gender">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.Gender">
+            <EntityTypeMapping TypeName="MotorDepotModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -903,7 +735,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HistoryClientDriver">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.HistoryClientDriver">
+            <EntityTypeMapping TypeName="MotorDepotModel.HistoryClientDriver">
               <MappingFragment StoreEntitySet="HistoryClientDriver">
                 <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
@@ -914,7 +746,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PlaceArrival">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.PlaceArrival">
+            <EntityTypeMapping TypeName="MotorDepotModel.PlaceArrival">
               <MappingFragment StoreEntitySet="PlaceArrival">
                 <ScalarProperty Name="IdCity" ColumnName="IdCity" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -923,7 +755,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PlaceDeparture">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.PlaceDeparture">
+            <EntityTypeMapping TypeName="MotorDepotModel.PlaceDeparture">
               <MappingFragment StoreEntitySet="PlaceDeparture">
                 <ScalarProperty Name="IdCity" ColumnName="IdCity" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -931,21 +763,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RequestClient">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.RequestClient">
-              <MappingFragment StoreEntitySet="RequestClient">
-                <ScalarProperty Name="IdPlaceOfArrival" ColumnName="IdPlaceOfArrival" />
-                <ScalarProperty Name="IdPlaceOfDeparture" ColumnName="IdPlaceOfDeparture" />
-                <ScalarProperty Name="CountPeople" ColumnName="CountPeople" />
-                <ScalarProperty Name="Data" ColumnName="Data" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="RequestDriver">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.RequestDriver">
+            <EntityTypeMapping TypeName="MotorDepotModel.RequestDriver">
               <MappingFragment StoreEntitySet="RequestDriver">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="IdPlaceOfArrival" ColumnName="IdPlaceOfArrival" />
                 <ScalarProperty Name="IdPlaceOfDeparture" ColumnName="IdPlaceOfDeparture" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
@@ -956,16 +777,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.Role">
-              <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Stamp">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.Stamp">
+            <EntityTypeMapping TypeName="MotorDepotModel.Stamp">
               <MappingFragment StoreEntitySet="Stamp">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -973,7 +786,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.Status">
+            <EntityTypeMapping TypeName="MotorDepotModel.Status">
               <MappingFragment StoreEntitySet="Status">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -981,7 +794,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.sysdiagrams">
+            <EntityTypeMapping TypeName="MotorDepotModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="definition" ColumnName="definition" />
                 <ScalarProperty Name="version" ColumnName="version" />
@@ -992,11 +805,11 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="UchebnayaPraktikaModel.User">
+            <EntityTypeMapping TypeName="MotorDepotModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="IdCar" ColumnName="IdCar" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
                 <ScalarProperty Name="DayOfBirth" ColumnName="DayOfBirth" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Login" ColumnName="Login" />

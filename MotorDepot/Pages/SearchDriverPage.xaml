@@ -9,7 +9,7 @@
       Title="SearchDriverPage">
 
     <Grid>
-        <Frame Width="470" Height="400" Background="White">
+        <Frame Width="500" Height="400" Background="White">
         </Frame>
         <StackPanel>
             <StackPanel>
@@ -20,12 +20,12 @@
                 <TextBlock Text="Куда"></TextBlock>
                 <ComboBox TextBoxBase.TextChanged="OnComboArrivalTextChanged" DisplayMemberPath="Name" IsTextSearchEnabled="False" IsEditable="True" x:Name="cbArrival"></ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="10">
                 <StackPanel >
                     <TextBlock Text="Когда"></TextBlock>
                     <DatePicker x:Name="tbData"></DatePicker>
                 </StackPanel>
-                <StackPanel >
+                <StackPanel Margin="10">
                     <TextBlock Text="Количество бронируемых мест"></TextBlock>
                     <TextBox Name="tbCount" Width="50" Height="30"></TextBox>
                 </StackPanel>

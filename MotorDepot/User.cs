@@ -17,9 +17,9 @@ namespace MotorDepot
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.Client = new HashSet<Client>();
+            this.FeedbackDriver = new HashSet<FeedbackDriver>();
+            this.FeedbackDriver1 = new HashSet<FeedbackDriver>();
             this.HistoryClientDriver = new HashSet<HistoryClientDriver>();
-            this.RequestClient = new HashSet<RequestClient>();
             this.RequestDriver = new HashSet<RequestDriver>();
         }
     
@@ -28,20 +28,19 @@ namespace MotorDepot
         public string Login { get; set; }
         public string Password { get; set; }
         public Nullable<System.DateTime> DayOfBirth { get; set; }
-        public Nullable<int> IdRole { get; set; }
         public string Gender { get; set; }
         public Nullable<int> IdCar { get; set; }
+        public byte[] Image { get; set; }
     
         public virtual Car Car { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Client> Client { get; set; }
+        public virtual ICollection<FeedbackDriver> FeedbackDriver { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FeedbackDriver> FeedbackDriver1 { get; set; }
         public virtual Gender Gender1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryClientDriver> HistoryClientDriver { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RequestClient> RequestClient { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RequestDriver> RequestDriver { get; set; }
-        public virtual Role Role { get; set; }
     }
 }

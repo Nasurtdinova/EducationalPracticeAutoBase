@@ -18,6 +18,19 @@ namespace MotorDepot
             return new List<RequestDriver>(BdConnection.Connection.RequestDriver);
         }
 
+        public static List<FeedbackDriver> GetFeedbacks()
+        {
+            return new List<FeedbackDriver>(BdConnection.Connection.FeedbackDriver);
+        }
+        public static List<Car> GetCars()
+        {
+            return new List<Car>(BdConnection.Connection.Car);
+        }
+        public static List<Stamp> GetStamps()
+        {
+            return new List<Stamp>(BdConnection.Connection.Stamp);
+        }
+
         public static List<HistoryClientDriver> GetHistoriesClientDriver()
         {
             return new List<HistoryClientDriver>(BdConnection.Connection.HistoryClientDriver);
@@ -26,6 +39,16 @@ namespace MotorDepot
         public static List<City> GetCities()
         {
             return new List<City>(BdConnection.Connection.City);
+        }
+
+        public static List<PlaceArrival> GetPlacesArrival()
+        {
+            return new List<PlaceArrival>(BdConnection.Connection.PlaceArrival);
+        }
+
+        public static List<PlaceDeparture> GetPlacesDeparture()
+        {
+            return new List<PlaceDeparture>(BdConnection.Connection.PlaceDeparture);
         }
 
         public static List<Gender> GetGenders()
@@ -56,12 +79,24 @@ namespace MotorDepot
             if (historyClientDriver.Id != 0)
             {
                 var us = GetHistoriesClientDriver().Where(a => a.Id == historyClientDriver.Id).FirstOrDefault();
-                us.IdStatus = historyClientDriver.IdStatus;
-               
+                us.IdStatus = historyClientDriver.IdStatus;              
             }
             else
             {
                 BdConnection.Connection.HistoryClientDriver.Add(historyClientDriver);               
+            }
+            BdConnection.Connection.SaveChanges();
+        }
+
+        public static void SaveRequestDriver(RequestDriver requestDriver)
+        {
+            if (requestDriver.Id != 0)
+            {
+                var us = GetHistoriesClientDriver().Where(a => a.Id == requestDriver.Id).FirstOrDefault();                
+            }
+            else
+            {
+                BdConnection.Connection.RequestDriver.Add(requestDriver);
             }
             BdConnection.Connection.SaveChanges();
         }

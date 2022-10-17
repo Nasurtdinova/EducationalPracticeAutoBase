@@ -21,8 +21,9 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding Data, StringFormat='dd.MM.yyyy hh:mm'}"></TextBlock>
                         <StackPanel Grid.Column="1">
-                            <TextBlock Text="{Binding Place.City.Name}"></TextBlock>
-                            <TextBlock Text="{Binding Place1.City.Name}"></TextBlock>
+                            <TextBlock Text="{Binding PlaceDeparture.City.Name}"></TextBlock>
+                            <TextBlock Text="{Binding PlaceArrival.City.Name}"></TextBlock>
+                            
                         </StackPanel>
                         <StackPanel Grid.Column="2">
                             <TextBlock Text="{Binding Price}"></TextBlock>
@@ -31,7 +32,7 @@
                                 <TextBlock Text="{Binding User.FullName}"></TextBlock>
                             </StackPanel>
                         </StackPanel>
-                        <Button Name="btnReserve" Grid.Column="3" Width="200" Content="Забронировать" Click="btnReserve_Click"></Button>
+                        <Button Name="btnReserve" Visibility="{Binding VisibilityReverse}" Grid.Column="3" Width="200" Content="Забронировать" Click="btnReserve_Click"></Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -25,7 +25,12 @@ namespace MotorDepot
 
         private void btnPublish_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new PublishDriverPage());
+        }
 
+        private void btnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MyProfilePage());
         }
     }
 }
