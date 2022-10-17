@@ -7,35 +7,40 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DriversPage">
-
     <Grid>
-        <ListView Name="lvDrivers">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"></ColumnDefinition>
-                            <ColumnDefinition Width="200"></ColumnDefinition>
-                            <ColumnDefinition Width="200"></ColumnDefinition>
-                            <ColumnDefinition Width="200"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Data, StringFormat='dd.MM.yyyy hh:mm'}"></TextBlock>
-                        <StackPanel Grid.Column="1">
-                            <TextBlock Text="{Binding PlaceDeparture.City.Name}"></TextBlock>
-                            <TextBlock Text="{Binding PlaceArrival.City.Name}"></TextBlock>
-                            
-                        </StackPanel>
-                        <StackPanel Grid.Column="2">
-                            <TextBlock Text="{Binding Price}"></TextBlock>
-                            <StackPanel>
-                                <Image Source="User.Image"></Image>
-                                <TextBlock Text="{Binding User.FullName}"></TextBlock>
+        <StackPanel>
+            <TextBlock Text="Водители" FontSize="25" Margin="20"></TextBlock>
+            <ListView Name="lvDrivers">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="400"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Data, StringFormat='dd.MM.yyyy hh:mm'}"></TextBlock>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding PlaceDeparture.City.Name}"></TextBlock>
+                                <TextBlock Text="{Binding PlaceArrival.City.Name}"></TextBlock>
                             </StackPanel>
-                        </StackPanel>
-                        <Button Name="btnReserve" Visibility="{Binding VisibilityReverse}" Grid.Column="3" Width="200" Content="Забронировать" Click="btnReserve_Click"></Button>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                            <StackPanel Grid.Column="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Price}"></TextBlock>
+                                    <TextBlock Text="рублей"></TextBlock>
+                                </StackPanel>
+                                <StackPanel>
+                                    <Image Source="User.Image"></Image>
+                                    <TextBlock Text="{Binding User.FullName}"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                            <Button Name="btnReserve" Visibility="{Binding VisibilityReverse}" Grid.Column="3" Width="200" Content="Забронировать" Click="btnReserve_Click"></Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="btnBack" Margin="20" Content="Назад" Click="btnBack_Click"></Button>
+        </StackPanel>
     </Grid>
 </Page>

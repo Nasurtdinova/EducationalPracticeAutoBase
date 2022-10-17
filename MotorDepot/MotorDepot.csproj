@@ -64,19 +64,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataBase\BdConnection.cs" />
     <Compile Include="Car.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="City.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataBase\BdConnection.cs" />
     <Compile Include="DataBase\DataAccess.cs" />
     <Compile Include="FeedbackDriver.cs">
       <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\DriversPage.xaml.cs">
-      <DependentUpon>DriversPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gender.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -84,8 +81,8 @@
     <Compile Include="HistoryClientDriver.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
+    <Compile Include="IncomingPage.xaml.cs">
+      <DependentUpon>IncomingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
@@ -102,8 +99,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\DriversPage.xaml.cs">
+      <DependentUpon>DriversPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MyProfilePage.xaml.cs">
       <DependentUpon>MyProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PublishDriverPage.xaml.cs">
+      <DependentUpon>PublishDriverPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PlaceArrival.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -111,20 +117,8 @@
     <Compile Include="PlaceDeparture.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PublishDriverPage.xaml.cs">
-      <DependentUpon>PublishDriverPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\RegistrationPage.xaml.cs">
-      <DependentUpon>RegistrationPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RequestDriver.cs">
       <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\SearchDriverPage.xaml.cs">
-      <DependentUpon>SearchDriverPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Stamp.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -135,6 +129,16 @@
     <Compile Include="User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Windows\RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SearchDriverPage.xaml.cs">
+      <DependentUpon>SearchDriverPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="IncomingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AuthorizationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -222,6 +226,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\PhotoProfile.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>

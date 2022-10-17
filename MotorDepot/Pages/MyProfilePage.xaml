@@ -14,7 +14,7 @@
             <RowDefinition Height="3*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Image x:Name="img" Width="150">
+            <Image x:Name="img" Width="150" Margin="20">
                 <Image.Source>
                     <Binding Path="Image">
                         <Binding.TargetNullValue>
@@ -52,11 +52,10 @@
                         <StackPanel Orientation="Horizontal">
                             <ComboBox x:Name="comboStump" SelectedItem="{Binding Car.Stamp}" SelectionChanged="comboStump_SelectionChanged" DisplayMemberPath="Name"></ComboBox>
                             <ComboBox x:Name="comboModel" SelectedItem="{Binding Car}"  Margin="10" DisplayMemberPath="Model"></ComboBox>
-                            
                         </StackPanel>
                         </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="4">
-                        <Button x:Name="btnBack" Click="btnBack_Click" Content="Назад" ></Button>
+                        <Button x:Name="btnBack" Click="btnBack_Click" Margin="20" Content="Назад" ></Button>
                         <Button x:Name="btnSave" Click="btnSave_Click" Content="Сохранить"></Button>
                     </StackPanel>
                 </Grid>

@@ -32,5 +32,16 @@ namespace MotorDepot
         {
             NavigationService.Navigate(new MyProfilePage());
         }
+
+        private void btnIncoming_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new IncomingPage());
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.CurrentUser = null;
+            NavigationService.Navigate(new AuthorizationPage());
+        }
     }
 }

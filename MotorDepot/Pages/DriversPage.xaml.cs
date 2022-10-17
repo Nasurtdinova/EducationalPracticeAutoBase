@@ -39,5 +39,10 @@ namespace MotorDepot
                 MessageBox.Show("Мы отправили запрос водителю, ожидайте пока водитель ответит!");
             }
         }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

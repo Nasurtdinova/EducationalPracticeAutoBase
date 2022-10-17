@@ -13,10 +13,10 @@ namespace MotorDepot
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MotorDepotEntities : DbContext
+    public partial class UchebnayaPraktikaEntities : DbContext
     {
-        public MotorDepotEntities()
-            : base("name=MotorDepotEntities")
+        public UchebnayaPraktikaEntities()
+            : base("name=UchebnayaPraktikaEntities")
         {
         }
     
@@ -35,7 +35,6 @@ namespace MotorDepot
         public virtual DbSet<RequestDriver> RequestDriver { get; set; }
         public virtual DbSet<Stamp> Stamp { get; set; }
         public virtual DbSet<Status> Status { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

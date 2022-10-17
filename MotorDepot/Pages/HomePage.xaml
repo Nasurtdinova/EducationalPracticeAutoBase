@@ -13,15 +13,14 @@
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition ></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Source="/MotorDepot;component/Images/фонДорога.jpg" Grid.ColumnSpan="2" Width="1400"></Image>
-
-            <Frame Name="frame"></Frame>
-
-            <StackPanel Grid.Column="1" >
+        <Image Source="/MotorDepot;component/Images/фонДорога.jpg" Grid.ColumnSpan="2" Width="1700"></Image>
+        <Frame Name="frame"></Frame>
+        <StackPanel Grid.Column="1" >
                 <Button x:Name="btnPublish" Content="Опубликовать" Margin="10" Click="btnPublish_Click"></Button>
                 <Button x:Name="btnMyTrips" Content="Мои поездки" Margin="10"></Button>
-                <Button x:Name="btnIncoming" Content="Входящие" Margin="10"></Button>
+                <Button x:Name="btnIncoming" Content="Входящие" Margin="10" Click="btnIncoming_Click"></Button>
                 <Button x:Name="btnProfile" Content="Мой профиль" Margin="10" Click="btnProfile_Click"></Button>
+            <Button x:Name="btnExit" Content="Выйти" Margin="10" Click="btnExit_Click"></Button>
             </StackPanel>
         </Grid>
   
