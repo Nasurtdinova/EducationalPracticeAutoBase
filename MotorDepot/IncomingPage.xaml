@@ -74,6 +74,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <Button x:Name="btnBack" Grid.Row="2" Click="btnBack_Click" Content="Назад"></Button>
+        <Button x:Name="btnBack" Grid.Row="2" Click="btnBack_Click" Margin="0" Content="Назад"></Button>
     </Grid>
 </Page>

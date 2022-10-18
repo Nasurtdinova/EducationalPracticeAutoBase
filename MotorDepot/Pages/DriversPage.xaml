@@ -40,7 +40,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button x:Name="btnBack" Margin="20" Content="Назад" Click="btnBack_Click"></Button>
+            <Button x:Name="btnBack" Content="Назад" Click="btnBack_Click"></Button>
         </StackPanel>
     </Grid>
 </Page>

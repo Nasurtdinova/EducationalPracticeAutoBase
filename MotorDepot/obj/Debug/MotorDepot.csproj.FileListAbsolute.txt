@@ -110,8 +110,4 @@ C:\Users\201914\Source\Repos\EducationalPracticeAutoBase\MotorDepot\obj\Debug\Mo
 C:\Users\201914\Source\Repos\EducationalPracticeAutoBase\MotorDepot\obj\Debug\IncomingPage.g.cs
 C:\Users\201914\Source\Repos\EducationalPracticeAutoBase\MotorDepot\obj\Debug\IncomingPage.baml
 C:\Users\201914\Source\Repos\EducationalPracticeAutoBase\MotorDepot\obj\Debug\ComingTripsPage.g.cs
-C:\Users\201914\Source\Repos\EducationalPracticeAutoBase\MotorDepot\obj\Debug\RegistrationPage2.g.cs
-C:\Users\201914\Source\Repos\EducationalPracticeAutoBase\MotorDepot\obj\Debug\AuthorizationPage2.g.cs
-C:\Users\201914\Source\Repos\EducationalPracticeAutoBase\MotorDepot\obj\Debug\AuthorizationPage2.baml
 C:\Users\201914\Source\Repos\EducationalPracticeAutoBase\MotorDepot\obj\Debug\ComingTripsPage.baml
-C:\Users\201914\Source\Repos\EducationalPracticeAutoBase\MotorDepot\obj\Debug\RegistrationPage2.baml

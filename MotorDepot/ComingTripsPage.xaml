@@ -7,14 +7,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ComingTripsPage">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="8*"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Text="Поездки"></TextBlock>
+        <TextBlock Text="Поездки" FontSize="25"></TextBlock>
         <DataGrid x:Name="dgTrips" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False"> 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата поездки" Binding="{Binding Data, StringFormat='dd.MM.yyyy hh:mm'}"></DataGridTextColumn>

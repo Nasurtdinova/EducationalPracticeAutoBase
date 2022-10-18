@@ -23,11 +23,6 @@ namespace MotorDepot
             frame.Navigate(new SearchDriverPage());
         }
 
-        private void btnPublish_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new ComingTripsPage());
-        }
-
         private void btnProfile_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MyProfilePage());
@@ -42,6 +37,11 @@ namespace MotorDepot
         {
             MainWindow.CurrentUser = null;
             NavigationService.Navigate(new AuthorizationPage());
+        }
+
+        private void btnMyTrips_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ComingTripsPage());
         }
     }
 }

@@ -64,9 +64,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AuthorizationPage2.xaml.cs">
-      <DependentUpon>AuthorizationPage2.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Car.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -123,9 +120,6 @@
     <Compile Include="PlaceDeparture.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="RegistrationPage2.xaml.cs">
-      <DependentUpon>RegistrationPage2.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RequestDriver.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -144,10 +138,6 @@
     <Compile Include="Pages\SearchDriverPage.xaml.cs">
       <DependentUpon>SearchDriverPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="AuthorizationPage2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ComingTripsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -188,10 +178,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\PublishDriverPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RegistrationPage2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

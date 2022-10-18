@@ -15,9 +15,9 @@
         </ColumnDefinition>
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
-            <RowDefinition Height="150"></RowDefinition>
-            <RowDefinition Height="120"></RowDefinition>
-            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition Height="250"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
             <RowDefinition></RowDefinition>
     </Grid.RowDefinitions>
         <Image Source="/MotorDepot;component/Images/logoMotor.jpg" Width="1900"></Image>
