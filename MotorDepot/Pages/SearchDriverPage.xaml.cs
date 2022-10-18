@@ -26,7 +26,7 @@ namespace MotorDepot
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            var list = DataAccess.GetRequestDrivers().Where(a=>a.PlaceArrival.City.Name == (cbArrival.SelectedItem as City).Name && a.PlaceDeparture.City.Name == (cbDeparture.SelectedItem as City).Name && a.Data == tbData.SelectedDate).FirstOrDefault();
+            var list = DataAccess.GetRequestDrivers().Where(a=>a.PlaceArrival.City.Name == (cbArrival.SelectedItem as City).Name && a.PlaceDeparture.City.Name == (cbDeparture.SelectedItem as City).Name && a.Data == tbData.SelectedDate);
             if (list != null)
                 NavigationService.Navigate(new DriversPage());
             else

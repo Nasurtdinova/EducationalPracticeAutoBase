@@ -34,6 +34,8 @@ namespace MotorDepot
             MainWindow.CurrentUser.DayOfBirth = tbBirthday.SelectedDate;
             MainWindow.CurrentUser.Car = comboModel.SelectedItem as Car;
             BdConnection.Connection.SaveChanges();
+            MessageBox.Show("Информация сохранена!");
+            NavigationService.Navigate(new HomePage());
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

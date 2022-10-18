@@ -9,12 +9,13 @@
       Title="IncomingPage">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="70"></RowDefinition>
+            
         </Grid.RowDefinitions>
-        <StackPanel VerticalAlignment="Top">
-            <TextBlock Text="Заявки от клиентов" FontSize="25"></TextBlock>
+        <StackPanel Grid.Row="1">
+            <TextBlock x:Name="tbDataClients" FontSize="22" Text="Нет данных" Margin="100" Visibility="Collapsed"></TextBlock>
             <DataGrid x:Name="lvRequestsClients" IsReadOnly="True" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Попутчик" Width="*" Binding="{Binding User.FullName}"></DataGridTextColumn>
@@ -47,9 +48,9 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <StackPanel Grid.Row="1" VerticalAlignment="Top">
-            <TextBlock Text="Мои заявки" FontSize="25"></TextBlock>
-            <DataGrid x:Name="lvMyRequests" IsReadOnly="True" AutoGenerateColumns="False">
+        <StackPanel Grid.Row="1">
+            <TextBlock x:Name="tbDataMy" Text="Нет данных" Margin="100" Visibility="Collapsed"></TextBlock>
+            <DataGrid x:Name="lvMyRequests" IsReadOnly="True" AutoGenerateColumns="False" Visibility="Collapsed">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Водитель" Width="*" Binding="{Binding RequestDriver.User.FullName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Дата поездки" Binding="{Binding RequestDriver.Data, StringFormat='dd.MM.yyyy hh:mm'}"></DataGridTextColumn>
@@ -74,6 +75,10 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <Button x:Name="btnBack" Grid.Row="2" Click="btnBack_Click" Margin="0" Content="Назад"></Button>
+        <StackPanel Orientation="Horizontal">
+            <RadioButton Content="Заявки от клиентов" IsChecked="True" Name="rbRequestClient" Click="rbRequestClient_Click"></RadioButton>
+            <RadioButton Content="Мои заявки" Name="rbMyRequest" Click="rbMyRequest_Click"></RadioButton>
+        </StackPanel>
+        <Button x:Name="btnBack" Grid.Row="3" Click="btnBack_Click" Margin="0" Content="Назад"></Button>
     </Grid>
 </Page>

@@ -20,24 +20,14 @@ namespace MotorDepot
         public DriversPage()
         {
             InitializeComponent();
-            lvDrivers.ItemsSource = DataAccess.GetRequestDrivers();
+            lvDrivers.ItemsSource = DataAccess.GetRequestDrivers().Where(a=>a.Data >= DateTime.Now);
         }
 
         private void btnReserve_Click(object sender, RoutedEventArgs e)
         {
             var a = (sender as Button).DataContext as RequestDriver;
-            if (MessageBox.Show("Вы точно хотите забронировать место?","Подтверждение",MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
-            {
-                HistoryClientDriver history = new HistoryClientDriver()
-                {
-                    IdClient = MainWindow.CurrentUser.Id,
-                    IdRequestDriver = a.Id,
-                    IdStatus = 1,
-                    Data = DateTime.Now,
-                };
-                DataAccess.SaveHistoryClientDriver(history);
-                MessageBox.Show("Мы отправили запрос водителю, ожидайте пока водитель ответит!");
-            }
+            ReverseVenueWindow rev = new ReverseVenueWindow(a);
+            rev.Show();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

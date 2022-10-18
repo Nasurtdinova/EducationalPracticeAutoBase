@@ -123,6 +123,9 @@
     <Compile Include="RequestDriver.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReverseVenueWindow.xaml.cs">
+      <DependentUpon>ReverseVenueWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Stamp.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -178,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\PublishDriverPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReverseVenueWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

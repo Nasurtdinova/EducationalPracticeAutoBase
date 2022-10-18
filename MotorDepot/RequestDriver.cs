@@ -44,7 +44,7 @@ namespace MotorDepot
         {
             get
             {
-                if (Data.Value <= DateTime.Now)
+                if (Data.Value < DateTime.Now)
                     return "Collapsed";
                 else
                     return "Visibility";

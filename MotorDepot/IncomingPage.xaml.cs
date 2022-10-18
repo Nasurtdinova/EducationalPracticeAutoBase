@@ -19,9 +19,25 @@ namespace MotorDepot
     {
         public IncomingPage()
         {
-            InitializeComponent();
-            lvRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a=>a.RequestDriver.IdUser == MainWindow.CurrentUser.Id);
+            InitializeComponent();           
+            UpdateList();
+        }
+
+        public void UpdateList()
+        {
+            lvRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id);
             lvMyRequests.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
+            if (lvRequestsClients.Items.Count == 0)
+            {
+                tbDataClients.Visibility = Visibility.Visible;
+                lvRequestsClients.Visibility = Visibility.Collapsed;
+            }
+            
+            if (lvMyRequests.Items.Count == 0)
+            {
+                tbDataMy.Visibility = Visibility.Visible;
+                lvMyRequests.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -36,6 +52,20 @@ namespace MotorDepot
             {
 
             }
+        }
+
+        private void rbMyRequest_Click(object sender, RoutedEventArgs e)
+        {
+            lvMyRequests.Visibility = Visibility.Visible;
+            lvRequestsClients.Visibility = Visibility.Collapsed;
+            UpdateList();
+        }
+
+        private void rbRequestClient_Click(object sender, RoutedEventArgs e)
+        {
+            lvMyRequests.Visibility = Visibility.Collapsed;
+            lvRequestsClients.Visibility = Visibility.Visible;
+            UpdateList();
         }
     }
 }

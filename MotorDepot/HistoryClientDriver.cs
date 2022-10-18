@@ -19,6 +19,8 @@ namespace MotorDepot
         public Nullable<int> IdRequestDriver { get; set; }
         public Nullable<System.DateTime> Data { get; set; }
         public Nullable<int> IdStatus { get; set; }
+        public Nullable<int> CountPeople { get; set; }
+        public string Description { get; set; }
     
         public virtual RequestDriver RequestDriver { get; set; }
         public virtual Status Status { get; set; }
