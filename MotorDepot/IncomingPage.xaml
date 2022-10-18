@@ -52,7 +52,7 @@
             <TextBlock x:Name="tbDataMy" Text="Нет данных" Margin="100" Visibility="Collapsed"></TextBlock>
             <DataGrid x:Name="lvMyRequests" IsReadOnly="True" AutoGenerateColumns="False" Visibility="Collapsed">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Водитель" Width="*" Binding="{Binding RequestDriver.User.FullName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Водитель" Binding="{Binding RequestDriver.User.FullName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Дата поездки" Binding="{Binding RequestDriver.Data, StringFormat='dd.MM.yyyy hh:mm'}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Место отбытия" Binding="{Binding RequestDriver.PlaceDeparture.City.Name}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Место назначения" Binding="{Binding RequestDriver.PlaceArrival.City.Name}"></DataGridTextColumn>
@@ -72,7 +72,15 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate Width="*">
+                            <DataTemplate>
+                                <Button Content="Отменить" Name="btnRevoke" Click="btnRevoke_Click"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
+                
             </DataGrid>
         </StackPanel>
         <StackPanel Orientation="Horizontal">

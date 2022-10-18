@@ -26,7 +26,6 @@
             <TextBox Text="{Binding Description}"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal">
-            <Button x:Name="btnBack" Content="Назад" Click="btnBack_Click"></Button>
             <Button x:Name="btnReverse" Content="Забронировать" Click="btnReverse_Click"></Button>
         </StackPanel>
     </Grid>

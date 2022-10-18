@@ -26,11 +26,6 @@ namespace MotorDepot
                 SelectedRequest = req;
             DataContext = CurrentHistory;
         }
-        
-        private void btnBack_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void btnReverse_Click(object sender, RoutedEventArgs e)
         {
@@ -43,6 +38,7 @@ namespace MotorDepot
                 DataAccess.SaveHistoryClientDriver(CurrentHistory);
                 MessageBox.Show("Мы отправили запрос водителю, ожидайте пока водитель ответит!");
             }
+            Close();
         }
     }
 }

@@ -67,5 +67,10 @@ namespace MotorDepot
             lvRequestsClients.Visibility = Visibility.Visible;
             UpdateList();
         }
+
+        private void btnRevoke_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

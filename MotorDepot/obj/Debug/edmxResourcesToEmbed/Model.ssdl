@@ -40,6 +40,8 @@
     <Property Name="IdRequestDriver" Type="int" />
     <Property Name="Data" Type="date" />
     <Property Name="IdStatus" Type="int" />
+    <Property Name="CountPeople" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="PlaceArrival">
     <Key>
