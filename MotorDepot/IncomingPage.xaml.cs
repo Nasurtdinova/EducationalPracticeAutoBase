@@ -32,10 +32,11 @@ namespace MotorDepot
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
             var req = (sender as Button).DataContext as HistoryClientDriver;
-            if (MessageBox.Show("Вы хотите принять заявку?","Уведомление",MessageBoxButton.YesNoCancel,MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-
-            }
+            if (MessageBox.Show("Вы хотите принять заявку?", "Уведомление", MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                req.IdStatus = 3;
+            else
+                req.IdStatus = 2;
+            BdConnection.Connection.SaveChanges();
         }
 
         private void rbMyRequest_Click(object sender, RoutedEventArgs e)

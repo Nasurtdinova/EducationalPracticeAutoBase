@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\201913\source\repos\EducationalPracticeAutoBase\MotorDepot\App.xaml
-12-2041015120
+131001209094
 22035508349
-34-1368004241
-24-1988545369
-ComingTripsPage.xaml;IncomingPage.xaml;Pages\AuthorizationPage.xaml;Pages\DriversPage.xaml;Pages\HomePage.xaml;MainWindow.xaml;Pages\MyProfilePage.xaml;Pages\PublishDriverPage.xaml;ReverseVenueWindow.xaml;SendFeedbackWindow.xaml;Windows\RegistrationPage.xaml;Pages\SearchDriverPage.xaml;
+35312957336
+231226817798
+ComingTripsPage.xaml;IncomingPage.xaml;Pages\AuthorizationPage.xaml;Pages\DriversPage.xaml;Pages\HomePage.xaml;MainWindow.xaml;Pages\MyProfilePage.xaml;Pages\PublishDriverPage.xaml;ProfileDriverPage.xaml;ReverseVenueWindow.xaml;SendFeedbackWindow.xaml;Windows\RegistrationPage.xaml;Pages\SearchDriverPage.xaml;
 
-False
+True
 

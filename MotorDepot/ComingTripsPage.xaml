@@ -78,6 +78,7 @@
                         <DataGridTextColumn Header="Место отбытия" Binding="{Binding RequestDriver.PlaceDeparture.City.Name}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Место назначения" Binding="{Binding RequestDriver.PlaceArrival.City.Name}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Цена" Binding="{Binding RequestDriver.Price}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Статус" Binding="{Binding Status.Name}"></DataGridTextColumn>
                         <DataGridTemplateColumn Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

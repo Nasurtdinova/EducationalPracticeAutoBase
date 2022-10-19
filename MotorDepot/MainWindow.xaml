@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MotorDepot"
         mc:Ignorable="d"
-        Title="Автобаза" Icon="/Images/logoMotor.jpg" Height="450" Width="800">
+        MinWidth="1000" MinHeight="650"
+        Title="Автобаза" Icon="/Images/logoMotor.jpg" Height="650" Width="1000">
     <Grid>
         <Frame x:Name="mainFrame"></Frame>
     </Grid>
