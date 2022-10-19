@@ -43,5 +43,10 @@ namespace MotorDepot
         {
             NavigationService.Navigate(new ComingTripsPage());
         }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new SearchDriverPage());
+        }
     }
 }

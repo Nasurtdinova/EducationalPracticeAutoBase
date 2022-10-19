@@ -21,6 +21,7 @@ namespace MotorDepot
         {
             InitializeComponent();
             dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.IdUser == MainWindow.CurrentUser.Id);
+            dgDrivers.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -37,6 +38,11 @@ namespace MotorDepot
         {
             var a = (sender as Button).DataContext as RequestDriver;
             NavigationService.Navigate(new PublishDriverPage(a));
+        }
+
+        private void btnFeedback_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

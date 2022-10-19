@@ -21,7 +21,29 @@ namespace MotorDepot
         public Nullable<int> IdStatus { get; set; }
         public Nullable<int> CountPeople { get; set; }
         public string Description { get; set; }
-    
+
+        public string VisibilityRevoke 
+        { 
+            get
+            {
+                if (DateTime.Now <= Data.Value)
+                    return "Visibility";
+                else
+                    return "Collapsed";
+            }
+        }
+
+        public string VisibilitySelect
+        {
+            get
+            {
+                if (DateTime.Now <= Data.Value)
+                    return "Visibility";
+                else
+                    return "Collapsed";
+            }
+        }
+
         public virtual RequestDriver RequestDriver { get; set; }
         public virtual Status Status { get; set; }
         public virtual User User { get; set; }

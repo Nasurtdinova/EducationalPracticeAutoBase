@@ -10,7 +10,7 @@
 
     <Grid>
         <Border CornerRadius="20" BorderBrush="Black">
-            <Frame Width="900" Height="600" Background="White"></Frame>
+            <Frame Width="800" Height="600" Background="White"></Frame>
         </Border>
         <StackPanel>
             <StackPanel Margin="20">

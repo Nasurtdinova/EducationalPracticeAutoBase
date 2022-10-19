@@ -19,25 +19,9 @@ namespace MotorDepot
     {
         public IncomingPage()
         {
-            InitializeComponent();           
-            UpdateList();
-        }
-
-        public void UpdateList()
-        {
+            InitializeComponent();
             lvRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id);
             lvMyRequests.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
-            if (lvRequestsClients.Items.Count == 0)
-            {
-                tbDataClients.Visibility = Visibility.Visible;
-                lvRequestsClients.Visibility = Visibility.Collapsed;
-            }
-            
-            if (lvMyRequests.Items.Count == 0)
-            {
-                tbDataMy.Visibility = Visibility.Visible;
-                lvMyRequests.Visibility = Visibility.Collapsed;
-            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -58,14 +42,24 @@ namespace MotorDepot
         {
             lvMyRequests.Visibility = Visibility.Visible;
             lvRequestsClients.Visibility = Visibility.Collapsed;
-            UpdateList();
+            tbDataClients.Visibility = Visibility.Collapsed;
+            if (lvMyRequests.Items.Count == 0)
+            {
+                tbDataMy.Visibility = Visibility.Visible;                
+                lvMyRequests.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void rbRequestClient_Click(object sender, RoutedEventArgs e)
         {
             lvMyRequests.Visibility = Visibility.Collapsed;
             lvRequestsClients.Visibility = Visibility.Visible;
-            UpdateList();
+            tbDataMy.Visibility = Visibility.Collapsed;
+            if (lvRequestsClients.Items.Count == 0)
+            {
+                tbDataClients.Visibility = Visibility.Visible;                
+                lvRequestsClients.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btnRevoke_Click(object sender, RoutedEventArgs e)

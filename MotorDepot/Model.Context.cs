@@ -13,10 +13,10 @@ namespace MotorDepot
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class UchebnayaPraktikaEntities : DbContext
+    public partial class MotorDepotsEntities : DbContext
     {
-        public UchebnayaPraktikaEntities()
-            : base("name=UchebnayaPraktikaEntities")
+        public MotorDepotsEntities()
+            : base("name=MotorDepotsEntities")
         {
         }
     

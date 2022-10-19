@@ -11,7 +11,8 @@ namespace MotorDepot
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class RequestDriver
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -53,6 +54,14 @@ namespace MotorDepot
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryClientDriver> HistoryClientDriver { get; set; }
+
+        public virtual ICollection<HistoryClientDriver> HistoryClientDriverAccept
+        { 
+            get 
+            {
+                return DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 3 && a.IdRequestDriver == Id).ToList();
+            }
+        }
         public virtual PlaceArrival PlaceArrival { get; set; }
         public virtual PlaceDeparture PlaceDeparture { get; set; }
         public virtual User User { get; set; }

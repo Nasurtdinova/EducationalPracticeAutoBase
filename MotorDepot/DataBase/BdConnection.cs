@@ -8,6 +8,6 @@ namespace MotorDepot
 {
     public static class BdConnection
     {
-        public static UchebnayaPraktikaEntities Connection = new UchebnayaPraktikaEntities();
+        public static MotorDepotsEntities Connection = new MotorDepotsEntities();
     }
 }
