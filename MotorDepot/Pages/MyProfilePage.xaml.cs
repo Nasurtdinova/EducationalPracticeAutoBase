@@ -23,7 +23,7 @@ namespace MotorDepot
         {
             InitializeComponent();
             comboStump.ItemsSource = DataAccess.GetStamps();
-            lvFeedBacks.ItemsSource = DataAccess.GetFeedbacks().Where(a => a.IdUser == MainWindow.CurrentUser.Id); ;
+            lvFeedBacks.ItemsSource = DataAccess.GetFeedbacks().Where(a => a.IdDriver == MainWindow.CurrentUser.Id); ;
             DataContext = MainWindow.CurrentUser;
         }
 

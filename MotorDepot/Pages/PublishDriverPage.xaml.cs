@@ -15,10 +15,7 @@ using System.Windows.Shapes;
 
 namespace MotorDepot
 {
-    /// <summary>
-    /// Логика взаимодействия для PublishDriverPage.xaml
-    /// </summary>
-    public partial class PublishDriverPage : Page
+    public partial class PublishDriverPage : Window
     {
         public RequestDriver CurrentRequest = new RequestDriver();
         public PublishDriverPage(RequestDriver req)
@@ -37,12 +34,7 @@ namespace MotorDepot
         {
             DataAccess.SaveRequestDriver(CurrentRequest);
             MessageBox.Show("Ваша поездка сохранена!", "Уведомление");
-            NavigationService.Navigate(new ComingTripsPage());
-        }
-
-        private void btnBack_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
+            Close();
         }
 
         private void comboCityDeparture_SelectionChanged(object sender, SelectionChangedEventArgs e)

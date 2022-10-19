@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="MotorDepotsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="lllModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Car">
     <Key>
       <PropertyRef Name="Id" />
@@ -281,7 +281,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="MotorDepotsEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="lllEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Car" EntityType="Self.Car" />
     <EntitySet Name="City" EntityType="Self.City" />
     <EntitySet Name="FeedbackDriver" EntityType="Self.FeedbackDriver" />

@@ -161,3 +161,5 @@ C:\Users\nasur\source\repos\MotorDepot\MotorDepot\obj\Debug\IncomingPage.g.cs
 C:\Users\nasur\source\repos\MotorDepot\MotorDepot\obj\Debug\ComingTripsPage.baml
 C:\Users\nasur\source\repos\MotorDepot\MotorDepot\obj\Debug\IncomingPage.baml
 C:\Users\nasur\source\repos\MotorDepot\MotorDepot\obj\Debug\ReverseVenueWindow.baml
+C:\Users\201913\source\repos\EducationalPracticeAutoBase\MotorDepot\obj\Debug\SendFeedbackWindow.g.cs
+C:\Users\201913\source\repos\EducationalPracticeAutoBase\MotorDepot\obj\Debug\SendFeedbackWindow.baml

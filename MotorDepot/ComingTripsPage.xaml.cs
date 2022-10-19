@@ -31,18 +31,34 @@ namespace MotorDepot
 
         private void btnPublish_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new PublishDriverPage(null));
+            PublishDriverPage publishDriver = new PublishDriverPage(null);
+            publishDriver.Show();
+            publishDriver.Closed += (s, eventarg) =>
+            {
+                dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.IdUser == MainWindow.CurrentUser.Id);
+            };
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            var a = (sender as Button).DataContext as RequestDriver;
-            NavigationService.Navigate(new PublishDriverPage(a));
+            var req = (sender as Button).DataContext as RequestDriver;
+            PublishDriverPage publishDriver = new PublishDriverPage(req);
+            publishDriver.Show();
+            publishDriver.Closed += (s, eventarg) =>
+            {
+                dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.IdUser == MainWindow.CurrentUser.Id);
+            };
         }
 
         private void btnFeedback_Click(object sender, RoutedEventArgs e)
         {
-
+            var his = (sender as Button).DataContext as HistoryClientDriver;
+            SendFeedbackWindow wins = new SendFeedbackWindow(his);
+            wins.Show();
+            wins.Closed += (s, eventarg) =>
+            {
+                dgDrivers.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
+            };
         }
     }
 }

@@ -55,7 +55,6 @@ namespace MotorDepot
         {
             return new List<Gender>(BdConnection.Connection.Gender);
         }
-
         public static void SaveUser(User user)
         {
             if (user.Id != 0)
@@ -98,13 +97,18 @@ namespace MotorDepot
                 us.Data = requestDriver.Data;
                 us.Description = requestDriver.Description;
                 us.PlaceDeparture = requestDriver.PlaceDeparture;
-                us.PlaceArrival = requestDriver.PlaceArrival;
-               
+                us.PlaceArrival = requestDriver.PlaceArrival;              
             }
             else
             {
                 BdConnection.Connection.RequestDriver.Add(requestDriver);
             }
+            BdConnection.Connection.SaveChanges();
+        }
+
+        public static void SaveFeedback(FeedbackDriver user)
+        {
+            BdConnection.Connection.FeedbackDriver.Add(user);
             BdConnection.Connection.SaveChanges();
         }
     }

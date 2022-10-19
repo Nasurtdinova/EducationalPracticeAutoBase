@@ -52,16 +52,16 @@ namespace MotorDepot
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistoryClientDriver> HistoryClientDriver { get; set; }
-
         public virtual ICollection<HistoryClientDriver> HistoryClientDriverAccept
-        { 
-            get 
+        {
+            get
             {
                 return DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 3 && a.IdRequestDriver == Id).ToList();
             }
         }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HistoryClientDriver> HistoryClientDriver { get; set; }
         public virtual PlaceArrival PlaceArrival { get; set; }
         public virtual PlaceDeparture PlaceDeparture { get; set; }
         public virtual User User { get; set; }

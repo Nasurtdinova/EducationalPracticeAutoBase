@@ -4,31 +4,31 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a936d11cae304d738c7e7978d1a2ce4f" Name="Diagram1">
-        <EntityTypeShape EntityType="MotorDepotsModel.Car" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MotorDepotsModel.City" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MotorDepotsModel.FeedbackDriver" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MotorDepotsModel.Gender" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MotorDepotsModel.HistoryClientDriver" Width="1.5" PointX="10.5" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MotorDepotsModel.PlaceArrival" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MotorDepotsModel.PlaceDeparture" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MotorDepotsModel.RequestDriver" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MotorDepotsModel.Stamp" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MotorDepotsModel.Status" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MotorDepotsModel.User" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
-        <AssociationConnector Association="MotorDepotsModel.FK_Car_Stamp" ManuallyRouted="false" />
-        <AssociationConnector Association="MotorDepotsModel.FK_User_Car" ManuallyRouted="false" />
-        <AssociationConnector Association="MotorDepotsModel.FK_Place_City" ManuallyRouted="false" />
-        <AssociationConnector Association="MotorDepotsModel.FK_PlaceDeparture_City" ManuallyRouted="false" />
-        <AssociationConnector Association="MotorDepotsModel.FK_FeedbackDriver_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MotorDepotsModel.FK_FeedbackDriver_User1" ManuallyRouted="false" />
-        <AssociationConnector Association="MotorDepotsModel.FK_User_Gender" ManuallyRouted="false" />
-        <AssociationConnector Association="MotorDepotsModel.FK_HistoryClientDriver_RequestDriver" ManuallyRouted="false" />
-        <AssociationConnector Association="MotorDepotsModel.FK_HistoryClientDriver_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="MotorDepotsModel.FK_HistoryClientDriver_User2" ManuallyRouted="false" />
-        <AssociationConnector Association="MotorDepotsModel.FK_RequestDriver_PlaceArrival1" ManuallyRouted="false" />
-        <AssociationConnector Association="MotorDepotsModel.FK_RequestDriver_PlaceDeparture" ManuallyRouted="false" />
-        <AssociationConnector Association="MotorDepotsModel.FK_RequestDriver_User" ManuallyRouted="false" />
+      <Diagram DiagramId="425c780b211c41fda3e2d8fd8940677e" Name="Diagram1">
+        <EntityTypeShape EntityType="lllModel.Car" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="lllModel.City" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="lllModel.FeedbackDriver" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="lllModel.Gender" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="lllModel.HistoryClientDriver" Width="1.5" PointX="10.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lllModel.PlaceArrival" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="lllModel.PlaceDeparture" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="lllModel.RequestDriver" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lllModel.Stamp" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="lllModel.Status" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="lllModel.User" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="lllModel.FK_Car_Stamp" ManuallyRouted="false" />
+        <AssociationConnector Association="lllModel.FK_User_Car" ManuallyRouted="false" />
+        <AssociationConnector Association="lllModel.FK_Place_City" ManuallyRouted="false" />
+        <AssociationConnector Association="lllModel.FK_PlaceDeparture_City" ManuallyRouted="false" />
+        <AssociationConnector Association="lllModel.FK_FeedbackDriver_User" ManuallyRouted="false" />
+        <AssociationConnector Association="lllModel.FK_FeedbackDriver_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="lllModel.FK_User_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="lllModel.FK_HistoryClientDriver_RequestDriver" ManuallyRouted="false" />
+        <AssociationConnector Association="lllModel.FK_HistoryClientDriver_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="lllModel.FK_HistoryClientDriver_User2" ManuallyRouted="false" />
+        <AssociationConnector Association="lllModel.FK_RequestDriver_PlaceArrival1" ManuallyRouted="false" />
+        <AssociationConnector Association="lllModel.FK_RequestDriver_PlaceDeparture" ManuallyRouted="false" />
+        <AssociationConnector Association="lllModel.FK_RequestDriver_User" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

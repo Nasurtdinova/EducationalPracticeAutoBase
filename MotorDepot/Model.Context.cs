@@ -13,10 +13,10 @@ namespace MotorDepot
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MotorDepotsEntities : DbContext
+    public partial class lllEntities : DbContext
     {
-        public MotorDepotsEntities()
-            : base("name=MotorDepotsEntities")
+        public lllEntities()
+            : base("name=lllEntities")
         {
         }
     
