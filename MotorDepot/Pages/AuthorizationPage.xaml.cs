@@ -28,7 +28,7 @@ namespace MotorDepot
             if (user != null)
             {
                 MainWindow.CurrentUser = user;
-                NavigationService.Navigate(new HomePage());
+                NavigationService.Navigate(new HomeWindow());
             }
             else
                 MessageBox.Show("Неправильный логин или пароль");

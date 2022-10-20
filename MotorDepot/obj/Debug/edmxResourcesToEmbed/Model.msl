@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище lllModelContainer" CdmEntityContainer="lllEntities">
+  <EntityContainerMapping StorageEntityContainer="Хранилище MotorDepotssModelContainer" CdmEntityContainer="MotorDepotssEntities">
     <EntitySetMapping Name="Car">
-      <EntityTypeMapping TypeName="lllModel.Car">
+      <EntityTypeMapping TypeName="MotorDepotssModel.Car">
         <MappingFragment StoreEntitySet="Car">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Model" ColumnName="Model" />
@@ -11,7 +11,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="City">
-      <EntityTypeMapping TypeName="lllModel.City">
+      <EntityTypeMapping TypeName="MotorDepotssModel.City">
         <MappingFragment StoreEntitySet="City">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -19,7 +19,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FeedbackDriver">
-      <EntityTypeMapping TypeName="lllModel.FeedbackDriver">
+      <EntityTypeMapping TypeName="MotorDepotssModel.FeedbackDriver">
         <MappingFragment StoreEntitySet="FeedbackDriver">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IdUser" ColumnName="IdUser" />
@@ -29,7 +29,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Gender">
-      <EntityTypeMapping TypeName="lllModel.Gender">
+      <EntityTypeMapping TypeName="MotorDepotssModel.Gender">
         <MappingFragment StoreEntitySet="Gender">
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -37,7 +37,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HistoryClientDriver">
-      <EntityTypeMapping TypeName="lllModel.HistoryClientDriver">
+      <EntityTypeMapping TypeName="MotorDepotssModel.HistoryClientDriver">
         <MappingFragment StoreEntitySet="HistoryClientDriver">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IdClient" ColumnName="IdClient" />
@@ -50,7 +50,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PlaceArrival">
-      <EntityTypeMapping TypeName="lllModel.PlaceArrival">
+      <EntityTypeMapping TypeName="MotorDepotssModel.PlaceArrival">
         <MappingFragment StoreEntitySet="PlaceArrival">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -59,7 +59,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PlaceDeparture">
-      <EntityTypeMapping TypeName="lllModel.PlaceDeparture">
+      <EntityTypeMapping TypeName="MotorDepotssModel.PlaceDeparture">
         <MappingFragment StoreEntitySet="PlaceDeparture">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -68,7 +68,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RequestDriver">
-      <EntityTypeMapping TypeName="lllModel.RequestDriver">
+      <EntityTypeMapping TypeName="MotorDepotssModel.RequestDriver">
         <MappingFragment StoreEntitySet="RequestDriver">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IdUser" ColumnName="IdUser" />
@@ -82,7 +82,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Stamp">
-      <EntityTypeMapping TypeName="lllModel.Stamp">
+      <EntityTypeMapping TypeName="MotorDepotssModel.Stamp">
         <MappingFragment StoreEntitySet="Stamp">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -90,7 +90,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Status">
-      <EntityTypeMapping TypeName="lllModel.Status">
+      <EntityTypeMapping TypeName="MotorDepotssModel.Status">
         <MappingFragment StoreEntitySet="Status">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -98,7 +98,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="User">
-      <EntityTypeMapping TypeName="lllModel.User">
+      <EntityTypeMapping TypeName="MotorDepotssModel.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FullName" ColumnName="FullName" />

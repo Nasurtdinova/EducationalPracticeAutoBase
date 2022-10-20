@@ -9,6 +9,7 @@
       Title="SearchDriverPage">
 
     <Grid>
+        <Image Source="/MotorDepot;component/Images/фонДорога.jpg" Width="1700"></Image>
         <Border CornerRadius="20" BorderBrush="Black">
             <Frame Width="800" Height="600" Background="White"></Frame>
         </Border>

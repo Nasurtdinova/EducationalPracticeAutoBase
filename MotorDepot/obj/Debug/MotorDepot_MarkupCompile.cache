@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\201913\source\repos\EducationalPracticeAutoBase\MotorDepot\obj\Debug\
+C:\Users\nasur\source\repos\MotorDepot\MotorDepot\obj\Debug\
 MotorDepot
 none
 false
 DEBUG;TRACE
-C:\Users\201913\source\repos\EducationalPracticeAutoBase\MotorDepot\App.xaml
-131001209094
-22035508349
-34-1608820785
-231226817798
-ComingTripsPage.xaml;IncomingPage.xaml;Pages\AuthorizationPage.xaml;Pages\DriversPage.xaml;Pages\HomePage.xaml;MainWindow.xaml;Pages\MyProfilePage.xaml;Pages\PublishDriverPage.xaml;ProfileDriverPage.xaml;ReverseVenueWindow.xaml;SendFeedbackWindow.xaml;Windows\RegistrationPage.xaml;Pages\SearchDriverPage.xaml;
+C:\Users\nasur\source\repos\MotorDepot\MotorDepot\App.xaml
+14866692661
+2-1881755278
+35-1847055361
+25-227655239
+ComingTripsPage.xaml;HomeWindow.xaml;IncomingPage.xaml;Pages\AuthorizationPage.xaml;Pages\DriversPage.xaml;Pages\HomePage.xaml;MainWindow.xaml;Pages\MyProfilePage.xaml;Pages\PublishDriverPage.xaml;ProfileDriverPage.xaml;ReverseVenueWindow.xaml;SendFeedbackWindow.xaml;Windows\RegistrationPage.xaml;Pages\SearchDriverPage.xaml;
 
 False
 

@@ -11,7 +11,7 @@
    
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="9*"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Text="Поездки" FontSize="25"></TextBlock>
@@ -19,7 +19,7 @@
             <TabItem Header="Клиенты">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="8*"></RowDefinition>
+                        <RowDefinition Height="9*"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <DataGrid x:Name="dgTrips" IsReadOnly="True" AutoGenerateColumns="False"> 

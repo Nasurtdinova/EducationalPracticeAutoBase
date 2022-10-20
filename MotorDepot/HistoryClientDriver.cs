@@ -43,7 +43,6 @@ namespace MotorDepot
                     return "Collapsed";
             }
         }
-
         public virtual RequestDriver RequestDriver { get; set; }
         public virtual Status Status { get; set; }
         public virtual User User { get; set; }
