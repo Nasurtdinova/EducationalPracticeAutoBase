@@ -21,7 +21,6 @@ namespace MotorDepot
         public Nullable<int> IdStatus { get; set; }
         public Nullable<int> CountPeople { get; set; }
         public string Description { get; set; }
-
         public string VisibilityRevoke
         {
             get

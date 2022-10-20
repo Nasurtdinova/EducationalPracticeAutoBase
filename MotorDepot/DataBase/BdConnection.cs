@@ -8,6 +8,6 @@ namespace MotorDepot
 {
     public static class BdConnection
     {
-        public static MotorDepotssEntities Connection = new MotorDepotssEntities();
+        public static lllEntities Connection = new lllEntities();
     }
 }

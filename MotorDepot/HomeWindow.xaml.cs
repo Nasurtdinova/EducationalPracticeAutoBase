@@ -65,7 +65,7 @@ namespace MotorDepot
         private void MoveCursorMenu(int index)
         {
             TrainsitionigContentSlide.OnApplyTemplate();
-            GridCursor.Margin = new Thickness(0, (150 + (60 * index)), 0, 0);
+            GridCursor.Margin = new Thickness(0, (200 + (60 * index)), 0, 0);
         }
     }
 }

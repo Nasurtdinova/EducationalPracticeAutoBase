@@ -12,7 +12,7 @@
             <Grid Background="Yellow" Height="10"/>
             <Grid Margin="5" Width="794">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="155,0,-254,0" Width="408">
-                    <TextBlock Text="Попутчики" FontSize="20" Margin="100 0"/>
+                    <TextBlock Text="Попутчики" FontSize="25" Margin="100 0"/>
                 </StackPanel>
             </Grid>
         </StackPanel>
@@ -23,12 +23,12 @@
             <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
                 <Grid x:Name="GridCursor" Margin="0 150 0 0" Background="#FF0069C0" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
             </materialDesign:TransitioningContent>
-            <Ellipse Width="150" Height="150" VerticalAlignment="Top" Margin="10">
+            <Ellipse Width="150" Height="150" VerticalAlignment="Top" Margin="20">
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="/MotorDepot;component/Images/iconDrivers.jpg"></ImageBrush>
                 </Ellipse.Fill>
             </Ellipse>
-            <ListView x:Name="ListViewMenu" Margin="0 150" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Foreground="LightGray" FontFamily="Champagne &amp; Limousines" FontSize="18" SelectionChanged="ListViewMenu_SelectionChanged" SelectedIndex="0">
+            <ListView x:Name="ListViewMenu" Margin="0 200" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Foreground="LightGray" FontFamily="Champagne &amp; Limousines" FontSize="18" SelectionChanged="ListViewMenu_SelectionChanged" SelectedIndex="0">
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>

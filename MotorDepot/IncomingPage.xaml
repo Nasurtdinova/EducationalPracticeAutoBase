@@ -86,8 +86,8 @@
             </DataGrid>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <RadioButton Content="Заявки от клиентов" IsChecked="True" Name="rbRequestClient" Click="rbRequestClient_Click"></RadioButton>
-            <RadioButton Content="Мои заявки" Name="rbMyRequest" Click="rbMyRequest_Click"></RadioButton>
+            <RadioButton Content="Заявки от клиентов" IsChecked="True" Name="rbRequestClient" Margin="20" Click="rbRequestClient_Click"></RadioButton>
+            <RadioButton Content="Мои заявки" Name="rbMyRequest" Margin="20" Click="rbMyRequest_Click"></RadioButton>
         </StackPanel>
         <Button x:Name="btnBack" Grid.Row="3" Click="btnBack_Click" Margin="0" Content="Назад"></Button>
     </Grid>
