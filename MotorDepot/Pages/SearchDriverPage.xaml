@@ -52,22 +52,22 @@
             </ListView.ItemTemplate>
         </ListView>
         <StackPanel Orientation="Horizontal">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" >
                 <TextBlock Text="Откуда"></TextBlock>
-                <ComboBox TextBoxBase.TextChanged="OnComboDepartureTextChanged" SelectedItem="{Binding City}" DisplayMemberPath="Name" IsTextSearchEnabled="False" IsEditable="True" x:Name="cbDeparture"></ComboBox>
+                <ComboBox TextBoxBase.TextChanged="OnComboDepartureTextChanged" Height="40" Margin="10" SelectionChanged="cbDeparture_SelectionChanged" SelectedItem="{Binding City}" DisplayMemberPath="Name" IsTextSearchEnabled="False" IsEditable="True" x:Name="cbDeparture"></ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Куда"></TextBlock>
-                <ComboBox TextBoxBase.TextChanged="OnComboArrivalTextChanged" SelectedItem="{Binding City}" DisplayMemberPath="Name" IsTextSearchEnabled="False" IsEditable="True" x:Name="cbArrival"></ComboBox>
+                <ComboBox TextBoxBase.TextChanged="OnComboArrivalTextChanged" Height="40" Margin="10" SelectionChanged="cbArrival_SelectionChanged" SelectedItem="{Binding City}" DisplayMemberPath="Name" IsTextSearchEnabled="False" IsEditable="True" x:Name="cbArrival"></ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Когда" ></TextBlock>
-                    <DatePicker x:Name="tbData" Width="170"></DatePicker>
+                    <DatePicker x:Name="tbData" Width="170" Height="40" Margin="10" SelectedDateChanged="tbData_SelectedDateChanged"></DatePicker>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Количество бронируемых мест"></TextBlock>
-                    <TextBox Name="tbCount" Width="50" Height="30"></TextBox>
+                    <TextBox Name="tbCount" Width="50" Margin="10" Height="30" TextChanged="tbCount_TextChanged"></TextBox>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
