@@ -54,11 +54,11 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Horizontal" >
                 <TextBlock Text="Откуда"></TextBlock>
-                <ComboBox TextBoxBase.TextChanged="OnComboDepartureTextChanged" Height="40" Margin="10" SelectionChanged="cbDeparture_SelectionChanged" SelectedItem="{Binding City}" DisplayMemberPath="Name" IsTextSearchEnabled="False" IsEditable="True" x:Name="cbDeparture"></ComboBox>
+                <ComboBox Height="40" Margin="10" SelectionChanged="cbDeparture_SelectionChanged" SelectedItem="{Binding City}" DisplayMemberPath="Name" x:Name="cbDeparture"></ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Куда"></TextBlock>
-                <ComboBox TextBoxBase.TextChanged="OnComboArrivalTextChanged" Height="40" Margin="10" SelectionChanged="cbArrival_SelectionChanged" SelectedItem="{Binding City}" DisplayMemberPath="Name" IsTextSearchEnabled="False" IsEditable="True" x:Name="cbArrival"></ComboBox>
+                <ComboBox Height="40" Margin="10" SelectionChanged="cbArrival_SelectionChanged" SelectedItem="{Binding City}" DisplayMemberPath="Name" x:Name="cbArrival"></ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
                 <StackPanel Orientation="Horizontal">

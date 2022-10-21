@@ -15,7 +15,7 @@
             
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1">
-            <TextBlock x:Name="tbDataClients" FontSize="22" Text="Нет данных" Margin="100" Visibility="Collapsed"></TextBlock>
+            <TextBlock x:Name="tbDataClients" FontSize="22" Text="Нет данных" Visibility="Collapsed" Margin="100"></TextBlock>
             <DataGrid x:Name="lvRequestsClients" IsReadOnly="True" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Клиент" Binding="{Binding User.FullName}"></DataGridTextColumn>

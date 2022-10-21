@@ -23,18 +23,6 @@ namespace MotorDepot
             InitializeComponent();
             lvRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 1 || a.IdStatus == 4) ;
             lvMyRequests.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
-
-            if (lvMyRequests.Items.Count == 0)
-            {
-                tbDataMy.Visibility = Visibility.Visible;
-                lvMyRequests.Visibility = Visibility.Collapsed;
-            }
-
-            if (lvRequestsClients.Items.Count == 0)
-            {
-                tbDataClients.Visibility = Visibility.Visible;
-                lvRequestsClients.Visibility = Visibility.Collapsed;
-            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
