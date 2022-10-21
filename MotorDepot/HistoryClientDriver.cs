@@ -21,11 +21,12 @@ namespace MotorDepot
         public Nullable<int> IdStatus { get; set; }
         public Nullable<int> CountPeople { get; set; }
         public string Description { get; set; }
+
         public string VisibilityRevoke
         {
             get
             {
-                if (DateTime.Now <= Data.Value)
+                if (DateTime.Now <= RequestDriver.Data.Value && IdStatus != 2 && IdStatus != 4)
                     return "Visibility";
                 else
                     return "Collapsed";
@@ -36,14 +37,14 @@ namespace MotorDepot
         {
             get
             {
-                if (DateTime.Now <= Data.Value)
-                    return "Visibility";
+                if (DateTime.Now <= RequestDriver.Data.Value && IdStatus != 4)
+                return "Visibility";
                 else
                     return "Collapsed";
             }
         }
-        public virtual RequestDriver RequestDriver { get; set; }
         public virtual Status Status { get; set; }
         public virtual User User { get; set; }
+        public virtual RequestDriver RequestDriver { get; set; }
     }
 }

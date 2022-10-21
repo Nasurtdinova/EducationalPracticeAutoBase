@@ -1,0 +1,32 @@
+﻿<Window x:Class="MotorDepot.ReverseVenueWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MotorDepot"
+        mc:Ignorable="d"
+        Title="Забронировать место" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="ФИО"></TextBlock>
+            <TextBlock x:Name="tbUser"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Количество мест"></TextBlock>
+            <TextBox Text="{Binding CountPeople}" Name="tbCount"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <TextBlock Text="Есть какие нибудь пожелания водителю?"></TextBlock>
+            <TextBox Text="{Binding Description}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button x:Name="btnReverse" Content="Забронировать" Click="btnReverse_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

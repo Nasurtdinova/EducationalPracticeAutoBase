@@ -1,0 +1,107 @@
+﻿<Page x:Class="MotorDepot.ComingTripsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MotorDepot"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ComingTripsPage">
+    <Grid>
+   
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="11*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Поездки" FontSize="25"></TextBlock>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Клиенты">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9*"></RowDefinition>
+                        <RowDefinition Height="5*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                 <TextBlock Text="Нет данных" Name="tbDataTrips" Visibility="Collapsed"></TextBlock>
+                <DataGrid x:Name="dgTrips" IsReadOnly="True" AutoGenerateColumns="False"> 
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Дата поездки" Binding="{Binding Data, StringFormat='dd.MM.yyyy hh:mm'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Место отбытия" Binding="{Binding PlaceDeparture.City.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Место назначения" Binding="{Binding PlaceArrival.City.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding Price}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Клиенты" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                        <ListView ItemsSource="{Binding HistoryClientDriverAccept}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding User.FullName}"></TextBlock>
+                                                        <TextBlock Text="{Binding CountPeople}" Margin="10 0"></TextBlock>
+                                                        <Button Name="btnRemoveClient" Click="btnRemoveClient_Click" Content="Удалить"  Visibility="{Binding VisibilitySelect}" Width="100"></Button>
+                                                    </StackPanel>
+
+                                         </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                        <StackPanel>
+                                            <Button x:Name="btnEdit" Content="Редактировать" Visibility="{Binding VisibilityEdit}" Click="btnEdit_Click"></Button>
+                                            <Button Name="btnRemove" Click="btnRemove_Click" Content="Удалить"  Visibility="{Binding VisibilityEdit}"></Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <Button x:Name="btnPublish" Margin="20" Content="Опубликовать" Click="btnPublish_Click"></Button>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Водители">
+                <StackPanel>
+                    <TextBlock Text="Нет данных" Name="tbDataDriver" Visibility="Collapsed"></TextBlock>
+                    <DataGrid x:Name="dgDrivers" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Водитель" Binding="{Binding RequestDriver.User.FullName}"></DataGridTextColumn>
+                            <DataGridTemplateColumn Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Width="100">
+                                            <Image.Source>
+                                                <Binding Path="RequestDriver.User.Image">
+                                                    <Binding.TargetNullValue>
+                                                        <BitmapImage UriSource="\MotorDepot;component\Images\PhotoProfile.png"></BitmapImage>
+                                                    </Binding.TargetNullValue>
+                                                </Binding>
+                                            </Image.Source>
+                                        </Image>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Дата поездки" Binding="{Binding RequestDriver.Data, StringFormat='dd.MM.yyyy hh:mm'}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Место отбытия" Binding="{Binding RequestDriver.PlaceDeparture.City.Name}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Место назначения" Binding="{Binding RequestDriver.PlaceArrival.City.Name}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Цена" Binding="{Binding RequestDriver.Price}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status.Name}"></DataGridTextColumn>
+                            <DataGridTemplateColumn Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="btnFeedback" Margin="10" Content="Написать отзыв" Click="btnFeedback_Click"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="btnBack" Grid.Row="2" Margin="30" Content="Назад" Click="btnBack_Click"></Button>
+    </Grid>
+</Page>

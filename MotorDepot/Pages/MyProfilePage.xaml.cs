@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using BespokeFusion;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,8 +35,8 @@ namespace MotorDepot
             MainWindow.CurrentUser.DayOfBirth = tbBirthday.SelectedDate;
             MainWindow.CurrentUser.Car = comboModel.SelectedItem as Car;
             BdConnection.Connection.SaveChanges();
-            MessageBox.Show("Информация сохранена!");
-            NavigationService.Navigate(new HomePage());
+            MaterialMessageBox.Show("Информация сохранена!");
+            NavigationService.Navigate(new MyProfilePage());
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

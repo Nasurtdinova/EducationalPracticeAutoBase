@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BespokeFusion;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace MotorDepot
                 NavigationService.Navigate(new HomeWindow());
             }
             else
-                MessageBox.Show("Неправильный логин или пароль");
+                MaterialMessageBox.ShowError("Неправильный логин или пароль");
         }
 
         private void btnRegistr_Click(object sender, RoutedEventArgs e)

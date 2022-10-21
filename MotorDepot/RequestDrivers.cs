@@ -8,11 +8,29 @@ namespace MotorDepot
 {
     public class RequestDrivers : RequestDriver
     {
+        // request driver
+        public int FreeVenue
+        {
+            get
+            {
+                int value = 0;
+                foreach (var i in DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdStatus == 3))
+                {
+                    value += i.CountPeople.Value;
+                }
+                return CountPeople.Value - value;
+            }
+        }
+
         public string VisibilityReverse
         {
             get
             {
                 if (MainWindow.CurrentUser.Id == IdUser)
+                    return "Collapsed";
+                else if (FreeVenue == 0)
+                    return "Collapsed";
+                else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id).Count() != 0)
                     return "Collapsed";
                 else
                     return "Visibility";
@@ -37,5 +55,28 @@ namespace MotorDepot
                 return DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 3 && a.IdRequestDriver == Id).ToList();
             }
         }
+        // history
+
+        //public string VisibilityRevoke
+        //{
+        //    get
+        //    {
+        //        if (DateTime.Now <= RequestDriver.Data.Value)
+        //            return "Visibility";
+        //        else
+        //            return "Collapsed";
+        //    }
+        //}
+
+        //public string VisibilitySelect
+        //{
+        //    get
+        //    {
+        //        if (DateTime.Now <= RequestDriver.Data.Value)
+        //            return "Visibility";
+        //        else
+        //            return "Collapsed";
+        //    }
+        //}
     }
 }

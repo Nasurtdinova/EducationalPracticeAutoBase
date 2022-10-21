@@ -17,10 +17,10 @@ namespace MotorDepot
 {
     public partial class DriversPage : Page
     {
-        public DriversPage()
+        public DriversPage(List<RequestDriver> list)
         {
             InitializeComponent();
-            lvDrivers.ItemsSource = DataAccess.GetRequestDrivers().Where(a=>a.Data >= DateTime.Now);
+            lvDrivers.ItemsSource = list;
         }
 
         private void btnReserve_Click(object sender, RoutedEventArgs e)

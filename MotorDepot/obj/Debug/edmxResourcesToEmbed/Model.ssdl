@@ -66,11 +66,12 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdUser" Type="int" />
     <Property Name="Data" Type="datetime" />
-    <Property Name="CountPeople" Type="nchar" MaxLength="10" />
+    <Property Name="CountPeople" Type="int" />
     <Property Name="Price" Type="float" />
     <Property Name="IdPlaceOfDeparture" Type="int" />
     <Property Name="IdPlaceOfArrival" Type="int" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsDeleted" Type="bit" />
   </EntityType>
   <EntityType Name="Stamp">
     <Key>

@@ -36,19 +36,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="HistoryClientDriver">
-      <EntityTypeMapping TypeName="lllModel.HistoryClientDriver">
-        <MappingFragment StoreEntitySet="HistoryClientDriver">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="IdClient" ColumnName="IdClient" />
-          <ScalarProperty Name="IdRequestDriver" ColumnName="IdRequestDriver" />
-          <ScalarProperty Name="Data" ColumnName="Data" />
-          <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
-          <ScalarProperty Name="CountPeople" ColumnName="CountPeople" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="PlaceArrival">
       <EntityTypeMapping TypeName="lllModel.PlaceArrival">
         <MappingFragment StoreEntitySet="PlaceArrival">
@@ -64,20 +51,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="IdCity" ColumnName="IdCity" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RequestDriver">
-      <EntityTypeMapping TypeName="lllModel.RequestDriver">
-        <MappingFragment StoreEntitySet="RequestDriver">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-          <ScalarProperty Name="Data" ColumnName="Data" />
-          <ScalarProperty Name="CountPeople" ColumnName="CountPeople" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="IdPlaceOfDeparture" ColumnName="IdPlaceOfDeparture" />
-          <ScalarProperty Name="IdPlaceOfArrival" ColumnName="IdPlaceOfArrival" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -108,6 +81,34 @@
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="IdCar" ColumnName="IdCar" />
           <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HistoryClientDriver">
+      <EntityTypeMapping TypeName="lllModel.HistoryClientDriver">
+        <MappingFragment StoreEntitySet="HistoryClientDriver">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CountPeople" ColumnName="CountPeople" />
+          <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="IdRequestDriver" ColumnName="IdRequestDriver" />
+          <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequestDriver">
+      <EntityTypeMapping TypeName="lllModel.RequestDriver">
+        <MappingFragment StoreEntitySet="RequestDriver">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IdPlaceOfArrival" ColumnName="IdPlaceOfArrival" />
+          <ScalarProperty Name="IdPlaceOfDeparture" ColumnName="IdPlaceOfDeparture" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="CountPeople" ColumnName="CountPeople" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

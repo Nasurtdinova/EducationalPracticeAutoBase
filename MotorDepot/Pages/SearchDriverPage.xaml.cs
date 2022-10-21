@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BespokeFusion;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,16 +23,11 @@ namespace MotorDepot
             InitializeComponent();
             cbArrival.ItemsSource = DataAccess.GetCities();
             cbDeparture.ItemsSource = DataAccess.GetCities();
+            tbData.DisplayDateStart = DateTime.Now;
+            lvDrivers.ItemsSource = DataAccess.GetRequestDrivers().Where(a=>a.Data >= DateTime.Now);
         }
 
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
-        {
-            var list = DataAccess.GetRequestDrivers().Where(a=>a.PlaceArrival.City.Name == (cbArrival.SelectedItem as City).Name && a.PlaceDeparture.City.Name == (cbDeparture.SelectedItem as City).Name && a.Data == tbData.SelectedDate);
-            if (list != null)
-                NavigationService.Navigate(new DriversPage());
-            else
-                MessageBox.Show("Запросов нет!");
-        }
+
 
         public void OnComboDepartureTextChanged(object sender, RoutedEventArgs e)
         {
@@ -43,6 +39,22 @@ namespace MotorDepot
         {
             var city = DataAccess.GetCities();
             cbArrival.ItemsSource = city.Where(a => a.Name.ToLower().Contains(cbArrival.Text.ToLower()));
+        }
+
+        private void btnReserve_Click(object sender, RoutedEventArgs e)
+        {
+            var req = (sender as Button).DataContext as RequestDriver;
+            ReverseVenueWindow rev = new ReverseVenueWindow(req);
+            rev.Show();
+            rev.Closed += (s, eventarg) =>
+            {
+                lvDrivers.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.Data >= DateTime.Now);
+            };
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

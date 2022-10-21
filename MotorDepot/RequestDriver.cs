@@ -24,17 +24,35 @@ namespace MotorDepot
         public int Id { get; set; }
         public Nullable<int> IdUser { get; set; }
         public Nullable<System.DateTime> Data { get; set; }
-        public string CountPeople { get; set; }
+        public Nullable<int> CountPeople { get; set; }
         public Nullable<double> Price { get; set; }
         public Nullable<int> IdPlaceOfDeparture { get; set; }
         public Nullable<int> IdPlaceOfArrival { get; set; }
         public string Description { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
+
+        public int FreeVenue
+        {
+            get
+            {
+                int value = 0;
+                foreach (var i in DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdStatus == 3))
+                {
+                    value += i.CountPeople.Value;
+                }
+                return CountPeople.Value - value;
+            }
+        }
 
         public string VisibilityReverse
         {
             get
             {
                 if (MainWindow.CurrentUser.Id == IdUser)
+                    return "Collapsed";
+                else if (FreeVenue == 0)
+                    return "Collapsed";
+                else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 1 && a.IdStatus ==3).Count() != 0)
                     return "Collapsed";
                 else
                     return "Visibility";

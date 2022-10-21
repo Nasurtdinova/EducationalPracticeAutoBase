@@ -9,30 +9,67 @@
       Title="SearchDriverPage">
 
     <Grid>
-        <Image Source="/MotorDepot;component/Images/фонДорога.jpg" Width="1700"></Image>
-        <Border CornerRadius="20" BorderBrush="Black">
-            <Frame Width="800" Height="600" Background="White"></Frame>
-        </Border>
-        <StackPanel>
-            <StackPanel Margin="20">
+        
+        
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Image Source="/MotorDepot;component/Images/фонДорога.jpg" Width="1700" Grid.RowSpan="2"></Image>
+        <ListView Name="lvDrivers" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="400"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="250"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Data, StringFormat='dd.MM.yyyy hh:mm'}"></TextBlock>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding PlaceDeparture.City.Name}"></TextBlock>
+                            <TextBlock Text="{Binding PlaceArrival.City.Name}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Price}"></TextBlock>
+                                <TextBlock Text="рублей"></TextBlock>
+                            </StackPanel>
+                            <StackPanel>
+                                <Image Source="User.Image"></Image>
+                                <TextBlock Text="{Binding User.FullName}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3">
+                            <TextBlock Text="Свободных мест"></TextBlock>
+                            <TextBlock Text="{Binding FreeVenue}"></TextBlock>
+                        </StackPanel>
+                        <Button Name="btnReserve" Visibility="{Binding VisibilityReverse}" Grid.Column="4" Width="200" Content="Забронировать" Click="btnReserve_Click"></Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Откуда"></TextBlock>
                 <ComboBox TextBoxBase.TextChanged="OnComboDepartureTextChanged" SelectedItem="{Binding City}" DisplayMemberPath="Name" IsTextSearchEnabled="False" IsEditable="True" x:Name="cbDeparture"></ComboBox>
             </StackPanel>
-            <StackPanel Margin="20">
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Куда"></TextBlock>
                 <ComboBox TextBoxBase.TextChanged="OnComboArrivalTextChanged" SelectedItem="{Binding City}" DisplayMemberPath="Name" IsTextSearchEnabled="False" IsEditable="True" x:Name="cbArrival"></ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="20">
-                <StackPanel >
-                    <TextBlock Text="Когда"></TextBlock>
+            <StackPanel Orientation="Horizontal" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Когда" ></TextBlock>
                     <DatePicker x:Name="tbData" Width="170"></DatePicker>
                 </StackPanel>
-                <StackPanel Margin="20">
+                <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Количество бронируемых мест"></TextBlock>
                     <TextBox Name="tbCount" Width="50" Height="30"></TextBox>
                 </StackPanel>
             </StackPanel>
-            <Button Content="Найти" x:Name="btnSearch" Click="btnSearch_Click" ></Button>
         </StackPanel>
     </Grid>
 </Page>
