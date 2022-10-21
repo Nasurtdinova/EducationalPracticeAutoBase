@@ -30,7 +30,7 @@ namespace MotorDepot
                     return "Collapsed";
                 else if (FreeVenue == 0)
                     return "Collapsed";
-                else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id).Count() != 0)
+                else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 1 && a.IdStatus == 3).Count() != 0)
                     return "Collapsed";
                 else
                     return "Visibility";
@@ -61,7 +61,7 @@ namespace MotorDepot
         //{
         //    get
         //    {
-        //        if (DateTime.Now <= RequestDriver.Data.Value)
+        //        if (DateTime.Now <= RequestDriver.Data.Value && IdStatus != 2 && IdStatus != 4)
         //            return "Visibility";
         //        else
         //            return "Collapsed";
@@ -72,7 +72,7 @@ namespace MotorDepot
         //{
         //    get
         //    {
-        //        if (DateTime.Now <= RequestDriver.Data.Value)
+        //        if (DateTime.Now <= RequestDriver.Data.Value && IdStatus != 4)
         //            return "Visibility";
         //        else
         //            return "Collapsed";
