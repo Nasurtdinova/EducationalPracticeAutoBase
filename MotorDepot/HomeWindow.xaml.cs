@@ -55,7 +55,7 @@ namespace MotorDepot
                     break;
                 case 4:
                     MainWindow.CurrentUser = null;
-                    GridPrincipal.Navigate(new AuthorizationPage());
+                    NavigationService.Navigate(new AuthorizationPage());
                     break;
                 default:
                     break;

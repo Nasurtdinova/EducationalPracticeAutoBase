@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BespokeFusion;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,12 +54,35 @@ namespace MotorDepot
         private void btnFeedback_Click(object sender, RoutedEventArgs e)
         {
             var his = (sender as Button).DataContext as HistoryClientDriver;
-            SendFeedbackWindow wins = new SendFeedbackWindow(his);
-            wins.Show();
-            wins.Closed += (s, eventarg) =>
+            if (DataAccess.GetFeedbacks().Where(a => a.IdUser == MainWindow.CurrentUser.Id && a.IdDriver == his.RequestDriver.IdUser) == null)
             {
-                dgDrivers.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
-            };
+                SendFeedbackWindow wins = new SendFeedbackWindow(his);
+                wins.Show();
+                wins.Closed += (s, eventarg) =>
+                {
+                    dgDrivers.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
+                };
+            }
+            else
+            {
+                CustomMaterialMessageBox msg = new CustomMaterialMessageBox
+                {
+                    TxtMessage = { Text = "Вы уже написали отзыв хотите написать еще?" },
+                    TxtTitle = { Text = "Уведомление" },
+                    BtnOk = { Content = "Да" },
+                    BtnCancel = { Content = "Нет" }
+                };
+                msg.Show();
+                if (msg.Result == MessageBoxResult.OK)
+                {
+                    SendFeedbackWindow wins = new SendFeedbackWindow(his);
+                    wins.Show();
+                    wins.Closed += (s, eventarg) =>
+                    {
+                        dgDrivers.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
+                    };
+                }
+            }
         }
     }
 }

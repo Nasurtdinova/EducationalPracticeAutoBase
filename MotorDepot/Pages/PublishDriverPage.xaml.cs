@@ -25,7 +25,7 @@ namespace MotorDepot
             comboCityArrival.ItemsSource = DataAccess.GetCities();
             comboCityDeparture.ItemsSource = DataAccess.GetCities();
             CurrentRequest.IdUser = MainWindow.CurrentUser.Id;
-            Title = CurrentRequest == null ? "Опубликовать поездку" : "Редактировать поездку";
+            Title = CurrentRequest.Id == 0 ? "Опубликовать поездку" : "Редактировать поездку";
             if (req != null)
                 CurrentRequest = req;
             this.DataContext = CurrentRequest;
