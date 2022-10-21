@@ -98,5 +98,11 @@ namespace MotorDepot
         {
             UpdateList();
         }
+
+        private void lvDrivers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var a = (sender as ListView).SelectedItem as RequestDriver;
+            NavigationService.Navigate(new ProfileDriverPage(a.User));
+        }
     }
 }

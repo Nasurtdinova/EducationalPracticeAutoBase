@@ -20,9 +20,16 @@ namespace MotorDepot
     /// </summary>
     public partial class ProfileDriverPage : Page
     {
-        public ProfileDriverPage()
+        public ProfileDriverPage(User user)
         {
             InitializeComponent();
+            lvFeedBacks.ItemsSource = DataAccess.GetFeedbacks().Where(a => a.IdDriver == user.Id);
+            DataContext = user;
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

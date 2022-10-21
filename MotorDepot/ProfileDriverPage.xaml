@@ -9,6 +9,62 @@
       Title="ProfileDriverPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="img" Width="350" Margin="20">
+                <Image.Source>
+                    <Binding Path="Image">
+                        <Binding.TargetNullValue>
+                            <BitmapImage UriSource="/MotorDepot;component/Images/PhotoProfile.png"></BitmapImage>
+                        </Binding.TargetNullValue>
+                    </Binding>
+                </Image.Source>
+            </Image>
+        </StackPanel>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Данные">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Margin="20">
+                        <TextBlock Text="ФИО"></TextBlock>
+                        <TextBlock x:Name="tbFullName" Text="{Binding FullName}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Margin="20">
+                        <TextBlock Text="Дата рождения"></TextBlock>
+                        <TextBlock x:Name="tbBirthday" FontSize="22" Text="{Binding DayOfBirth, StringFormat='dd.MM.yyyy'}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Margin="20">
+                        <TextBlock Text="Машина"></TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Car.Stamp.Name}"></TextBlock>
+                            <TextBlock Text="{Binding Car.Model}"  Margin="10"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3">
+                        <Button x:Name="btnBack" Click="btnBack_Click" Margin="20" Content="Назад" ></Button>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Отзывы">
+                <ListView x:Name="lvFeedBacks">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding User.FullName}" TextDecorations="Underline"></TextBlock>
+                                <TextBlock Text="{Binding Feedback}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>
