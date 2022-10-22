@@ -108,7 +108,7 @@ namespace MotorDepot
             var req = (sender as Button).DataContext as RequestDriver;
             if (req != null)
             {
-                if (DataAccess.GetHistoriesClientDriver().Where(b => b.IdRequestDriver == req.Id).Count() != 0)
+                if (DataAccess.GetHistoriesClientDriver().Where(b => b.IdRequestDriver == req.Id && b.IdStatus == 3).Count() != 0)
                     MaterialMessageBox.ShowError("Вы не можете удалить поездку, так как у вас есть клиенты!");
                 else
                 {
