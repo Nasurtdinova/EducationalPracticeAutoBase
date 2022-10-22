@@ -25,10 +25,10 @@
         <TextBlock Text="Род" Grid.Row="2"></TextBlock>
         <TextBlock Text="Логин" Grid.Row="3"></TextBlock>
         <TextBlock Text="Пароль" Grid.Row="4"></TextBlock>
-        <TextBox Grid.Column="1" Name="tbFullName"></TextBox>
-        <DatePicker Width="300" Height="40" FontSize="25" Name="dpDate" Grid.Row="1" Grid.Column="1"></DatePicker>
-        <ComboBox Grid.Row="2" Grid.Column="1" DisplayMemberPath="Name" Name="comboGender"></ComboBox>
-        <TextBox Grid.Column="1" Grid.Row="3" Name="tbLogin"></TextBox>
+        <TextBox Grid.Column="1" Name="tbFullName" Text="{Binding FullName}"></TextBox>
+        <DatePicker Width="300" Height="40" FontSize="25" Name="dpDate" SelectedDate="{Binding DayOfBirth}" Grid.Row="1" Grid.Column="1"></DatePicker>
+        <ComboBox Grid.Row="2" Grid.Column="1" DisplayMemberPath="Name" SelectedItem="{Binding Gender1}" Name="comboGender"></ComboBox>
+        <TextBox Grid.Column="1" Grid.Row="3" Name="tbLogin" Text="{Binding Login}"></TextBox>
         <PasswordBox Grid.Column="1" Grid.Row="4" Name="tbPassword"></PasswordBox>
         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2">
             <Button Content="Зарегистрироваться" Click="btnRegistr_Click" Name="btnRegistr" Margin="10" Width="250"></Button>

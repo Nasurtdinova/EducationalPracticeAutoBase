@@ -7,14 +7,10 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="HomeWindow" d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown">
-        <StackPanel VerticalAlignment="Top">
+    <Grid Background="White" MouseDown="Grid_MouseDown">
+        <StackPanel VerticalAlignment="Top" Width="300" HorizontalAlignment="Left" Margin="930,0,0,0" >
             <Grid Background="Yellow" Height="10"/>
-            <Grid Margin="5" Width="794">
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="155,0,-254,0" Width="408">
-                    <TextBlock Text="Попутчики" FontSize="25" Margin="100 0"/>
-                </StackPanel>
-            </Grid>
+            <TextBlock Text="Попутчики" FontSize="30"/>
         </StackPanel>
         <Grid Margin="250 55 0 0">
             <Frame x:Name="GridPrincipal" NavigationUIVisibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center"/>

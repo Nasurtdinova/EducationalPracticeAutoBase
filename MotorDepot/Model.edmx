@@ -11,7 +11,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Model" Type="nvarchar" MaxLength="50" />
-          <Property Name="IdStamp" Type="int" />
+          <Property Name="IdStamp" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -25,9 +25,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdUser" Type="int" />
-          <Property Name="IdDriver" Type="int" />
-          <Property Name="Feedback" Type="nvarchar" MaxLength="200" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdDriver" Type="int" Nullable="false" />
+          <Property Name="Feedback" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -41,10 +41,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdClient" Type="int" />
-          <Property Name="IdRequestDriver" Type="int" />
-          <Property Name="Data" Type="date" />
-          <Property Name="IdStatus" Type="int" />
+          <Property Name="IdClient" Type="int" Nullable="false" />
+          <Property Name="IdRequestDriver" Type="int" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="IdStatus" Type="int" Nullable="false" />
           <Property Name="CountPeople" Type="int" />
           <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
@@ -54,7 +54,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="IdCity" Type="int" />
+          <Property Name="IdCity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PlaceDeparture">
           <Key>
@@ -62,19 +62,19 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="IdCity" Type="int" />
+          <Property Name="IdCity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RequestDriver">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdUser" Type="int" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="Data" Type="datetime" />
           <Property Name="CountPeople" Type="int" />
           <Property Name="Price" Type="float" />
-          <Property Name="IdPlaceOfDeparture" Type="int" />
-          <Property Name="IdPlaceOfArrival" Type="int" />
+          <Property Name="IdPlaceOfDeparture" Type="int" Nullable="false" />
+          <Property Name="IdPlaceOfArrival" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
@@ -92,21 +92,31 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FullName" Type="nvarchar" MaxLength="80" />
-          <Property Name="Login" Type="nvarchar" MaxLength="30" />
-          <Property Name="Password" Type="nvarchar" MaxLength="30" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="DayOfBirth" Type="date" />
           <Property Name="Gender" Type="nvarchar" MaxLength="1" />
           <Property Name="IdCar" Type="int" />
           <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Car_Stamp">
-          <End Role="Stamp" Type="Self.Stamp" Multiplicity="0..1" />
+          <End Role="Stamp" Type="Self.Stamp" Multiplicity="1" />
           <End Role="Car" Type="Self.Car" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Stamp">
@@ -118,7 +128,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FeedbackDriver_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="FeedbackDriver" Type="Self.FeedbackDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -130,7 +140,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FeedbackDriver_User1">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="FeedbackDriver" Type="Self.FeedbackDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -142,7 +152,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HistoryClientDriver_RequestDriver">
-          <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="0..1" />
+          <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="1" />
           <End Role="HistoryClientDriver" Type="Self.HistoryClientDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RequestDriver">
@@ -154,7 +164,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HistoryClientDriver_Status">
-          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
           <End Role="HistoryClientDriver" Type="Self.HistoryClientDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
@@ -166,7 +176,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HistoryClientDriver_User2">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="HistoryClientDriver" Type="Self.HistoryClientDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -178,7 +188,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Place_City">
-          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="City" Type="Self.City" Multiplicity="1" />
           <End Role="PlaceArrival" Type="Self.PlaceArrival" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="City">
@@ -190,7 +200,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PlaceDeparture_City">
-          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="City" Type="Self.City" Multiplicity="1" />
           <End Role="PlaceDeparture" Type="Self.PlaceDeparture" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="City">
@@ -202,7 +212,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RequestDriver_PlaceArrival1">
-          <End Role="PlaceArrival" Type="Self.PlaceArrival" Multiplicity="0..1" />
+          <End Role="PlaceArrival" Type="Self.PlaceArrival" Multiplicity="1" />
           <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlaceArrival">
@@ -214,7 +224,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RequestDriver_PlaceDeparture">
-          <End Role="PlaceDeparture" Type="Self.PlaceDeparture" Multiplicity="0..1" />
+          <End Role="PlaceDeparture" Type="Self.PlaceDeparture" Multiplicity="1" />
           <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlaceDeparture">
@@ -226,7 +236,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RequestDriver_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -272,6 +282,7 @@
           <EntitySet Name="RequestDriver" EntityType="Self.RequestDriver" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stamp" EntityType="Self.Stamp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Car_Stamp" Association="Self.FK_Car_Stamp">
             <End Role="Stamp" EntitySet="Stamp" />
@@ -330,233 +341,57 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="lllModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Car">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IdStamp" Type="Int32" />
-          <NavigationProperty Name="Stamp" Relationship="Self.FK_Car_Stamp" FromRole="Car" ToRole="Stamp" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Car" FromRole="Car" ToRole="User" />
-        </EntityType>
-        <EntityType Name="City">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PlaceArrival" Relationship="Self.FK_Place_City" FromRole="City" ToRole="PlaceArrival" />
-          <NavigationProperty Name="PlaceDeparture" Relationship="Self.FK_PlaceDeparture_City" FromRole="City" ToRole="PlaceDeparture" />
-        </EntityType>
-        <EntityType Name="FeedbackDriver">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdUser" Type="Int32" />
-          <Property Name="IdDriver" Type="Int32" />
-          <Property Name="Feedback" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="Self.FK_FeedbackDriver_User" FromRole="FeedbackDriver" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_FeedbackDriver_User1" FromRole="FeedbackDriver" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Gender">
-          <Key>
-            <PropertyRef Name="Name" />
-          </Key>
-          <Property Name="Name" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Gender" FromRole="Gender" ToRole="User" />
-        </EntityType>
-        <EntityType Name="PlaceArrival">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IdCity" Type="Int32" />
-          <NavigationProperty Name="City" Relationship="Self.FK_Place_City" FromRole="PlaceArrival" ToRole="City" />
-          <NavigationProperty Name="RequestDriver" Relationship="lllModel.FK_RequestDriver_PlaceArrival1" FromRole="PlaceArrival" ToRole="RequestDriver" />
-        </EntityType>
-        <EntityType Name="PlaceDeparture">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IdCity" Type="Int32" />
-          <NavigationProperty Name="City" Relationship="Self.FK_PlaceDeparture_City" FromRole="PlaceDeparture" ToRole="City" />
-          <NavigationProperty Name="RequestDriver" Relationship="lllModel.FK_RequestDriver_PlaceDeparture" FromRole="PlaceDeparture" ToRole="RequestDriver" />
-        </EntityType>
-        <EntityType Name="Stamp">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Car" Relationship="Self.FK_Car_Stamp" FromRole="Stamp" ToRole="Car" />
-        </EntityType>
-        <EntityType Name="Status">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="HistoryClientDriver" Relationship="lllModel.FK_HistoryClientDriver_Status" FromRole="Status" ToRole="HistoryClientDriver" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
-          <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="DayOfBirth" Type="DateTime" Precision="0" />
-          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="IdCar" Type="Int32" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Car" Relationship="Self.FK_User_Car" FromRole="User" ToRole="Car" />
-          <NavigationProperty Name="FeedbackDriver" Relationship="Self.FK_FeedbackDriver_User" FromRole="User" ToRole="FeedbackDriver" />
-          <NavigationProperty Name="FeedbackDriver1" Relationship="Self.FK_FeedbackDriver_User1" FromRole="User" ToRole="FeedbackDriver" />
-          <NavigationProperty Name="Gender1" Relationship="Self.FK_User_Gender" FromRole="User" ToRole="Gender" />
-          <NavigationProperty Name="HistoryClientDriver" Relationship="lllModel.FK_HistoryClientDriver_User2" FromRole="User" ToRole="HistoryClientDriver" />
-          <NavigationProperty Name="RequestDriver" Relationship="lllModel.FK_RequestDriver_User" FromRole="User" ToRole="RequestDriver" />
-        </EntityType>
-        <Association Name="FK_Car_Stamp">
-          <End Role="Stamp" Type="Self.Stamp" Multiplicity="0..1" />
-          <End Role="Car" Type="Self.Car" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stamp">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Car">
-              <PropertyRef Name="IdStamp" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Car">
-          <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Car">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="IdCar" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Place_City">
-          <End Role="City" Type="Self.City" Multiplicity="0..1" />
-          <End Role="PlaceArrival" Type="Self.PlaceArrival" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PlaceArrival">
-              <PropertyRef Name="IdCity" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PlaceDeparture_City">
-          <End Role="City" Type="Self.City" Multiplicity="0..1" />
-          <End Role="PlaceDeparture" Type="Self.PlaceDeparture" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PlaceDeparture">
-              <PropertyRef Name="IdCity" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FeedbackDriver_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="FeedbackDriver" Type="Self.FeedbackDriver" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="FeedbackDriver">
-              <PropertyRef Name="IdUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FeedbackDriver_User1">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="FeedbackDriver" Type="Self.FeedbackDriver" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="FeedbackDriver">
-              <PropertyRef Name="IdDriver" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Gender">
-          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gender">
-              <PropertyRef Name="Name" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="Gender" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="lllEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Car" EntityType="Self.Car" />
-          <EntitySet Name="City" EntityType="Self.City" />
-          <EntitySet Name="FeedbackDriver" EntityType="Self.FeedbackDriver" />
-          <EntitySet Name="Gender" EntityType="Self.Gender" />
-          <EntitySet Name="PlaceArrival" EntityType="Self.PlaceArrival" />
-          <EntitySet Name="PlaceDeparture" EntityType="Self.PlaceDeparture" />
-          <EntitySet Name="Stamp" EntityType="Self.Stamp" />
-          <EntitySet Name="Status" EntityType="Self.Status" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_Car_Stamp" Association="Self.FK_Car_Stamp">
+          <EntitySet Name="Car" EntityType="lllModel.Car" />
+          <EntitySet Name="City" EntityType="lllModel.City" />
+          <EntitySet Name="FeedbackDriver" EntityType="lllModel.FeedbackDriver" />
+          <EntitySet Name="Gender" EntityType="lllModel.Gender" />
+          <EntitySet Name="HistoryClientDriver" EntityType="lllModel.HistoryClientDriver" />
+          <EntitySet Name="PlaceArrival" EntityType="lllModel.PlaceArrival" />
+          <EntitySet Name="PlaceDeparture" EntityType="lllModel.PlaceDeparture" />
+          <EntitySet Name="RequestDriver" EntityType="lllModel.RequestDriver" />
+          <EntitySet Name="Stamp" EntityType="lllModel.Stamp" />
+          <EntitySet Name="Status" EntityType="lllModel.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="lllModel.sysdiagrams" />
+          <EntitySet Name="User" EntityType="lllModel.User" />
+          <AssociationSet Name="FK_Car_Stamp" Association="lllModel.FK_Car_Stamp">
             <End Role="Stamp" EntitySet="Stamp" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Car" Association="Self.FK_User_Car">
+          <AssociationSet Name="FK_User_Car" Association="lllModel.FK_User_Car">
             <End Role="Car" EntitySet="Car" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Place_City" Association="Self.FK_Place_City">
+          <AssociationSet Name="FK_Place_City" Association="lllModel.FK_Place_City">
             <End Role="City" EntitySet="City" />
             <End Role="PlaceArrival" EntitySet="PlaceArrival" />
           </AssociationSet>
-          <AssociationSet Name="FK_PlaceDeparture_City" Association="Self.FK_PlaceDeparture_City">
+          <AssociationSet Name="FK_PlaceDeparture_City" Association="lllModel.FK_PlaceDeparture_City">
             <End Role="City" EntitySet="City" />
             <End Role="PlaceDeparture" EntitySet="PlaceDeparture" />
           </AssociationSet>
-          <AssociationSet Name="FK_FeedbackDriver_User" Association="Self.FK_FeedbackDriver_User">
+          <AssociationSet Name="FK_FeedbackDriver_User" Association="lllModel.FK_FeedbackDriver_User">
             <End Role="User" EntitySet="User" />
             <End Role="FeedbackDriver" EntitySet="FeedbackDriver" />
           </AssociationSet>
-          <AssociationSet Name="FK_FeedbackDriver_User1" Association="Self.FK_FeedbackDriver_User1">
+          <AssociationSet Name="FK_FeedbackDriver_User1" Association="lllModel.FK_FeedbackDriver_User1">
             <End Role="User" EntitySet="User" />
             <End Role="FeedbackDriver" EntitySet="FeedbackDriver" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
+          <AssociationSet Name="FK_User_Gender" Association="lllModel.FK_User_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <EntitySet Name="HistoryClientDriver" EntityType="lllModel.HistoryClientDriver" />
+          <AssociationSet Name="FK_HistoryClientDriver_RequestDriver" Association="lllModel.FK_HistoryClientDriver_RequestDriver">
+            <End Role="RequestDriver" EntitySet="RequestDriver" />
+            <End Role="HistoryClientDriver" EntitySet="HistoryClientDriver" />
+          </AssociationSet>
           <AssociationSet Name="FK_HistoryClientDriver_Status" Association="lllModel.FK_HistoryClientDriver_Status">
             <End Role="Status" EntitySet="Status" />
             <End Role="HistoryClientDriver" EntitySet="HistoryClientDriver" />
           </AssociationSet>
           <AssociationSet Name="FK_HistoryClientDriver_User2" Association="lllModel.FK_HistoryClientDriver_User2">
             <End Role="User" EntitySet="User" />
-            <End Role="HistoryClientDriver" EntitySet="HistoryClientDriver" />
-          </AssociationSet>
-          <EntitySet Name="RequestDriver" EntityType="lllModel.RequestDriver" />
-          <AssociationSet Name="FK_HistoryClientDriver_RequestDriver" Association="lllModel.FK_HistoryClientDriver_RequestDriver">
-            <End Role="RequestDriver" EntitySet="RequestDriver" />
             <End Role="HistoryClientDriver" EntitySet="HistoryClientDriver" />
           </AssociationSet>
           <AssociationSet Name="FK_RequestDriver_PlaceArrival1" Association="lllModel.FK_RequestDriver_PlaceArrival1">
@@ -571,24 +406,241 @@
             <End Role="User" EntitySet="User" />
             <End Role="RequestDriver" EntitySet="RequestDriver" />
           </AssociationSet>
-          </EntityContainer>
+        </EntityContainer>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdStamp" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Stamp" Relationship="lllModel.FK_Car_Stamp" FromRole="Car" ToRole="Stamp" />
+          <NavigationProperty Name="User" Relationship="lllModel.FK_User_Car" FromRole="Car" ToRole="User" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PlaceArrival" Relationship="lllModel.FK_Place_City" FromRole="City" ToRole="PlaceArrival" />
+          <NavigationProperty Name="PlaceDeparture" Relationship="lllModel.FK_PlaceDeparture_City" FromRole="City" ToRole="PlaceDeparture" />
+        </EntityType>
+        <EntityType Name="FeedbackDriver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdDriver" Type="Int32" Nullable="false" />
+          <Property Name="Feedback" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="lllModel.FK_FeedbackDriver_User" FromRole="FeedbackDriver" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="lllModel.FK_FeedbackDriver_User1" FromRole="FeedbackDriver" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="lllModel.FK_User_Gender" FromRole="Gender" ToRole="User" />
+        </EntityType>
         <EntityType Name="HistoryClientDriver">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdClient" Type="Int32" />
-          <Property Name="IdRequestDriver" Type="Int32" />
-          <Property Name="Data" Type="DateTime" Precision="0" />
-          <Property Name="IdStatus" Type="Int32" />
+          <Property Name="IdClient" Type="Int32" Nullable="false" />
+          <Property Name="IdRequestDriver" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdStatus" Type="Int32" Nullable="false" />
           <Property Name="CountPeople" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RequestDriver" Relationship="lllModel.FK_HistoryClientDriver_RequestDriver" FromRole="HistoryClientDriver" ToRole="RequestDriver" />
           <NavigationProperty Name="Status" Relationship="lllModel.FK_HistoryClientDriver_Status" FromRole="HistoryClientDriver" ToRole="Status" />
           <NavigationProperty Name="User" Relationship="lllModel.FK_HistoryClientDriver_User2" FromRole="HistoryClientDriver" ToRole="User" />
-          <NavigationProperty Name="RequestDriver" Relationship="lllModel.FK_HistoryClientDriver_RequestDriver" FromRole="HistoryClientDriver" ToRole="RequestDriver" />
         </EntityType>
+        <EntityType Name="PlaceArrival">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="lllModel.FK_Place_City" FromRole="PlaceArrival" ToRole="City" />
+          <NavigationProperty Name="RequestDriver" Relationship="lllModel.FK_RequestDriver_PlaceArrival1" FromRole="PlaceArrival" ToRole="RequestDriver" />
+        </EntityType>
+        <EntityType Name="PlaceDeparture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="lllModel.FK_PlaceDeparture_City" FromRole="PlaceDeparture" ToRole="City" />
+          <NavigationProperty Name="RequestDriver" Relationship="lllModel.FK_RequestDriver_PlaceDeparture" FromRole="PlaceDeparture" ToRole="RequestDriver" />
+        </EntityType>
+        <EntityType Name="RequestDriver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Precision="3" />
+          <Property Name="CountPeople" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="IdPlaceOfDeparture" Type="Int32" Nullable="false" />
+          <Property Name="IdPlaceOfArrival" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="HistoryClientDriver" Relationship="lllModel.FK_HistoryClientDriver_RequestDriver" FromRole="RequestDriver" ToRole="HistoryClientDriver" />
+          <NavigationProperty Name="PlaceArrival" Relationship="lllModel.FK_RequestDriver_PlaceArrival1" FromRole="RequestDriver" ToRole="PlaceArrival" />
+          <NavigationProperty Name="PlaceDeparture" Relationship="lllModel.FK_RequestDriver_PlaceDeparture" FromRole="RequestDriver" ToRole="PlaceDeparture" />
+          <NavigationProperty Name="User" Relationship="lllModel.FK_RequestDriver_User" FromRole="RequestDriver" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Stamp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Car" Relationship="lllModel.FK_Car_Stamp" FromRole="Stamp" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HistoryClientDriver" Relationship="lllModel.FK_HistoryClientDriver_Status" FromRole="Status" ToRole="HistoryClientDriver" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DayOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IdCar" Type="Int32" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Car" Relationship="lllModel.FK_User_Car" FromRole="User" ToRole="Car" />
+          <NavigationProperty Name="FeedbackDriver" Relationship="lllModel.FK_FeedbackDriver_User" FromRole="User" ToRole="FeedbackDriver" />
+          <NavigationProperty Name="FeedbackDriver1" Relationship="lllModel.FK_FeedbackDriver_User1" FromRole="User" ToRole="FeedbackDriver" />
+          <NavigationProperty Name="Gender1" Relationship="lllModel.FK_User_Gender" FromRole="User" ToRole="Gender" />
+          <NavigationProperty Name="HistoryClientDriver" Relationship="lllModel.FK_HistoryClientDriver_User2" FromRole="User" ToRole="HistoryClientDriver" />
+          <NavigationProperty Name="RequestDriver" Relationship="lllModel.FK_RequestDriver_User" FromRole="User" ToRole="RequestDriver" />
+        </EntityType>
+        <Association Name="FK_Car_Stamp">
+          <End Type="lllModel.Stamp" Role="Stamp" Multiplicity="1" />
+          <End Type="lllModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stamp">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="IdStamp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Car">
+          <End Type="lllModel.Car" Role="Car" Multiplicity="0..1" />
+          <End Type="lllModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Place_City">
+          <End Type="lllModel.City" Role="City" Multiplicity="1" />
+          <End Type="lllModel.PlaceArrival" Role="PlaceArrival" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlaceArrival">
+              <PropertyRef Name="IdCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlaceDeparture_City">
+          <End Type="lllModel.City" Role="City" Multiplicity="1" />
+          <End Type="lllModel.PlaceDeparture" Role="PlaceDeparture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlaceDeparture">
+              <PropertyRef Name="IdCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeedbackDriver_User">
+          <End Type="lllModel.User" Role="User" Multiplicity="1" />
+          <End Type="lllModel.FeedbackDriver" Role="FeedbackDriver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FeedbackDriver">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeedbackDriver_User1">
+          <End Type="lllModel.User" Role="User" Multiplicity="1" />
+          <End Type="lllModel.FeedbackDriver" Role="FeedbackDriver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FeedbackDriver">
+              <PropertyRef Name="IdDriver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Gender">
+          <End Type="lllModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="lllModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryClientDriver_RequestDriver">
+          <End Type="lllModel.RequestDriver" Role="RequestDriver" Multiplicity="1" />
+          <End Type="lllModel.HistoryClientDriver" Role="HistoryClientDriver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestDriver">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryClientDriver">
+              <PropertyRef Name="IdRequestDriver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HistoryClientDriver_Status">
-          <End Type="lllModel.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="lllModel.Status" Role="Status" Multiplicity="1" />
           <End Type="lllModel.HistoryClientDriver" Role="HistoryClientDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
@@ -600,7 +652,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HistoryClientDriver_User2">
-          <End Type="lllModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="lllModel.User" Role="User" Multiplicity="1" />
           <End Type="lllModel.HistoryClientDriver" Role="HistoryClientDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -611,38 +663,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="RequestDriver">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdUser" Type="Int32" />
-          <Property Name="Data" Type="DateTime" Precision="3" />
-          <Property Name="CountPeople" Type="Int32" />
-          <Property Name="Price" Type="Double" />
-          <Property Name="IdPlaceOfDeparture" Type="Int32" />
-          <Property Name="IdPlaceOfArrival" Type="Int32" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <NavigationProperty Name="HistoryClientDriver" Relationship="lllModel.FK_HistoryClientDriver_RequestDriver" FromRole="RequestDriver" ToRole="HistoryClientDriver" />
-          <NavigationProperty Name="PlaceArrival" Relationship="lllModel.FK_RequestDriver_PlaceArrival1" FromRole="RequestDriver" ToRole="PlaceArrival" />
-          <NavigationProperty Name="PlaceDeparture" Relationship="lllModel.FK_RequestDriver_PlaceDeparture" FromRole="RequestDriver" ToRole="PlaceDeparture" />
-          <NavigationProperty Name="User" Relationship="lllModel.FK_RequestDriver_User" FromRole="RequestDriver" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_HistoryClientDriver_RequestDriver">
-          <End Type="lllModel.RequestDriver" Role="RequestDriver" Multiplicity="0..1" />
-          <End Type="lllModel.HistoryClientDriver" Role="HistoryClientDriver" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RequestDriver">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HistoryClientDriver">
-              <PropertyRef Name="IdRequestDriver" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RequestDriver_PlaceArrival1">
-          <End Type="lllModel.PlaceArrival" Role="PlaceArrival" Multiplicity="0..1" />
+          <End Type="lllModel.PlaceArrival" Role="PlaceArrival" Multiplicity="1" />
           <End Type="lllModel.RequestDriver" Role="RequestDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlaceArrival">
@@ -654,7 +676,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RequestDriver_PlaceDeparture">
-          <End Type="lllModel.PlaceDeparture" Role="PlaceDeparture" Multiplicity="0..1" />
+          <End Type="lllModel.PlaceDeparture" Role="PlaceDeparture" Multiplicity="1" />
           <End Type="lllModel.RequestDriver" Role="RequestDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlaceDeparture">
@@ -666,7 +688,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RequestDriver_User">
-          <End Type="lllModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="lllModel.User" Role="User" Multiplicity="1" />
           <End Type="lllModel.RequestDriver" Role="RequestDriver" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -686,83 +708,35 @@
           <EntitySetMapping Name="Car">
             <EntityTypeMapping TypeName="lllModel.Car">
               <MappingFragment StoreEntitySet="Car">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="IdStamp" ColumnName="IdStamp" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="City">
             <EntityTypeMapping TypeName="lllModel.City">
               <MappingFragment StoreEntitySet="City">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FeedbackDriver">
             <EntityTypeMapping TypeName="lllModel.FeedbackDriver">
               <MappingFragment StoreEntitySet="FeedbackDriver">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="IdDriver" ColumnName="IdDriver" />
                 <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="IdDriver" ColumnName="IdDriver" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gender">
             <EntityTypeMapping TypeName="lllModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PlaceArrival">
-            <EntityTypeMapping TypeName="lllModel.PlaceArrival">
-              <MappingFragment StoreEntitySet="PlaceArrival">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PlaceDeparture">
-            <EntityTypeMapping TypeName="lllModel.PlaceDeparture">
-              <MappingFragment StoreEntitySet="PlaceDeparture">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Stamp">
-            <EntityTypeMapping TypeName="lllModel.Stamp">
-              <MappingFragment StoreEntitySet="Stamp">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Status">
-            <EntityTypeMapping TypeName="lllModel.Status">
-              <MappingFragment StoreEntitySet="Status">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="lllModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="DayOfBirth" ColumnName="DayOfBirth" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="IdCar" ColumnName="IdCar" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -779,6 +753,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PlaceArrival">
+            <EntityTypeMapping TypeName="lllModel.PlaceArrival">
+              <MappingFragment StoreEntitySet="PlaceArrival">
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlaceDeparture">
+            <EntityTypeMapping TypeName="lllModel.PlaceDeparture">
+              <MappingFragment StoreEntitySet="PlaceDeparture">
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="RequestDriver">
             <EntityTypeMapping TypeName="lllModel.RequestDriver">
               <MappingFragment StoreEntitySet="RequestDriver">
@@ -790,6 +782,47 @@
                 <ScalarProperty Name="CountPeople" ColumnName="CountPeople" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stamp">
+            <EntityTypeMapping TypeName="lllModel.Stamp">
+              <MappingFragment StoreEntitySet="Stamp">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="lllModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="lllModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="lllModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IdCar" ColumnName="IdCar" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DayOfBirth" ColumnName="DayOfBirth" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

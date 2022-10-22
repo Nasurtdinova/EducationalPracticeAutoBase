@@ -22,7 +22,7 @@ namespace MotorDepot
     
         public int Id { get; set; }
         public string Model { get; set; }
-        public Nullable<int> IdStamp { get; set; }
+        public int IdStamp { get; set; }
     
         public virtual Stamp Stamp { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

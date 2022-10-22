@@ -15,8 +15,8 @@ namespace MotorDepot
     public partial class FeedbackDriver
     {
         public int Id { get; set; }
-        public Nullable<int> IdUser { get; set; }
-        public Nullable<int> IdDriver { get; set; }
+        public int IdUser { get; set; }
+        public int IdDriver { get; set; }
         public string Feedback { get; set; }
     
         public virtual User User { get; set; }

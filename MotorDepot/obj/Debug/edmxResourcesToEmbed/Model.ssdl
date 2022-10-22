@@ -6,7 +6,7 @@
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Model" Type="nvarchar" MaxLength="50" />
-    <Property Name="IdStamp" Type="int" />
+    <Property Name="IdStamp" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="City">
     <Key>
@@ -20,9 +20,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdUser" Type="int" />
-    <Property Name="IdDriver" Type="int" />
-    <Property Name="Feedback" Type="nvarchar" MaxLength="200" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
+    <Property Name="IdDriver" Type="int" Nullable="false" />
+    <Property Name="Feedback" Type="nvarchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityType Name="Gender">
     <Key>
@@ -36,10 +36,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdClient" Type="int" />
-    <Property Name="IdRequestDriver" Type="int" />
-    <Property Name="Data" Type="date" />
-    <Property Name="IdStatus" Type="int" />
+    <Property Name="IdClient" Type="int" Nullable="false" />
+    <Property Name="IdRequestDriver" Type="int" Nullable="false" />
+    <Property Name="Data" Type="date" Nullable="false" />
+    <Property Name="IdStatus" Type="int" Nullable="false" />
     <Property Name="CountPeople" Type="int" />
     <Property Name="Description" Type="nvarchar(max)" />
   </EntityType>
@@ -49,7 +49,7 @@
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="IdCity" Type="int" />
+    <Property Name="IdCity" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PlaceDeparture">
     <Key>
@@ -57,19 +57,19 @@
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="IdCity" Type="int" />
+    <Property Name="IdCity" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="RequestDriver">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdUser" Type="int" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
     <Property Name="Data" Type="datetime" />
     <Property Name="CountPeople" Type="int" />
     <Property Name="Price" Type="float" />
-    <Property Name="IdPlaceOfDeparture" Type="int" />
-    <Property Name="IdPlaceOfArrival" Type="int" />
+    <Property Name="IdPlaceOfDeparture" Type="int" Nullable="false" />
+    <Property Name="IdPlaceOfArrival" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="IsDeleted" Type="bit" />
   </EntityType>
@@ -87,21 +87,31 @@
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="20" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FullName" Type="nvarchar" MaxLength="80" />
-    <Property Name="Login" Type="nvarchar" MaxLength="30" />
-    <Property Name="Password" Type="nvarchar" MaxLength="30" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="DayOfBirth" Type="date" />
     <Property Name="Gender" Type="nvarchar" MaxLength="1" />
     <Property Name="IdCar" Type="int" />
     <Property Name="Image" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_Car_Stamp">
-    <End Role="Stamp" Type="Self.Stamp" Multiplicity="0..1" />
+    <End Role="Stamp" Type="Self.Stamp" Multiplicity="1" />
     <End Role="Car" Type="Self.Car" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Stamp">
@@ -113,7 +123,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_FeedbackDriver_User">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="FeedbackDriver" Type="Self.FeedbackDriver" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -125,7 +135,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_FeedbackDriver_User1">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="FeedbackDriver" Type="Self.FeedbackDriver" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -137,7 +147,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_HistoryClientDriver_RequestDriver">
-    <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="0..1" />
+    <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="1" />
     <End Role="HistoryClientDriver" Type="Self.HistoryClientDriver" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="RequestDriver">
@@ -149,7 +159,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_HistoryClientDriver_Status">
-    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
     <End Role="HistoryClientDriver" Type="Self.HistoryClientDriver" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Status">
@@ -161,7 +171,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_HistoryClientDriver_User2">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="HistoryClientDriver" Type="Self.HistoryClientDriver" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -173,7 +183,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Place_City">
-    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="City" Type="Self.City" Multiplicity="1" />
     <End Role="PlaceArrival" Type="Self.PlaceArrival" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="City">
@@ -185,7 +195,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PlaceDeparture_City">
-    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="City" Type="Self.City" Multiplicity="1" />
     <End Role="PlaceDeparture" Type="Self.PlaceDeparture" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="City">
@@ -197,7 +207,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_RequestDriver_PlaceArrival1">
-    <End Role="PlaceArrival" Type="Self.PlaceArrival" Multiplicity="0..1" />
+    <End Role="PlaceArrival" Type="Self.PlaceArrival" Multiplicity="1" />
     <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PlaceArrival">
@@ -209,7 +219,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_RequestDriver_PlaceDeparture">
-    <End Role="PlaceDeparture" Type="Self.PlaceDeparture" Multiplicity="0..1" />
+    <End Role="PlaceDeparture" Type="Self.PlaceDeparture" Multiplicity="1" />
     <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PlaceDeparture">
@@ -221,7 +231,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_RequestDriver_User">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="RequestDriver" Type="Self.RequestDriver" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -267,6 +277,7 @@
     <EntitySet Name="RequestDriver" EntityType="Self.RequestDriver" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Stamp" EntityType="Self.Stamp" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Car_Stamp" Association="Self.FK_Car_Stamp">
       <End Role="Stamp" EntitySet="Stamp" />

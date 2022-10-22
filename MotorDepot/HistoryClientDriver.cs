@@ -15,10 +15,10 @@ namespace MotorDepot
     public partial class HistoryClientDriver
     {
         public int Id { get; set; }
-        public Nullable<int> IdClient { get; set; }
-        public Nullable<int> IdRequestDriver { get; set; }
-        public Nullable<System.DateTime> Data { get; set; }
-        public Nullable<int> IdStatus { get; set; }
+        public int IdClient { get; set; }
+        public int IdRequestDriver { get; set; }
+        public System.DateTime Data { get; set; }
+        public int IdStatus { get; set; }
         public Nullable<int> CountPeople { get; set; }
         public string Description { get; set; }
 
@@ -38,13 +38,14 @@ namespace MotorDepot
             get
             {
                 if (DateTime.Now <= RequestDriver.Data.Value && IdStatus != 4)
-                return "Visibility";
+                    return "Visibility";
                 else
                     return "Collapsed";
             }
         }
+
+        public virtual RequestDriver RequestDriver { get; set; }
         public virtual Status Status { get; set; }
         public virtual User User { get; set; }
-        public virtual RequestDriver RequestDriver { get; set; }
     }
 }

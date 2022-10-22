@@ -14,6 +14,7 @@
             <RowDefinition Height="11*"></RowDefinition>
             <RowDefinition Height="3*"></RowDefinition>
         </Grid.RowDefinitions>
+        <Image Source="/MotorDepot;component/Images/фонДорога.jpg" Width="1700" Grid.RowSpan="3"></Image>
         <TextBlock Text="Поездки" FontSize="25"></TextBlock>
         <TabControl Grid.Row="1">
             <TabItem Header="Клиенты">
@@ -22,7 +23,7 @@
                         <RowDefinition Height="9*"></RowDefinition>
                         <RowDefinition Height="5*"></RowDefinition>
                     </Grid.RowDefinitions>
-                 <TextBlock Text="Нет данных" Name="tbDataTrips" Visibility="Collapsed"></TextBlock>
+                <TextBlock Text="Нет данных" Name="tbDataTrips" Visibility="Collapsed" Margin="200"></TextBlock>
                 <DataGrid x:Name="dgTrips" IsReadOnly="True" AutoGenerateColumns="False"> 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Дата поездки" Binding="{Binding Data, StringFormat='dd.MM.yyyy hh:mm'}"></DataGridTextColumn>
@@ -66,7 +67,7 @@
             </TabItem>
             <TabItem Header="Водители">
                 <StackPanel>
-                    <TextBlock Text="Нет данных" Name="tbDataDriver" Visibility="Collapsed"></TextBlock>
+                    <TextBlock Text="Нет данных" Name="tbDataDriver" Visibility="Collapsed" Margin="200"></TextBlock>
                     <DataGrid x:Name="dgDrivers" IsReadOnly="True" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Водитель" Binding="{Binding RequestDriver.User.FullName}"></DataGridTextColumn>

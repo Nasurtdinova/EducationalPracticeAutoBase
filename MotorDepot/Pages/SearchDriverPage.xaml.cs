@@ -44,7 +44,7 @@ namespace MotorDepot
             if (cbDeparture.SelectedIndex > 0)
                 UpdatedRequestDriver = UpdatedRequestDriver.Where(a => a.PlaceDeparture.City == cbDeparture.SelectedItem as City).ToList();
             if (tbData.SelectedDate != null)
-                UpdatedRequestDriver = UpdatedRequestDriver.Where(a => a.Data == tbData.SelectedDate).ToList();
+                UpdatedRequestDriver = UpdatedRequestDriver.Where(a => a.Data.Value.Date == tbData.SelectedDate.Value.Date).ToList();
             if (tbCount.Text != String.Empty)
                 UpdatedRequestDriver = UpdatedRequestDriver.Where(a => a.FreeVenue >= Convert.ToInt32(tbCount.Text)).ToList();
 

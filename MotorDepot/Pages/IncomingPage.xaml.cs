@@ -21,8 +21,10 @@ namespace MotorDepot
         public IncomingPage()
         {
             InitializeComponent();
-            lvRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 1 || a.IdStatus == 4) ;
+            lvNewRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 1).OrderBy(a => a.Data);
+            lvOldRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus != 1).OrderBy(a=>a.Data);
             lvMyRequests.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
+            UpdateTab();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -39,44 +41,62 @@ namespace MotorDepot
             //}
             //else
             //{
-                CustomMaterialMessageBox msg = new CustomMaterialMessageBox
-                {
-                    TxtMessage = { Text = "Вы хотите принять заявку?" },
-                    TxtTitle = { Text = "Уведомление" },
-                    BtnOk = { Content = "Да" },
-                    BtnCancel = { Content = "Нет" }
-                };
-                msg.Show();
-                if (msg.Result == MessageBoxResult.OK)
-                    req.IdStatus = 3;
-                else
-                    req.IdStatus = 2;
-                BdConnection.Connection.SaveChanges();
-                lvRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 1);
+            CustomMaterialMessageBox msg = new CustomMaterialMessageBox
+            {
+                TxtMessage = { Text = "Вы хотите принять заявку?" },
+                TxtTitle = { Text = "Уведомление" },
+                BtnOk = { Content = "Да" },
+                BtnCancel = { Content = "Нет" }
+            };
+            msg.Show();
+            if (msg.Result == MessageBoxResult.OK)
+                req.IdStatus = 3;
+            else
+                req.IdStatus = 2;
+            BdConnection.Connection.SaveChanges();
+            lvNewRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 1).OrderBy(a => a.Data);
             //}
         }
 
         private void rbMyRequest_Click(object sender, RoutedEventArgs e)
         {
-            lvMyRequests.Visibility = Visibility.Visible;
-            lvRequestsClients.Visibility = Visibility.Collapsed;
-            tbDataClients.Visibility = Visibility.Collapsed;
-            if (lvMyRequests.Items.Count == 0)
-            {
-                tbDataMy.Visibility = Visibility.Visible;                
-                lvMyRequests.Visibility = Visibility.Collapsed;
-            }
+            UpdateTab();
         }
 
         private void rbRequestClient_Click(object sender, RoutedEventArgs e)
         {
-            lvMyRequests.Visibility = Visibility.Collapsed;
-            lvRequestsClients.Visibility = Visibility.Visible;
-            tbDataMy.Visibility = Visibility.Collapsed;
-            if (lvRequestsClients.Items.Count == 0)
+            UpdateTab();
+        }
+
+        public void UpdateTab()
+        {
+            if (rbMyRequest.IsChecked == true)
             {
-                tbDataClients.Visibility = Visibility.Visible;                
-                lvRequestsClients.Visibility = Visibility.Collapsed;
+                lvMyRequests.Visibility = Visibility.Visible;
+                spRequestClients.Visibility = Visibility.Collapsed;
+                if (lvMyRequests.Items.Count == 0)
+                {
+                    tbDataMy.Visibility = Visibility.Visible;
+                    lvMyRequests.Visibility = Visibility.Collapsed;
+                }
+            }
+            if (rbRequestClient.IsChecked == true)
+            {
+             
+                lvNewRequestsClients.Visibility = Visibility.Visible;
+                lvOldRequestsClients.Visibility = Visibility.Visible;
+                spMyRequest.Visibility = Visibility.Collapsed;
+                spRequestClients.Visibility = Visibility.Visible;
+                if (lvNewRequestsClients.Items.Count == 0)
+                {
+                    tbNewDataClients.Visibility = Visibility.Visible;
+                    lvNewRequestsClients.Visibility = Visibility.Collapsed;
+                }
+                if (lvOldRequestsClients.Items.Count == 0)
+                {
+                    tbOldDataClients.Visibility = Visibility.Visible;
+                    lvOldRequestsClients.Visibility = Visibility.Collapsed;
+                }
             }
         }
 

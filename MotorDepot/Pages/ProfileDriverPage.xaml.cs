@@ -29,7 +29,7 @@ namespace MotorDepot
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BespokeFusion;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,10 +19,12 @@ namespace MotorDepot
 {
     public partial class RegistrationPage : Page
     {
+        public User CurrentUser = new User();
         public RegistrationPage()
         {
             InitializeComponent();
             comboGender.ItemsSource = DataAccess.GetGenders();
+            DataContext = CurrentUser;
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -31,17 +34,26 @@ namespace MotorDepot
 
         private void btnRegistr_Click(object sender, RoutedEventArgs e)
         {
-            User user = new User()
+            CurrentUser.Password = tbPassword.Password;
+            var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+            var context = new ValidationContext(CurrentUser);
+
+            if (!Validator.TryValidateObject(CurrentUser, context, results, true))
             {
-                FullName = tbFullName.Text,
-                DayOfBirth = dpDate.SelectedDate,
-                Login = tbLogin.Text,
-                Password = tbPassword.Password,
-                Gender = (comboGender.SelectedItem as Gender).Name,
-            };
-            DataAccess.SaveUser(user);
-            MaterialMessageBox.Show("Вы зарегистрированы!");
-            NavigationService.Navigate(new AuthorizationPage());
+                foreach (var error in results)
+                    MaterialMessageBox.ShowError(error.ErrorMessage);
+            }
+            else
+            {
+                if (DataAccess.IsTrueLogin(tbLogin.Text))
+                {
+                    DataAccess.SaveUser(CurrentUser);
+                    MaterialMessageBox.Show("Вы зарегистрированы!");
+                    NavigationService.Navigate(new AuthorizationPage());
+                }
+                else
+                    MaterialMessageBox.ShowError("Такой логин уже существует!");
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ namespace MotorDepot
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
 
     public partial class RequestDriver
@@ -22,12 +23,18 @@ namespace MotorDepot
         }
     
         public int Id { get; set; }
-        public Nullable<int> IdUser { get; set; }
+        public int IdUser { get; set; }
+
+        [Required(ErrorMessage = "Заполните дату!")]
         public Nullable<System.DateTime> Data { get; set; }
+
+        [Required(ErrorMessage = "Заполните количество человек!")]
         public Nullable<int> CountPeople { get; set; }
+
+        [Required(ErrorMessage = "Заполните цену!")]
         public Nullable<double> Price { get; set; }
-        public Nullable<int> IdPlaceOfDeparture { get; set; }
-        public Nullable<int> IdPlaceOfArrival { get; set; }
+        public int IdPlaceOfDeparture { get; set; }
+        public int IdPlaceOfArrival { get; set; }
         public string Description { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
 
@@ -52,7 +59,7 @@ namespace MotorDepot
                     return "Collapsed";
                 else if (FreeVenue == 0)
                     return "Collapsed";
-                else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 1 && a.IdStatus ==3).Count() != 0)
+                else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 1 && a.IdStatus == 3).Count() != 0)
                     return "Collapsed";
                 else
                     return "Visibility";
@@ -80,7 +87,11 @@ namespace MotorDepot
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryClientDriver> HistoryClientDriver { get; set; }
+
+        [Required(ErrorMessage = "Заполните место прибытия!")]
         public virtual PlaceArrival PlaceArrival { get; set; }
+
+        [Required(ErrorMessage = "Заполните место отбытия!")]
         public virtual PlaceDeparture PlaceDeparture { get; set; }
         public virtual User User { get; set; }
     }

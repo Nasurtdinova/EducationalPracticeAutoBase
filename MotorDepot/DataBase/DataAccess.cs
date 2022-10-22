@@ -8,6 +8,13 @@ namespace MotorDepot
 {
     public static class DataAccess
     {
+        public static bool IsTrueLogin(string login)
+        {
+            if (GetUsers().Where(a => a.Login == login).Count() > 0)
+                return false;
+            else
+                return true;
+        }
         public static List<User> GetUsers()
         {
             return new List<User>(BdConnection.Connection.User);
@@ -26,6 +33,7 @@ namespace MotorDepot
         {
             return new List<Car>(BdConnection.Connection.Car);
         }
+
         public static List<Stamp> GetStamps()
         {
             return new List<Stamp>(BdConnection.Connection.Stamp);

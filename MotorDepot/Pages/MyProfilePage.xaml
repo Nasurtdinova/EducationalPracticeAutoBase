@@ -13,6 +13,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
+        <Image Source="/MotorDepot;component/Images/фонДорога.jpg" Width="1700" Grid.RowSpan="2"></Image>
         <StackPanel Orientation="Horizontal">
             <Image x:Name="img" Width="150" Margin="20">
                 <Image.Source>
@@ -61,7 +62,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Мои отзывы">
-                <ListView x:Name="lvFeedBacks">
+                <ListView x:Name="lvFeedBacks" Margin="50">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>

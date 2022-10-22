@@ -11,7 +11,8 @@ namespace MotorDepot
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,8 +25,14 @@ namespace MotorDepot
         }
     
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Заполните ФИО!")]
         public string FullName { get; set; }
+
+        [Required(ErrorMessage = "Заполните логин!")]
         public string Login { get; set; }
+
+        [Required(ErrorMessage = "Заполните пароль!")]
         public string Password { get; set; }
         public Nullable<System.DateTime> DayOfBirth { get; set; }
         public string Gender { get; set; }

@@ -29,12 +29,13 @@ namespace MotorDepot
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<FeedbackDriver> FeedbackDriver { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
+        public virtual DbSet<HistoryClientDriver> HistoryClientDriver { get; set; }
         public virtual DbSet<PlaceArrival> PlaceArrival { get; set; }
         public virtual DbSet<PlaceDeparture> PlaceDeparture { get; set; }
+        public virtual DbSet<RequestDriver> RequestDriver { get; set; }
         public virtual DbSet<Stamp> Stamp { get; set; }
         public virtual DbSet<Status> Status { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<HistoryClientDriver> HistoryClientDriver { get; set; }
-        public virtual DbSet<RequestDriver> RequestDriver { get; set; }
     }
 }

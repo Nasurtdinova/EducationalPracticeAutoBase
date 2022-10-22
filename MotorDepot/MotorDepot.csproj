@@ -112,6 +112,9 @@
     <Compile Include="HistoryClientDriver.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Windows\HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
     </Compile>
@@ -145,7 +148,7 @@
     <Compile Include="PlaceDeparture.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProfileDriverPage.xaml.cs">
+    <Compile Include="Pages\ProfileDriverPage.xaml.cs">
       <DependentUpon>ProfileDriverPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="RequestDriver.cs">
@@ -212,7 +215,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProfileDriverPage.xaml">
+    <Page Include="Pages\ProfileDriverPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

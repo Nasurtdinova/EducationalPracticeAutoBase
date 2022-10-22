@@ -11,7 +11,8 @@ namespace MotorDepot
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PlaceArrival
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +23,9 @@ namespace MotorDepot
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> IdCity { get; set; }
-    
+        public int IdCity { get; set; }
+
+        [Required(ErrorMessage = "Заполните город прибытия!")]
         public virtual City City { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RequestDriver> RequestDriver { get; set; }
