@@ -24,7 +24,9 @@ namespace MotorDepot
         {
             InitializeComponent();
             comboStump.ItemsSource = DataAccess.GetStamps();
-            lvFeedBacks.ItemsSource = DataAccess.GetFeedbacks().Where(a => a.IdDriver == MainWindow.CurrentUser.Id); ;
+            lvFeedBacks.ItemsSource = DataAccess.GetFeedbacks().Where(a => a.IdDriver == MainWindow.CurrentUser.Id);
+            if (lvFeedBacks.Items.Count == 0)
+                tbNoData.Visibility = Visibility.Visible;
             DataContext = MainWindow.CurrentUser;
         }
 

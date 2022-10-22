@@ -58,7 +58,10 @@ namespace MotorDepot
             get
             {
                 if (MainWindow.CurrentUser.Id == IdUser)
+                {
                     return "Collapsed";
+                    StringReverse = string.Empty;
+                }
                 else if (FreeVenue == 0)
                 {
                     StringReverse = "Мест нет!";
@@ -75,7 +78,10 @@ namespace MotorDepot
                     return "Collapsed";
                 }
                 else
+                {
                     return "Visibility";
+                    StringReverse = string.Empty;
+                }
             }
         }
 

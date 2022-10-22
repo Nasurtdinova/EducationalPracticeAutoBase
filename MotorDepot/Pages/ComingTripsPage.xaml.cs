@@ -64,7 +64,7 @@ namespace MotorDepot
         private void btnFeedback_Click(object sender, RoutedEventArgs e)
         {
             var his = (sender as Button).DataContext as HistoryClientDriver;
-            if (DataAccess.GetFeedbacks().Where(a => a.IdUser == MainWindow.CurrentUser.Id && a.IdDriver == his.RequestDriver.IdUser) == null)
+            if (DataAccess.GetFeedbacks().Where(a => a.IdUser == MainWindow.CurrentUser.Id && a.IdDriver == his.RequestDriver.IdUser).Count() == 0)
             {
                 SendFeedbackWindow wins = new SendFeedbackWindow(his);
                 wins.Show();

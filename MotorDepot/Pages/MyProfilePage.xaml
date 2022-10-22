@@ -62,16 +62,19 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Мои отзывы">
-                <ListView x:Name="lvFeedBacks" Margin="50">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                            <TextBlock Text="{Binding User.FullName}" TextDecorations="Underline"></TextBlock>
-                            <TextBlock Text="{Binding Feedback}"></TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <StackPanel>
+                    <TextBlock Text="Нет отзывов" Name="tbNoData" Visibility="Collapsed" Margin="200"></TextBlock>
+                    <ListView x:Name="lvFeedBacks" Margin="50">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Background="White">
+                                    <TextBlock Text="{Binding User.FullName}" TextDecorations="Underline"></TextBlock>
+                                    <TextBlock Text="{Binding Feedback}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>
