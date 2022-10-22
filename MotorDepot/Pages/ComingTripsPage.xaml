@@ -52,7 +52,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                         <StackPanel>
-                                            <Button x:Name="btnEdit" Content="Редактировать" Visibility="{Binding VisibilityEdit}" Click="btnEdit_Click"></Button>
+                                            <!--<Button x:Name="btnEdit" Content="Редактировать" Visibility="{Binding VisibilityEdit}" Click="btnEdit_Click"></Button>-->
                                             <Button Name="btnRemove" Click="btnRemove_Click" Content="Удалить"  Visibility="{Binding VisibilityEdit}"></Button>
                                         </StackPanel>
                                     </DataTemplate>

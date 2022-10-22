@@ -30,7 +30,10 @@ namespace MotorDepot
             Title = CurrentRequest.Id == 0 ? "Опубликовать поездку" : "Редактировать поездку";
             dpData.DisplayDateStart = DateTime.Now;
             if (req != null)
+            {
                 CurrentRequest = req;
+                tbCountPeople.IsEnabled = false;
+            }
             this.DataContext = CurrentRequest;
         }
 
@@ -48,6 +51,8 @@ namespace MotorDepot
             {
                 if (Convert.ToInt32(tbCountPeople.Text) > 4)
                     MaterialMessageBox.ShowError("Вы не можете брать больше 4 человек!");
+                else if (DataAccess.GetRequestDrivers().Where(a=>a.Data == dpData.SelectedDate).Count() != 0)
+                    MaterialMessageBox.ShowError("В это время у вас уже запланирована другая поездка!");
                 else
                 {
                     DataAccess.SaveRequestDriver(CurrentRequest);

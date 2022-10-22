@@ -55,6 +55,7 @@ namespace MotorDepot
                 req.IdStatus = 2;
             BdConnection.Connection.SaveChanges();
             lvNewRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 1).OrderBy(a => a.Data);
+            UpdateTab();
             //}
         }
 
@@ -73,20 +74,22 @@ namespace MotorDepot
             if (rbMyRequest.IsChecked == true)
             {
                 lvMyRequests.Visibility = Visibility.Visible;
-                spRequestClients.Visibility = Visibility.Collapsed;
+                tabNew.Visibility = Visibility.Collapsed;
                 if (lvMyRequests.Items.Count == 0)
                 {
                     tbDataMy.Visibility = Visibility.Visible;
                     lvMyRequests.Visibility = Visibility.Collapsed;
                 }
+                else
+                {
+                    tbDataMy.Visibility = Visibility.Collapsed;
+                }
             }
             if (rbRequestClient.IsChecked == true)
             {
-             
-                lvNewRequestsClients.Visibility = Visibility.Visible;
-                lvOldRequestsClients.Visibility = Visibility.Visible;
-                spMyRequest.Visibility = Visibility.Collapsed;
-                spRequestClients.Visibility = Visibility.Visible;
+                tabNew.Visibility = Visibility.Visible;
+                lvMyRequests.Visibility = Visibility.Collapsed;
+                tbDataMy.Visibility = Visibility.Collapsed;
                 if (lvNewRequestsClients.Items.Count == 0)
                 {
                     tbNewDataClients.Visibility = Visibility.Visible;

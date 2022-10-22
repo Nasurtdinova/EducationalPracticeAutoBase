@@ -24,6 +24,8 @@ namespace MotorDepot
         {
             InitializeComponent();
             lvFeedBacks.ItemsSource = DataAccess.GetFeedbacks().Where(a => a.IdDriver == user.Id);
+            if (lvFeedBacks.Items.Count == 0)
+                tbNoData.Visibility = Visibility.Visible;
             DataContext = user;
         }
 

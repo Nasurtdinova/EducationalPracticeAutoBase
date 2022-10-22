@@ -11,7 +11,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <Image x:Name="img" Width="350" Margin="20">
@@ -39,11 +39,12 @@
                     </StackPanel>
                     <StackPanel Grid.Row="1" Margin="20">
                         <TextBlock Text="Дата рождения"></TextBlock>
-                        <TextBlock x:Name="tbBirthday" FontSize="22" Text="{Binding DayOfBirth, StringFormat='dd.MM.yyyy'}"></TextBlock>
+                        <TextBlock x:Name="tbBirthday" FontSize="22" Text="{Binding DayOfBirth, StringFormat='dd.MM.yyyy', TargetNullValue='Не указана информация!'}"></TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Margin="20">
                         <TextBlock Text="Машина"></TextBlock>
                         <StackPanel Orientation="Horizontal">
+                            <!--<TextBlock Text="{Binding Car, TargetNullValue='Не указана информация!'}"  Margin="10"></TextBlock>-->
                             <TextBlock Text="{Binding Car.Stamp.Name}"></TextBlock>
                             <TextBlock Text="{Binding Car.Model}"  Margin="10"></TextBlock>
                         </StackPanel>
@@ -54,16 +55,19 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Отзывы">
-                <ListView x:Name="lvFeedBacks">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding User.FullName}" TextDecorations="Underline"></TextBlock>
-                                <TextBlock Text="{Binding Feedback}"></TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <StackPanel>
+                    <TextBlock Text="Нет отзывов" Name="tbNoData" Visibility="Collapsed" Margin="200"></TextBlock>
+                    <ListView x:Name="lvFeedBacks">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding User.FullName}" TextDecorations="Underline"></TextBlock>
+                                    <TextBlock Text="{Binding Feedback}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>

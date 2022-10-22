@@ -23,9 +23,9 @@
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition Width="400"></ColumnDefinition>
                             <ColumnDefinition Width="200"></ColumnDefinition>
-                            <ColumnDefinition Width="250"></ColumnDefinition>
+                            <ColumnDefinition Width="350"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Data, StringFormat='dd.MM.yyyy hh:mm'}"></TextBlock>
+                        <TextBlock Text="{Binding Data, StringFormat='dd.MM.yyyy HH:mm'}"></TextBlock>
                         <StackPanel Grid.Column="1">
                             <TextBlock Text="{Binding PlaceDeparture.City.Name}"></TextBlock>
                             <TextBlock Text="{Binding PlaceArrival.City.Name}"></TextBlock>
@@ -45,6 +45,7 @@
                             <TextBlock Text="{Binding FreeVenue}"></TextBlock>
                         </StackPanel>
                         <Button Name="btnReserve" Visibility="{Binding VisibilityReverse}" Grid.Column="4" Width="200" Content="Забронировать" Click="btnReserve_Click"></Button>
+                        <TextBlock Text="{Binding StringReverse}" Grid.Column="4"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

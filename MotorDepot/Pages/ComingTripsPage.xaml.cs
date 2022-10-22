@@ -105,9 +105,30 @@ namespace MotorDepot
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            var a = (sender as Button).DataContext as RequestDriver;
-            a.IsDeleted = true;
-            BdConnection.Connection.SaveChanges();
+            var req = (sender as Button).DataContext as RequestDriver;
+            if (req != null)
+            {
+                if (DataAccess.GetHistoriesClientDriver().Where(b => b.IdRequestDriver == req.Id).Count() != 0)
+                    MaterialMessageBox.ShowError("Вы не можете удалить поездку, так как у вас есть клиенты!");
+                else
+                {
+                    CustomMaterialMessageBox msg = new CustomMaterialMessageBox
+                    {
+                        TxtMessage = { Text = "Вы точно хотите отменить поездку?" },
+                        TxtTitle = { Text = "Уведомление" },
+                        BtnOk = { Content = "Да" },
+                        BtnCancel = { Content = "Нет" }
+                    };
+                    msg.Show();
+                    if (msg.Result == MessageBoxResult.OK)
+                    {
+                        req.IsDeleted = true;
+                        BdConnection.Connection.SaveChanges();
+                        MaterialMessageBox.Show("Вы успешно удалили поездку!");
+                        dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.IdUser == MainWindow.CurrentUser.Id);
+                    }
+                }
+            }           
         }
     }
 }

@@ -22,7 +22,7 @@ namespace MotorDepot
 
         public static List<RequestDriver> GetRequestDrivers()
         {
-            return new List<RequestDriver>(BdConnection.Connection.RequestDriver);
+            return new List<RequestDriver>(BdConnection.Connection.RequestDriver.Where(a=>a.IsDeleted == false));
         }
 
         public static List<FeedbackDriver> GetFeedbacks()
@@ -109,6 +109,7 @@ namespace MotorDepot
             }
             else
             {
+                requestDriver.IsDeleted = false;
                 BdConnection.Connection.RequestDriver.Add(requestDriver);
             }
             BdConnection.Connection.SaveChanges();

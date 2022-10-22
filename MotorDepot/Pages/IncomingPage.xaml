@@ -14,10 +14,9 @@
             <RowDefinition Height="70"></RowDefinition>
         </Grid.RowDefinitions>
         <Image Source="/MotorDepot;component/Images/фонДорога.jpg" Width="1700" Grid.RowSpan="3"></Image>
-        <StackPanel Grid.Row="1" Name="spRequestClients">
-          
-            <TabControl>
-                <TabItem Header="Новые">
+        <StackPanel Grid.Row="1" >
+            <TabControl Name="tabNew">
+                <TabItem Header="Новые" >
                     <StackPanel>
                         <TextBlock x:Name="tbNewDataClients" FontSize="22" Text="Нет данных" Visibility="Collapsed" Margin="300"></TextBlock>
                         <DataGrid x:Name="lvNewRequestsClients" IsReadOnly="True" AutoGenerateColumns="False">
@@ -56,7 +55,7 @@
                 </TabItem>
                 <TabItem Header="Старые">
                     <StackPanel>
-                        <TextBlock x:Name="tbOldDataClients" FontSize="22" Text="Нет данных" Visibility="Collapsed" Margin="100"></TextBlock>
+                        <TextBlock x:Name="tbOldDataClients" FontSize="22" Text="Нет данных" Visibility="Collapsed" Margin="300"></TextBlock>
                         <DataGrid x:Name="lvOldRequestsClients" IsReadOnly="True" AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Клиент" Binding="{Binding User.FullName}"></DataGridTextColumn>
@@ -86,7 +85,7 @@
                 </TabItem>
             </TabControl>
         </StackPanel>
-        <StackPanel Grid.Row="1" Name="spMyRequest">
+        <StackPanel Grid.Row="1">
             <TextBlock x:Name="tbDataMy" Text="Нет данных" Margin="100" Visibility="Collapsed"></TextBlock>
             <DataGrid x:Name="lvMyRequests" IsReadOnly="True" AutoGenerateColumns="False" Visibility="Collapsed">
                 <DataGrid.Columns>

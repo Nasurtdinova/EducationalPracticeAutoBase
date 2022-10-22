@@ -38,6 +38,8 @@ namespace MotorDepot
         public string Description { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
 
+        public string StringReverse { get; set; }
+
         public int FreeVenue
         {
             get
@@ -58,9 +60,20 @@ namespace MotorDepot
                 if (MainWindow.CurrentUser.Id == IdUser)
                     return "Collapsed";
                 else if (FreeVenue == 0)
+                {
+                    StringReverse = "Мест нет!";
                     return "Collapsed";
-                else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 1 && a.IdStatus == 3).Count() != 0)
+                }
+                else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus != 2).Count() != 0 && MainWindow.CurrentUser.Id != IdUser)
+                {
+                    if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 1).Count() != 0)
+                        StringReverse = "Вы отправили заявку, ожидайте!";
+                    else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 3).Count() != 0)
+                        StringReverse = "Вы уже забронировали место!";
+                    else
+                        StringReverse = string.Empty;
                     return "Collapsed";
+                }
                 else
                     return "Visibility";
             }

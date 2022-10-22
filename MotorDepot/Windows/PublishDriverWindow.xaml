@@ -35,7 +35,7 @@
         </StackPanel>
         <StackPanel Grid.Row="2">
             <TextBlock Text="Когда и во сколько?"></TextBlock>
-            <DatePicker SelectedDate="{Binding Data, StringFormat='dd.MM.yyyy HH:mm'}" Name="dpData" FontSize="20"></DatePicker>
+            <DatePicker SelectedDate="{Binding Data, StringFormat='dd.MM.yyyy HH:mm'}" SelectedDateFormat="Long"  Name="dpData" FontSize="20"></DatePicker>
         </StackPanel>
         <StackPanel Grid.Column="2">
             <TextBlock Text="Сколько попутчиков возьмете?"></TextBlock>
