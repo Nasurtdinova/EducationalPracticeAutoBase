@@ -19,7 +19,7 @@
                 <TabItem Header="Новые" >
                     <StackPanel>
                         <TextBlock x:Name="tbNewDataClients" FontSize="22" Text="Нет данных" Visibility="Collapsed" Margin="300"></TextBlock>
-                        <DataGrid x:Name="lvNewRequestsClients" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid x:Name="lvNewRequestsClients" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="700" AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Клиент" Binding="{Binding User.FullName}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Дата поездки" Binding="{Binding RequestDriver.Data, StringFormat='dd.MM.yyyy hh:mm'}"></DataGridTextColumn>
@@ -55,8 +55,8 @@
                 </TabItem>
                 <TabItem Header="Старые">
                     <StackPanel>
-                        <TextBlock x:Name="tbOldDataClients" FontSize="22" Text="Нет данных" Visibility="Collapsed" Margin="300"></TextBlock>
-                        <DataGrid x:Name="lvOldRequestsClients" IsReadOnly="True" AutoGenerateColumns="False">
+                        <TextBlock x:Name="tbOldDataClients" FontSize="22" Text="Нет данных"  Visibility="Collapsed" Margin="300"></TextBlock>
+                        <DataGrid x:Name="lvOldRequestsClients" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="700" AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Клиент" Binding="{Binding User.FullName}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Дата поездки" Binding="{Binding RequestDriver.Data, StringFormat='dd.MM.yyyy hh:mm'}"></DataGridTextColumn>

@@ -21,7 +21,6 @@ namespace MotorDepot
         {
             this.HistoryClientDriver = new HashSet<HistoryClientDriver>();
         }
-    
         public int Id { get; set; }
         public int IdUser { get; set; }
 
@@ -38,7 +37,7 @@ namespace MotorDepot
         public string Description { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
 
-        public string StringReverse { get; set; }
+        public static string StringReverse { get; set; }
 
         public int FreeVenue
         {
@@ -60,7 +59,6 @@ namespace MotorDepot
                 if (MainWindow.CurrentUser.Id == IdUser)
                 {
                     return "Collapsed";
-                    StringReverse = string.Empty;
                 }
                 else if (FreeVenue == 0)
                 {
@@ -73,14 +71,11 @@ namespace MotorDepot
                         StringReverse = "Вы отправили заявку, ожидайте!";
                     else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 3).Count() != 0)
                         StringReverse = "Вы уже забронировали место!";
-                    else
-                        StringReverse = string.Empty;
                     return "Collapsed";
                 }
                 else
                 {
                     return "Visibility";
-                    StringReverse = string.Empty;
                 }
             }
         }
@@ -103,14 +98,9 @@ namespace MotorDepot
                 return DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 3 && a.IdRequestDriver == Id).ToList();
             }
         }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryClientDriver> HistoryClientDriver { get; set; }
-
-        [Required(ErrorMessage = "Заполните место прибытия!")]
         public virtual PlaceArrival PlaceArrival { get; set; }
-
-        [Required(ErrorMessage = "Заполните место отбытия!")]
         public virtual PlaceDeparture PlaceDeparture { get; set; }
         public virtual User User { get; set; }
     }

@@ -25,7 +25,6 @@ namespace MotorDepot
         }
     
         public int Id { get; set; }
-
         [Required(ErrorMessage = "Заполните ФИО!")]
         public string FullName { get; set; }
 

@@ -98,11 +98,6 @@
     <Compile Include="City.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ComingTripsPage.xaml.cs">
-      <DependentUpon>ComingTripsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DataBase\BdConnection.cs" />
-    <Compile Include="DataBase\DataAccess.cs" />
     <Compile Include="FeedbackDriver.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -111,15 +106,6 @@
     </Compile>
     <Compile Include="HistoryClientDriver.cs">
       <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\HomeWindow.xaml.cs">
-      <DependentUpon>HomeWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\IncomingPage.xaml.cs">
-      <DependentUpon>IncomingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
@@ -136,30 +122,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MyProfilePage.xaml.cs">
-      <DependentUpon>MyProfilePage.xaml</DependentUpon>
+    <Compile Include="Pages\ComingTripsPage.xaml.cs">
+      <DependentUpon>ComingTripsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PublishDriverWindow.xaml.cs">
-      <DependentUpon>PublishDriverWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="DataBase\BdConnection.cs" />
+    <Compile Include="DataBase\DataAccess.cs" />
     <Compile Include="PlaceArrival.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PlaceDeparture.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ProfileDriverPage.xaml.cs">
-      <DependentUpon>ProfileDriverPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RequestDriver.cs">
       <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RequestDrivers.cs" />
-    <Compile Include="Windows\ReverseVenueWindow.xaml.cs">
-      <DependentUpon>ReverseVenueWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\SendFeedbackWindow.xaml.cs">
-      <DependentUpon>SendFeedbackWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Stamp.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -169,6 +144,28 @@
     </Compile>
     <Compile Include="User.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\HomeWindow.xaml.cs">
+      <DependentUpon>HomeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\IncomingPage.xaml.cs">
+      <DependentUpon>IncomingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MyProfilePage.xaml.cs">
+      <DependentUpon>MyProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PublishDriverWindow.xaml.cs">
+      <DependentUpon>PublishDriverWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProfileDriverPage.xaml.cs">
+      <DependentUpon>ProfileDriverPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RequestDrivers.cs" />
+    <Compile Include="Windows\ReverseVenueWindow.xaml.cs">
+      <DependentUpon>ReverseVenueWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SendFeedbackWindow.xaml.cs">
+      <DependentUpon>SendFeedbackWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>

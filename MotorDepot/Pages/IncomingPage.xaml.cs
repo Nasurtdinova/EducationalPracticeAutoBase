@@ -35,28 +35,28 @@ namespace MotorDepot
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
             var req = (sender as Button).DataContext as HistoryClientDriver;
-            //if (req.CountPeople > req.RequestDriver.FreeVenue)
-            //{
-            //    MaterialMessageBox.ShowError($"У вас только {req.RequestDriver.FreeVenue} место") ;
-            //}
-            //else
-            //{
-            CustomMaterialMessageBox msg = new CustomMaterialMessageBox
+            if (req.CountPeople > req.RequestDriver.FreeVenue)
             {
-                TxtMessage = { Text = "Вы хотите принять заявку?" },
-                TxtTitle = { Text = "Уведомление" },
-                BtnOk = { Content = "Да" },
-                BtnCancel = { Content = "Нет" }
-            };
-            msg.Show();
-            if (msg.Result == MessageBoxResult.OK)
-                req.IdStatus = 3;
+                MaterialMessageBox.ShowError($"У вас мест нет!");
+            }
             else
-                req.IdStatus = 2;
-            BdConnection.Connection.SaveChanges();
-            lvNewRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 1).OrderBy(a => a.Data);
-            UpdateTab();
-            //}
+            {
+                CustomMaterialMessageBox msg = new CustomMaterialMessageBox
+                {
+                    TxtMessage = { Text = "Вы хотите принять заявку?" },
+                    TxtTitle = { Text = "Уведомление" },
+                    BtnOk = { Content = "Да" },
+                    BtnCancel = { Content = "Нет" }
+                };
+                msg.Show();
+                if (msg.Result == MessageBoxResult.OK)
+                    req.IdStatus = 3;
+                else
+                    req.IdStatus = 2;
+                BdConnection.Connection.SaveChanges();
+                lvNewRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 1).OrderBy(a => a.Data);
+                UpdateTab();
+            }
         }
 
         private void rbMyRequest_Click(object sender, RoutedEventArgs e)

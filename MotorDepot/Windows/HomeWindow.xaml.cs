@@ -55,6 +55,7 @@ namespace MotorDepot
                     break;
                 case 4:
                     MainWindow.CurrentUser = null;
+                    RequestDriver.StringReverse = String.Empty;
                     NavigationService.Navigate(new AuthorizationPage());
                     break;
                 default:
