@@ -21,7 +21,7 @@ namespace MotorDepot
         public IncomingPage()
         {
             InitializeComponent();
-            lvNewRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 1).OrderBy(a => a.Data);
+            lvNewRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 1 && a.RequestDriver.Data >= DateTime.Now).OrderBy(a => a.Data);
             lvOldRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus != 1).OrderBy(a=>a.Data);
             lvMyRequests.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
             UpdateTab();
@@ -105,11 +105,22 @@ namespace MotorDepot
 
         private void btnRevoke_Click(object sender, RoutedEventArgs e)
         {
-            var a = (sender as Button).DataContext as HistoryClientDriver;
-            a.IdStatus = 4;
-            BdConnection.Connection.SaveChanges();
-            MaterialMessageBox.Show("Вы отменили поездку!");
-            lvMyRequests.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(b => b.IdClient == MainWindow.CurrentUser.Id);
+            CustomMaterialMessageBox msg = new CustomMaterialMessageBox
+            {
+                TxtMessage = { Text = "Вы точно хотите отменить поездку?" },
+                TxtTitle = { Text = "Уведомление" },
+                BtnOk = { Content = "Да" },
+                BtnCancel = { Content = "Нет" }
+            };
+            msg.Show();
+            if (msg.Result == MessageBoxResult.OK)
+            {
+                var a = (sender as Button).DataContext as HistoryClientDriver;
+                a.IdStatus = 4;
+                BdConnection.Connection.SaveChanges();
+                MaterialMessageBox.Show("Вы отменили поездку!");
+                lvMyRequests.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(b => b.IdClient == MainWindow.CurrentUser.Id);
+            }
         }
     }
 }

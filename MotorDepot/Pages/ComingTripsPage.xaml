@@ -94,7 +94,7 @@
                             <DataGridTemplateColumn Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button x:Name="btnFeedback" Margin="10" Content="Написать отзыв" Click="btnFeedback_Click"></Button>
+                                        <Button x:Name="btnFeedback" Margin="10" Width="170" Content="Написать отзыв" Click="btnFeedback_Click"></Button>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

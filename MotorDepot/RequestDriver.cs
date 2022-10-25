@@ -58,6 +58,7 @@ namespace MotorDepot
             {
                 if (MainWindow.CurrentUser.Id == IdUser)
                 {
+                    StringReverse = String.Empty;
                     return "Collapsed";
                 }
                 else if (FreeVenue == 0)
@@ -69,12 +70,18 @@ namespace MotorDepot
                 {
                     if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 1).Count() != 0)
                         StringReverse = "Вы отправили заявку, ожидайте!";
+
                     else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 3).Count() != 0)
                         StringReverse = "Вы уже забронировали место!";
+                    else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 4).Count() != 0)
+                        StringReverse = "Вы отменили поездку!";
+                    else
+                        StringReverse = String.Empty;
                     return "Collapsed";
                 }
                 else
                 {
+                    StringReverse = String.Empty;
                     return "Visibility";
                 }
             }

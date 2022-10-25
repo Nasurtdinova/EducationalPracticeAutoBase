@@ -13,7 +13,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="8*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Source="/MotorDepot;component/Images/фонДорога.jpg" Width="1700" Grid.RowSpan="2"></Image>
+        <Image Source="/MotorDepot;component/Images/фонДорога.jpg" Width="2000" Grid.RowSpan="2"></Image>
         <ListView Name="lvDrivers" Grid.Row="1" SelectionChanged="lvDrivers_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>

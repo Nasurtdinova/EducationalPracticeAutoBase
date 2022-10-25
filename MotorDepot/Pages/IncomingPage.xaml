@@ -19,13 +19,13 @@
                 <TabItem Header="Новые" >
                     <StackPanel>
                         <TextBlock x:Name="tbNewDataClients" FontSize="22" Text="Нет данных" Visibility="Collapsed" Margin="300"></TextBlock>
-                        <DataGrid x:Name="lvNewRequestsClients" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="700" AutoGenerateColumns="False">
+                        <DataGrid x:Name="lvNewRequestsClients" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="600" AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Клиент" Binding="{Binding User.FullName}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Дата поездки" Binding="{Binding RequestDriver.Data, StringFormat='dd.MM.yyyy hh:mm'}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Место отбытия" Binding="{Binding RequestDriver.PlaceDeparture.City.Name}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Место назначения" Binding="{Binding RequestDriver.PlaceArrival.City.Name}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Количество мест" Width="190" Binding="{Binding CountPeople}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Кол мест" Binding="{Binding CountPeople}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Статус" Binding="{Binding Status.Name}"></DataGridTextColumn>
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
@@ -56,7 +56,7 @@
                 <TabItem Header="Старые">
                     <StackPanel>
                         <TextBlock x:Name="tbOldDataClients" FontSize="22" Text="Нет данных"  Visibility="Collapsed" Margin="300"></TextBlock>
-                        <DataGrid x:Name="lvOldRequestsClients" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="700" AutoGenerateColumns="False">
+                        <DataGrid x:Name="lvOldRequestsClients" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="600" AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Клиент" Binding="{Binding User.FullName}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Дата поездки" Binding="{Binding RequestDriver.Data, StringFormat='dd.MM.yyyy hh:mm'}"></DataGridTextColumn>
