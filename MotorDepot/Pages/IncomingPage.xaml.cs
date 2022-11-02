@@ -21,9 +21,9 @@ namespace MotorDepot
         public IncomingPage()
         {
             InitializeComponent();
-            lvNewRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 1 && a.RequestDriver.Data >= DateTime.Now).OrderBy(a => a.Data);
-            lvOldRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus != 1).OrderBy(a=>a.Data);
-            lvMyRequests.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
+            lvNewRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MotorDepotWindow.CurrentUser.Id && a.IdStatus == 1 && a.RequestDriver.Data >= DateTime.Now).OrderBy(a => a.Data);
+            lvOldRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MotorDepotWindow.CurrentUser.Id && a.IdStatus != 1).OrderBy(a=>a.Data);
+            lvMyRequests.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MotorDepotWindow.CurrentUser.Id);
             UpdateTab();
         }
 
@@ -54,7 +54,7 @@ namespace MotorDepot
                 else
                     req.IdStatus = 2;
                 BdConnection.Connection.SaveChanges();
-                lvNewRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 1).OrderBy(a => a.Data);
+                lvNewRequestsClients.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MotorDepotWindow.CurrentUser.Id && a.IdStatus == 1).OrderBy(a => a.Data);
                 UpdateTab();
             }
         }
@@ -119,7 +119,7 @@ namespace MotorDepot
                 a.IdStatus = 4;
                 BdConnection.Connection.SaveChanges();
                 MaterialMessageBox.Show("Вы отменили поездку!");
-                lvMyRequests.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(b => b.IdClient == MainWindow.CurrentUser.Id);
+                lvMyRequests.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(b => b.IdClient == MotorDepotWindow.CurrentUser.Id);
             }
         }
     }

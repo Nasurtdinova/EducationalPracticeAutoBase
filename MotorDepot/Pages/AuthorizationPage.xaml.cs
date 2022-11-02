@@ -28,7 +28,7 @@ namespace MotorDepot
             var user = DataAccess.GetUsers().Where(a => a.Login == tbLogin.Text && a.Password == tbPassword.Password).FirstOrDefault();
             if (user != null)
             {
-                MainWindow.CurrentUser = user;
+                MotorDepotWindow.CurrentUser = user;
                 NavigationService.Navigate(new HomeWindow());
             }
             else

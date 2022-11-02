@@ -21,8 +21,8 @@ namespace MotorDepot
         public ComingTripsPage()
         {
             InitializeComponent();
-            dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.IdUser == MainWindow.CurrentUser.Id);
-            dgDrivers.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
+            dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.IdUser == MotorDepotWindow.CurrentUser.Id);
+            dgDrivers.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MotorDepotWindow.CurrentUser.Id);
             if (dgTrips.Items.Count == 0)
             {
                 tbDataTrips.Visibility = Visibility.Visible;
@@ -46,7 +46,7 @@ namespace MotorDepot
             publishDriver.Show();
             publishDriver.Closed += (s, eventarg) =>
             {
-                dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.IdUser == MainWindow.CurrentUser.Id);
+                dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.IdUser == MotorDepotWindow.CurrentUser.Id);
             };
         }
 
@@ -57,20 +57,20 @@ namespace MotorDepot
             publishDriver.Show();
             publishDriver.Closed += (s, eventarg) =>
             {
-                dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.IdUser == MainWindow.CurrentUser.Id);
+                dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.IdUser == MotorDepotWindow.CurrentUser.Id);
             };
         }
 
         private void btnFeedback_Click(object sender, RoutedEventArgs e)
         {
             var his = (sender as Button).DataContext as HistoryClientDriver;
-            if (DataAccess.GetFeedbacks().Where(a => a.IdUser == MainWindow.CurrentUser.Id && a.IdDriver == his.RequestDriver.IdUser).Count() == 0)
+            if (DataAccess.GetFeedbacks().Where(a => a.IdUser == MotorDepotWindow.CurrentUser.Id && a.IdDriver == his.RequestDriver.IdUser).Count() == 0)
             {
                 SendFeedbackWindow wins = new SendFeedbackWindow(his);
                 wins.Show();
                 wins.Closed += (s, eventarg) =>
                 {
-                    dgDrivers.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
+                    dgDrivers.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MotorDepotWindow.CurrentUser.Id);
                 };
             }
             else
@@ -89,7 +89,7 @@ namespace MotorDepot
                     wins.Show();
                     wins.Closed += (s, eventarg) =>
                     {
-                        dgDrivers.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MainWindow.CurrentUser.Id);
+                        dgDrivers.ItemsSource = DataAccess.GetHistoriesClientDriver().Where(a => a.IdClient == MotorDepotWindow.CurrentUser.Id);
                     };
                 }
             }
@@ -100,7 +100,7 @@ namespace MotorDepot
             var a = (sender as Button).DataContext as HistoryClientDriver;
             a.IdStatus = 2;
             BdConnection.Connection.SaveChanges();
-            dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(b => b.IdUser == MainWindow.CurrentUser.Id);
+            dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(b => b.IdUser == MotorDepotWindow.CurrentUser.Id);
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
@@ -125,7 +125,7 @@ namespace MotorDepot
                         req.IsDeleted = true;
                         BdConnection.Connection.SaveChanges();
                         MaterialMessageBox.Show("Вы успешно удалили поездку!");
-                        dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.IdUser == MainWindow.CurrentUser.Id);
+                        dgTrips.ItemsSource = DataAccess.GetRequestDrivers().Where(a => a.IdUser == MotorDepotWindow.CurrentUser.Id);
                     }
                 }
             }           

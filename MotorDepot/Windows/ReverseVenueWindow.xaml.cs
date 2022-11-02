@@ -22,7 +22,7 @@ namespace MotorDepot
         public ReverseVenueWindow(RequestDriver req)
         {
             InitializeComponent();
-            tbUser.Text = MainWindow.CurrentUser.FullName;
+            tbUser.Text = MotorDepotWindow.CurrentUser.FullName;
             if (req != null)
                 SelectedRequest = req;
             DataContext = CurrentHistory;
@@ -36,7 +36,7 @@ namespace MotorDepot
             {
                 if (MessageBox.Show("Вы точно хотите забронировать место?", "Подтверждение", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
                 {
-                    CurrentHistory.IdClient = MainWindow.CurrentUser.Id;
+                    CurrentHistory.IdClient = MotorDepotWindow.CurrentUser.Id;
                     CurrentHistory.IdRequestDriver = SelectedRequest.Id;
                     CurrentHistory.IdStatus = 1;
                     CurrentHistory.Data = DateTime.Now;

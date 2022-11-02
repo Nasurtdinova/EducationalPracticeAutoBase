@@ -51,18 +51,6 @@ namespace MotorDepot
             lvDrivers.ItemsSource = UpdatedRequestDriver;
         }
 
-        //public void OnComboDepartureTextChanged(object sender, RoutedEventArgs e)
-        //{
-        //    var city = DataAccess.GetCities();
-        //    cbDeparture.ItemsSource = city.Where(a => a.Name.ToLower().Contains(cbDeparture.Text.ToLower()));          
-        //}
-
-        //public void OnComboArrivalTextChanged(object sender, RoutedEventArgs e)
-        //{
-        //    var city = DataAccess.GetCities();
-        //    cbArrival.ItemsSource = city.Where(a => a.Name.ToLower().Contains(cbArrival.Text.ToLower()));
-        //}
-
         private void btnReserve_Click(object sender, RoutedEventArgs e)
         {
             var req = (sender as Button).DataContext as RequestDriver;

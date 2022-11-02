@@ -30,7 +30,7 @@ namespace MotorDepot
             FeedbackDriver feedback = new FeedbackDriver()
             {
                 IdDriver = CurrentHistory.RequestDriver.IdUser,
-                IdUser = MainWindow.CurrentUser.Id,
+                IdUser = MotorDepotWindow.CurrentUser.Id,
                 Feedback = tbFeedback.Text
             };
             DataAccess.SaveFeedback(feedback);

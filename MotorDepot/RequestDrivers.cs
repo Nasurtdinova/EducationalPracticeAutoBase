@@ -26,11 +26,11 @@ namespace MotorDepot
         {
             get
             {
-                if (MainWindow.CurrentUser.Id == IdUser)
+                if (MotorDepotWindow.CurrentUser.Id == IdUser)
                     return "Collapsed";
                 else if (FreeVenue == 0)
                     return "Collapsed";
-                else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 1 && a.IdStatus == 3).Count() != 0)
+                else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MotorDepotWindow.CurrentUser.Id && a.IdStatus == 1 && a.IdStatus == 3).Count() != 0)
                     return "Collapsed";
                 else
                     return "Visibility";
@@ -52,7 +52,7 @@ namespace MotorDepot
         {
             get
             {
-                return DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 3 && a.IdRequestDriver == Id).ToList();
+                return DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MotorDepotWindow.CurrentUser.Id && a.IdStatus == 3 && a.IdRequestDriver == Id).ToList();
             }
         }
         // history

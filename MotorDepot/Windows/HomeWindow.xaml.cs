@@ -54,7 +54,7 @@ namespace MotorDepot
                     GridPrincipal.Navigate(new MyProfilePage());
                     break;
                 case 4:
-                    MainWindow.CurrentUser = null;
+                    MotorDepotWindow.CurrentUser = null;
                     RequestDriver.StringReverse = String.Empty;
                     NavigationService.Navigate(new AuthorizationPage());
                     break;

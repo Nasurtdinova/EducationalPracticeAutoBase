@@ -56,7 +56,7 @@ namespace MotorDepot
         {
             get
             {
-                if (MainWindow.CurrentUser.Id == IdUser)
+                if (MotorDepotWindow.CurrentUser.Id == IdUser)
                 {
                     StringReverse = String.Empty;
                     return "Collapsed";
@@ -66,14 +66,14 @@ namespace MotorDepot
                     StringReverse = "Мест нет!";
                     return "Collapsed";
                 }
-                else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus != 2).Count() != 0 && MainWindow.CurrentUser.Id != IdUser)
+                else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MotorDepotWindow.CurrentUser.Id && a.IdStatus != 2).Count() != 0 && MotorDepotWindow.CurrentUser.Id != IdUser)
                 {
-                    if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 1).Count() != 0)
+                    if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MotorDepotWindow.CurrentUser.Id && a.IdStatus == 1).Count() != 0)
                         StringReverse = "Вы отправили заявку, ожидайте!";
 
-                    else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 3).Count() != 0)
+                    else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MotorDepotWindow.CurrentUser.Id && a.IdStatus == 3).Count() != 0)
                         StringReverse = "Вы уже забронировали место!";
-                    else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MainWindow.CurrentUser.Id && a.IdStatus == 4).Count() != 0)
+                    else if (DataAccess.GetHistoriesClientDriver().Where(a => a.IdRequestDriver == Id && a.IdClient == MotorDepotWindow.CurrentUser.Id && a.IdStatus == 4).Count() != 0)
                         StringReverse = "Вы отменили поездку!";
                     else
                         StringReverse = String.Empty;
@@ -102,7 +102,7 @@ namespace MotorDepot
         {
             get
             {
-                return DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MainWindow.CurrentUser.Id && a.IdStatus == 3 && a.IdRequestDriver == Id).ToList();
+                return DataAccess.GetHistoriesClientDriver().Where(a => a.RequestDriver.IdUser == MotorDepotWindow.CurrentUser.Id && a.IdStatus == 3 && a.IdRequestDriver == Id).ToList();
             }
         }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

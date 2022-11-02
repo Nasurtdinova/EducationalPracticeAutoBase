@@ -24,18 +24,18 @@ namespace MotorDepot
         {
             InitializeComponent();
             comboStump.ItemsSource = DataAccess.GetStamps();
-            lvFeedBacks.ItemsSource = DataAccess.GetFeedbacks().Where(a => a.IdDriver == MainWindow.CurrentUser.Id);
+            lvFeedBacks.ItemsSource = DataAccess.GetFeedbacks().Where(a => a.IdDriver == MotorDepotWindow.CurrentUser.Id);
             if (lvFeedBacks.Items.Count == 0)
                 tbNoData.Visibility = Visibility.Visible;
-            DataContext = MainWindow.CurrentUser;
+            DataContext = MotorDepotWindow.CurrentUser;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.CurrentUser.FullName = tbFullName.Text;
-            MainWindow.CurrentUser.Login = tbLogin.Text;
-            MainWindow.CurrentUser.DayOfBirth = tbBirthday.SelectedDate;
-            MainWindow.CurrentUser.Car = comboModel.SelectedItem as Car;
+            MotorDepotWindow.CurrentUser.FullName = tbFullName.Text;
+            MotorDepotWindow.CurrentUser.Login = tbLogin.Text;
+            MotorDepotWindow.CurrentUser.DayOfBirth = tbBirthday.SelectedDate;
+            MotorDepotWindow.CurrentUser.Car = comboModel.SelectedItem as Car;
             BdConnection.Connection.SaveChanges();
             MaterialMessageBox.Show("Информация сохранена!");
             NavigationService.Navigate(new MyProfilePage());
@@ -52,7 +52,7 @@ namespace MotorDepot
             if (file.ShowDialog() == true)
             {
                 string path = file.FileName;
-                MainWindow.CurrentUser.Image = File.ReadAllBytes(path);
+                MotorDepotWindow.CurrentUser.Image = File.ReadAllBytes(path);
                 img.Source = new BitmapImage(new Uri(path));
             }
         }
